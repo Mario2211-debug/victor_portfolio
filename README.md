@@ -9,7 +9,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 <img src="/src/app/icons/Home.png" align="center">
 
 <h3 align="left">Connect with me:</h3>
-<p align="left">
+<p align="left"> Linkedin: www.linkedin.com/in/mario-afonso-018107141
 </p>
 
 
