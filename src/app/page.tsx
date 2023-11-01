@@ -1,6 +1,6 @@
-import PreSection from './Section'
-import FullScreenNavBar from '../components/Navbar'
-import Projects from './projects/page'
+import PreSection from "./Section"
+import FullScreenNavBar from "../components/Navbar"
+import Projects from "./projects/page"
 
 
 export default function Home() {

@@ -1,5 +1,4 @@
-import Brands from "./util/Brands";
-
+import Brands from "./util/Brands"
 export default function PreSection(){
   return(
       

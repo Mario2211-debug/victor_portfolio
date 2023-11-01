@@ -1,11 +1,11 @@
-import Image from 'next/image'
-import Django from '../icons/icons8-postgresql.svg'
-import Next from '../icons/nextjs-15.svg'
-import Node from '../icons/icons8-nodejs.svg'
-import RCT from '../icons/React.svg'
-import Java from '../icons/icons8-javascript.svg'
-import TS from '../icons/icons8-typescript.svg'
-import vt from '../icons/icons8-vite.svg'
+import Image from "next/image"
+import Django from "../icons/icons8-postgresql.svg"
+import Next from "../icons/nextjs-15.svg"
+import Node from "../icons/icons8-nodejs.svg"
+import RCT from "../icons/React.svg"
+import Java from "../icons/icons8-javascript.svg"
+import TS from "../icons/icons8-typescript.svg"
+import vt from "../icons/icons8-vite.svg"
 
 
 
