@@ -3,7 +3,7 @@ export default function PreSection(){
   return(
       
       <div className="contents md:container justify-between text-center">
-        <div className="items-center md:justify-between mobile:px-2 mobile:py-20 md:flex ">
+        <div className="items-center md:justify-between  md:pt-56 mobile:px-2 mobile:py-20 md:flex ">
           <div className="md:w-6 p-12 w-full md:flex-1">
           <span className="text-white md:w-14 ">
             <h1 className="animate-typing overflow-hidden whitespace-nowrap border-r-4 border-r-white mobile:text-sm mobile:justify-center mobile:inline-block text-2xl">Hi, I am Mário Afonso</h1>

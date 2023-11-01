@@ -1,6 +1,7 @@
 'use client'
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import {useEffect} from 'react';
 import Link from "next/link";
 
 interface MobileNavProps {
@@ -8,15 +9,19 @@ interface MobileNavProps {
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-window.addEventListener('scroll', function(){
-    const navbar = this.document.querySelector('.navbar')
-    if(this.window.scrollY > 0) {
-        navbar?.classList.add('blur');
-    }
-    else {
-            navbar?.classList.remove('blur')
-        }
-    })
+// useEffect(() => {
+//     window.addEventListener('scroll', function(){
+//         const navbar = this.document.querySelector('.navbar')
+//         if(this.window.scrollY > 0) {
+//             navbar?.classList.add('blur');
+//         }
+//         else {
+//                 navbar?.classList.remove('blur')
+//             }
+//         })
+// })
+
+
 
 
 
