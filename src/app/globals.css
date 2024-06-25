@@ -2,16 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-    .animation-delay-2000 {
-      animation-delay: 2s;
-    }
-    .animation-delay-4000 {
-      animation-delay: 4s;
-    }
+* {
+  margin: none;
+  line-height: none;
+  padding: none;
+  height: none;
+  width: none;
+}
 
-    .navbar.blur {
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-    }
+@layer utilities {
+  .animation-delay-2000 {
+    animation-delay: 2s;
   }
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  .navbar.blur {
+    backdrop-filter: blur(3px);
+    z-index: 1000;
+    transition: filter 0.3s ease;
+  }
+}
