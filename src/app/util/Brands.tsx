@@ -2,11 +2,6 @@ import React from "react";
 import Image from "next/image";
 
 // Supondo que as imagens sejam importadas ou tenham seus caminhos definidos
-import Next from "../icons/nextjs-15.svg";
-import Node from "../icons/icons8-nodejs.svg";
-import RCT from "../icons/React.svg";
-import TS from "../icons/icons8-typescript.svg";
-import vt from "../icons/icons8-vite.svg";
 import PSQL from "../icons/postgresql-svgrepo-com.svg";
 import JavaScript from "../icons/js-square-svgrepo-com.svg";
 import java from "../icons/java-svgrepo-com.svg";
@@ -19,26 +14,28 @@ const MyComponent = () => {
         <li className="flex p-2 bg-opacity-5 invert">
           <Image
             src={PSQL}
-            width={50}
-            height={50}
+            width={35}
+            height={35}
             alt="Picture of the author"
+            className="mySvg"
           />{" "}
         </li>
 
-        <li className="flex p-2 invert">
+        <li className="flex p-2 bg-transparent backdrop-blur-sm">
           <Image
             src={JavaScript}
-            width={50}
-            height={50}
+            width={35}
+            height={35}
             alt="Picture of the author"
+            className="full-shadow invert rounded-sm bg-[rgba(67,79,252,1)]"
           />{" "}
         </li>
 
         <li className="flex p-2 invert ">
           <Image
             src={java}
-            width={50}
-            height={50}
+            width={35}
+            height={35}
             alt="Picture of the author"
           />{" "}
         </li>
@@ -46,8 +43,8 @@ const MyComponent = () => {
         <li className="flex p-2 invert">
           <Image
             src={Csharp}
-            width={55}
-            height={55}
+            width={35}
+            height={35}
             alt="Picture of the author"
           />{" "}
         </li>

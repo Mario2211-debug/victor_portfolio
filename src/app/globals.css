@@ -11,6 +11,12 @@
 }
 
 @layer utilities {
+  .full-shadow {
+    filter: drop-shadow(0 0 5px 2px rgb(34, 49, 255));
+  }
+  .mySVG {
+    filter: drop-shadow(0 0 40px #0b03ff);
+  }
   .animation-delay-2000 {
     animation-delay: 2s;
   }

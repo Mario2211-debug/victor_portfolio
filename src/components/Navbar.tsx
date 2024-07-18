@@ -2,7 +2,7 @@
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useEffect } from "react";
-import Link from "next/link";
+//import Link from "next/link";
 
 interface MobileNavProps {
   open: boolean;
@@ -25,31 +25,37 @@ function MobileNav({ open, setOpen }: MobileNavProps) {
 
   return (
     <div
-      className={`absolute top-0 left-0 bottom-0 w-full overflow-y-hidden bg-black transform ${
+      className={`absolute h-screen top-0 left-0 bottom-0 w-full overflow-y-hidden z-50 bg-black transform ${
         open ? "-translate-y-0" : "-translate-y-full"
       } transition-transform duration-300 ease-in-out filter`}
     >
       <div className=" flex flex-col justify-center items-center mt-28">
-        <Link
+        <a
           href="/"
           className="text-2xl text-white font-bold hover:text-red-500 my-4"
         >
           Home
-        </Link>
-        <Link
+        </a>
+        <a
           className="text-2xl text-white font-bold hover:text-red-500 my-4"
-          href="projects/id"
+          href="/blog"
+        >
+          Blog
+        </a>
+        <a
+          className="text-2xl text-white font-bold hover:text-red-500 my-4"
+          href="/projects/id"
         >
           Projects
-        </Link>
-        <Link
+        </a>
+        <a
           href="/about_me"
           className={`text-2xl text-white font-bold hover:text-red-500 my-4 link ${
             pathname === "/about_me" ? "active" : ""
           }`}
         >
           Sobre
-        </Link>
+        </a>
       </div>
     </div>
   );
@@ -61,7 +67,7 @@ export default function FullScreenNavBar() {
   return (
     <nav>
       <div className="w-full h-fit fixed z-20 top-0 left-0 ">
-        <div className="max-w-screen-xl navbar flex items-center justify-between mx-auto p-4">
+        <div className="navbar flex items-center justify-between mx-auto p-4">
           <a
             href="/"
             className="flex items-center w-11/12 flex-1 justify-start p-4 md:order-2"

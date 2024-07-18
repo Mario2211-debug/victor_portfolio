@@ -9,10 +9,10 @@ export default function PreSection() {
               Hi, I am Mário Afonso
             </h1>
           </span>
-          <h1 className="text-white text mobile:text-5xl font-Bellefair pb-2 md:text-7xl font-bold">
+          <h1 className="text-white text mobile:text-5xl font-Bellefair p-4 md:text-7xl font-bold">
             Full Stack Dev
           </h1>
-          <div className="inline-block outline-1 outline outline-slate-900 rounded-sm bg-opacity-50 backdrop-blur-md">
+          <div className="inline-block p outline-1 outline outline-slate-900 rounded-sm bg-opacity-50 backdrop-blur-md">
             <Brands />
           </div>
         </div>
