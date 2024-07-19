@@ -87,7 +87,7 @@ const PostPage: React.FC = () => {
       </div>
       <div className="desktop:py-48 mobile:py-8">
         <div className="desktop:mx-14 mobile:mx-0">
-          <div className="max-w-full min-h-screen p-4">
+          <div className="max-w-full p-4">
             <div className="w-fit">
               <h1 className="p-2 text-2xl font-semibold text-white">
                 Categoria

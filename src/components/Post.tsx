@@ -26,8 +26,6 @@ export default function Post(props: PostProps) {
           className={
             props.imgclassName || "rounded-xl w-[-webkit-fill-available]"
           }
-          width={200}
-          height={200}
         />
 
         <div className="inline-grid gap-2 text-justify">
