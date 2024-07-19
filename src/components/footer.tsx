@@ -29,7 +29,7 @@ export default function ContactMe() {
         </div>
       </div>
 
-      <div className="outline-1 outline outline-slate-900 rounded-sm bg-opacity-50 backdrop-blur-md">
+      <div className="border border-slate-900 rounded-sm bg-opacity-50 backdrop-blur-md">
         <div className="p-4 text-gray-500">©️ 2024 | Mário Afonso</div>
       </div>
     </div>

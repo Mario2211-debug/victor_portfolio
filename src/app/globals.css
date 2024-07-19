@@ -29,4 +29,17 @@
     z-index: 1000;
     transition: filter 0.3s ease;
   }
+
+  .blur-cover {
+    --tw-backdrop-blur: blur(12px);
+    --tw-bg-opacity: 0.05;
+    --tw-border-opacity: 1;
+    backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness)
+      var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale)
+      var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert)
+      var(--tw-backdrop-opacity) var(--tw-backdrop-saturate)
+      var(--tw-backdrop-sepia);
+    border: 1px rgb(30 41 59 / var(--tw-border-opacity)) solid;
+    border-radius: 0.5rem;
+  }
 }

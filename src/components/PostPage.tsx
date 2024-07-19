@@ -62,14 +62,14 @@ const PostPage: React.FC = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="grid laptop:flex">
-      <div className="desktop:py-64 mobile:pt-20 px-2">
-        <div className="inline-grid text-white text-justify py-4">
-          <div className="items-center justify-center">
+    <div className="grid laptop:flex laptop:justify-center laptop:items-start gap-5 p-4">
+      <div className="w-full laptop:w-1/4 p-4 order-1">
+        <div className="inline-grid text-white text-justify desktop:pt-48 mobile:pt-8">
+          <div className="flex items-center justify-center">
             <Image
               src={Photo}
               alt="imagem"
-              className="w-36 h-36 border-2 p-2 rounded-full"
+              className="w-36 h-36 border border-slate-700 p-2 rounded-full"
             />
           </div>
           <p className="text-3xl pt-4">Mário Afonso</p>
@@ -85,19 +85,19 @@ const PostPage: React.FC = () => {
           </p>
         </span>
       </div>
-      <div className="desktop:py-48 mobile:py-8">
-        <div className="desktop:mx-14 mobile:mx-0">
-          <div className="max-w-full p-4">
-            <div className="w-fit">
-              <h1 className="p-2 text-2xl font-semibold text-white">
-                Categoria
-              </h1>
-            </div>
+      <div className="w-full laptop:w-2/3 p-4 order-2">
+        <div className="desktop:pt-32 mobile:pt-8">
+          <div className="w-fit">
+            <h1 className="py-4 text-xl font-semibold text-justify text-white">
+              Categoria
+            </h1>
+          </div>
+          <div className="max-w-full blur-cover p-4">
             <div className="items-center justify-center">
               <Image
                 src={Photo}
                 alt={post?.title || "post image"}
-                className="desktop:max-w-screen-md w-screen rounded-md h-80 object-cover"
+                className="desktop:max-w-screen-md w-full rounded-xl desktop:h-80 laptop:h-52 object-cover"
               />
             </div>
             <div className="inline-grid gap-2 text-justify">
@@ -112,26 +112,31 @@ const PostPage: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="desktop:py-48 mobile:py-8 px-2">
-        <div className="w-fit">
-          <h1 className="py-4 text-xl font-semibold text-justify text-white">
-            Categorias relacionadas
-          </h1>
-        </div>
-        <div className="inline-grid h-fit text-white text-justify">
-          <div className="py-4">
-            <Image
-              src={Photo}
-              alt="imagem"
-              className="rounded-3xl max-w-xl h-32 w-[-webkit-fill-available] object-cover"
-            />
+      <div className="w-full laptop:w-1/3 p-4 order-3">
+        <div className="desktop:pt-32 mobile:pt-8 text-center">
+          <div className="w-fit">
+            <h1 className="py-4 text-xl font-semibold text-justify text-white">
+              Categorias relacionadas
+            </h1>
           </div>
-          <span className="ml-auto font-light bg-rose-200 text-red-600 rounded-full">
-            <p className="text-right p-2 text-xs">Desenvolvimento</p>
-          </span>
-          <span>
-            <p>Lorem Ipsum is simply dummy text and typesetting industry.</p>
-          </span>
+          <div className="inline-grid mobile:grid h-fit max-w-full text-white text-justify blur-cover p-4">
+            <div className="pb-4">
+              <Image
+                src={Photo}
+                alt="imagem"
+                className="rounded-xl h-32 w-full object-cover"
+              />
+            </div>
+            <span className="ml-auto font-light bg-rose-200 text-red-600 rounded-full shadow-sm shadow-rose-200">
+              <p className="text-right p-2 text-xs">Desenvolvimento</p>
+            </span>
+            <span className="p-2">
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry.
+              </p>
+            </span>
+          </div>
         </div>
       </div>
     </div>
