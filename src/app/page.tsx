@@ -10,6 +10,7 @@ export default function Home() {
         <div className="flex justify-center p-2">
           <span className="absolute w-3/4 border-t border-gray-500"></span>
         </div>
+        <Blob />
 
         <Projects />
         <div className="flex justify-center p-4">

@@ -1,6 +1,6 @@
 import Item from "@/components/Item";
 import { title } from "process";
-import data from "@/app/api/data.json";
+import project from "@/app/api/projects.json";
 
 export default function Projects() {
   const renderBrieflyText = () => {
@@ -91,5 +91,5 @@ export default function Projects() {
     );
   };
 
-  return !data.projects ? renderProjects() : renderBrieflyText();
+  return !project.projects ? renderProjects() : renderBrieflyText();
 }
