@@ -69,7 +69,7 @@ const PostPage: React.FC = () => {
             <Image
               src={Photo}
               alt="imagem"
-              className="w-36 h-36 min-h-fit border-2 p-2 rounded-full"
+              className="w-36 h-36 border-2 p-2 rounded-full"
             />
           </div>
           <p className="text-3xl pt-4">Mário Afonso</p>
