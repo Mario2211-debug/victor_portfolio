@@ -31,7 +31,7 @@ const config: Config = {
       },
 
       screens: {
-        mobile: "375px",
+        mobile: "340px",
         // => @media (min-width: 375px) { ... }
 
         tablet: "768px",

@@ -25,7 +25,7 @@ function MobileNav({ open, setOpen }: MobileNavProps) {
 
   return (
     <div
-      className={`absolute h-screen top-0 left-0 bottom-0 w-full overflow-y-hidden z-50 bg-black transform ${
+      className={`fixed top-0 left-0 right-0 bottom-0 w-full h-full overflow-y-hidden z-10 bg-black transform ${
         open ? "-translate-y-0" : "-translate-y-full"
       } transition-transform duration-300 ease-in-out filter`}
     >
