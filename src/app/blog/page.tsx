@@ -50,10 +50,10 @@ export default function Blog() {
 
   return (
     <>
-      <div className="flex text-justify mx-16 my-24 mobile:mx-6 self-start">
+      <div className="flex text-justify mx-10 my-24 mobile:mx-6 self-start">
         <h1 className="text-5xl p-2 text-white">O meu blog</h1>
       </div>
-      <div className="text-center mobile:mx-10 mx-4">
+      <div className="text-center tablet:mx-4">
         {last && (
           <div className="content items-center justify-between p-4 text-white laptop:flex">
             <div className="text-justify self-start max-h-fit ">
