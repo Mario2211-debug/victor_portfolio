@@ -67,7 +67,7 @@ export default function Blog() {
                   <Image
                     src={Photo}
                     alt="Post Image"
-                    className="w-screen rounded-3xl laptop:h-80 object-cover"
+                    className="w-screen rounded-xl laptop:h-80 object-cover"
                   />
                 </a>
               </div>
@@ -78,10 +78,7 @@ export default function Blog() {
         <div className="flex items-center justify-center my-16 laptop:mx-16 text-white">
           <div className="grid grid-cols-1 gap-8 py-10 text-justify tablet:grid-cols-2 laptop:grid-cols-3 ">
             {posts.map((post) => (
-              <div
-                key={post._id}
-                className="p-4 blur-cover"
-              >
+              <div key={post._id} className="p-4 blur-cover">
                 <a href={`blog/articles/${post._id}`}>
                   <Post
                     _id={post._id}
