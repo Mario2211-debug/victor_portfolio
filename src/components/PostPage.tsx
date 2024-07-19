@@ -64,8 +64,8 @@ const PostPage: React.FC = () => {
   return (
     <div className="grid laptop:flex laptop:justify-center laptop:items-start gap-5 p-4">
       <div className="w-full laptop:w-1/4 p-4 order-1">
-        <div className="inline-grid text-white text-justify desktop:pt-48 mobile:pt-8">
-          <div className="flex items-center justify-center">
+        <div className="grid laptop:inline-grid justify-items-center text-white desktop:pt-48 mobile:pt-8">
+          <div className="flex">
             <Image
               src={Photo}
               alt="imagem"
@@ -77,13 +77,13 @@ const PostPage: React.FC = () => {
             <p className="text-zinc-500">Software Engineer</p>
             <p className="text-zinc-500">Portugal</p>
           </span>
+          <span className="text-white -tracking-tighter leading-5 text-justify text-xs">
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry.
+            </p>
+          </span>
         </div>
-        <span className="text-white -tracking-tighter leading-5 text-justify text-xs">
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry.
-          </p>
-        </span>
       </div>
       <div className="w-full laptop:w-2/3 p-4 order-2">
         <div className="desktop:pt-32 mobile:pt-8">
