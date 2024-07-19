@@ -75,10 +75,10 @@ export default function Blog() {
           </div>
         )}
 
-        <div className="flex items-center justify-center my-16 mx-10 text-white rounded-lg bg-gray-900 bg-opacity-50 mobile:mx-0 ">
+        <div className="flex items-center justify-center my-16 mx-0 text-white rounded-lg bg-gray-900 bg-opacity-50 mobile:mx-10 ">
           <div className="grid grid-cols-1 gap-4 py-10 text-justify rounded-md tablet:grid-cols-2 laptop:grid-cols-3 ">
             {posts.map((post) => (
-              <div key={post._id} className="px-12 mobile:px-6 py-6">
+              <div key={post._id} className="px-6 mobile:px-12 py-6">
                 <a href={`blog/articles/${post._id}`}>
                   <Post
                     _id={post._id}
