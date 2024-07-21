@@ -53,9 +53,9 @@ export default function Blog() {
       <div className="flex text-justify mx-10 my-24 mobile:mx-6 self-start">
         <h1 className="text-5xl p-2 text-white">O meu blog</h1>
       </div>
-      <div className="text-center tablet:mx-4">
+      <div className="text-center tablet:mx-4 ">
         {last && (
-          <div className="content items-center justify-between text-white laptop:flex p-4 blur-cover">
+          <div className="content items-center justify-between text-white my-16 laptop:mx-32 laptop:flex p-4 blur-cover">
             <div className="text-justify self-start max-h-fit ">
               <span className="text-gray-700 text-center p-2">{last.date}</span>
               <h2 className="font-semibold text-2xl p-2">{last.title}</h2>
@@ -75,10 +75,10 @@ export default function Blog() {
           </div>
         )}
 
-        <div className="flex items-center justify-center my-16 laptop:mx-16 text-white">
-          <div className="grid grid-cols-1 gap-8 py-10 text-justify tablet:grid-cols-2 laptop:grid-cols-3 ">
+        <div className="flex items-center justify-center my-16 laptop:mx-32 text-white">
+          <div className="grid grid-cols-1 py-10 text-justify tablet:grid-cols-2 laptop:grid-cols-3 ">
             {posts.map((post) => (
-              <div key={post._id} className="p-4 blur-cover">
+              <div key={post._id} className="m-6 p-4 blur-cover">
                 <a href={`blog/articles/${post._id}`}>
                   <Post
                     _id={post._id}

@@ -2,6 +2,7 @@ import Image from "next/image";
 import likedin from "../app/icons/linkedin-logo-fill-svgrepo-com.svg";
 import mail from "../app/icons/mail-svgrepo-com.svg";
 import github from "../app/icons/icons8-github-512.svg";
+import Link from "next/link";
 
 export default function ContactMe() {
   return (
@@ -12,15 +13,23 @@ export default function ContactMe() {
         </div>
 
         <div className="flex justify-center p-2">
-          <span className="inline-flex p-2 invert">
-            <Image src={likedin} alt="Linkedin" width={30} height={30} />
-          </span>
-          <span className="inline-flex p-2 invert">
-            <Image src={github} alt="Github" width={30} height={30} />
-          </span>
-          <span className="inline-flex p-2 invert">
-            <Image src={mail} alt="Mail" width={30} height={30} />
-          </span>
+          <Link href={"https://linkedin.com/in/mario-afonso-018107141"}>
+            <span className="inline-flex p-2 invert">
+              <Image src={likedin} alt="Linkedin" width={30} height={30} />
+            </span>
+          </Link>
+
+          <Link href={"https://github.com/Mario2211-debug"}>
+            <span className="inline-flex p-2 invert">
+              <Image src={github} alt="Github" width={30} height={30} />
+            </span>
+          </Link>
+
+          <Link href={"https://github.com/Mario2211-debug"}>
+            <span className="inline-flex p-2 invert">
+              <Image src={mail} alt="Mail" width={30} height={30} />
+            </span>
+          </Link>
         </div>
         <div className="items-center">
           <span className="text-center p-2 text-white">
