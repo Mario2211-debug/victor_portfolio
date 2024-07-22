@@ -67,7 +67,7 @@ export default function Blog() {
                   <Image
                     src={Photo}
                     alt="Post Image"
-                    className="w-screen rounded-xl laptop:h-80 object-cover"
+                    className="w-screen rounded-xl desktop:w-auto h-[20rem] laptop:h-80 laptop:w-96 object-cover"
                   />
                 </a>
               </div>

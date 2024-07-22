@@ -11,6 +11,7 @@ interface Post {
   _id: string;
   title?: string;
   content?: string;
+  description: string;
   date?: string;
   readers?: string;
   className?: string;
@@ -62,9 +63,9 @@ const PostPage: React.FC = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="grid laptop:flex laptop:justify-center laptop:items-start gap-5 p-4">
+    <div className="grid laptop:flex laptop:justify-center laptop:items-start mx-20 gap-5">
       <div className="w-full laptop:w-1/4 p-4 order-1">
-        <div className="grid laptop:inline-grid justify-items-center text-white desktop:pt-48 mobile:pt-8">
+        <div className="grid laptop:inline-grid justify-between text-white desktop:pt-48 mobile:pt-8">
           <div className="flex">
             <Image
               src={Photo}
@@ -87,12 +88,13 @@ const PostPage: React.FC = () => {
       </div>
       <div className="w-full laptop:w-2/3 p-4 order-2">
         <div className="desktop:pt-32 mobile:pt-8">
-          <div className="w-fit">
-            <h1 className="py-4 text-xl font-semibold text-justify text-white">
-              Categoria
-            </h1>
+          <div className="w-fit p-4 inline-grid">
+            <h1 className="text-white font-bold text-3xl mobile:text-5xl">{post?.title}</h1>
+            <span className="text-zinc-400 text-2xl my-4">{post?.content}</span>
+
+            <span className="text-zinc-400">{post?.date}</span>
           </div>
-          <div className="max-w-full blur-cover p-4">
+          <div className="max-w-full p-4">
             <div className="items-center justify-center">
               <Image
                 src={Photo}
@@ -100,42 +102,20 @@ const PostPage: React.FC = () => {
                 className="desktop:max-w-screen-md w-full rounded-xl desktop:h-80 laptop:h-52 object-cover"
               />
             </div>
-            <div className="inline-grid gap-2 text-justify">
-              <div className="inline-flex float-right gap-4 p-2">
-                <span className="text-zinc-400 font-semibold">2.5m</span>
-                <span className="text-zinc-400 font-semibold">2.5m</span>
+            <div className="inline-grid gap-2 text-justify w-[-webkit-fill-available]">
+              <div className="flex">
+                <div className="inline-flex float-left gap-4 p-2">
+                  <span className="text-zinc-400 font-semibold">2.5m</span>
+                  <span className="text-zinc-400 font-semibold">2.5m</span>
+                </div>
+                <div className="inline-flex ml-auto  float-right items-end">
+                  <span className="font-medium bg-rose-50 text-red-600 rounded-full shadow-sm shadow-rose-200">
+                    <p className="text-right p-2 text-xs">Desenvolvimento</p>
+                  </span>
+                </div>
               </div>
-              <h1 className="text-xl text-white font-bold">{post?.title}</h1>
               <span className="text-zinc-400">{post?.content}</span>
-              <span className="text-zinc-400">{post?.date}</span>
             </div>
-          </div>
-        </div>
-      </div>
-      <div className="w-full laptop:w-1/3 p-4 order-3">
-        <div className="desktop:pt-32 mobile:pt-8 text-center">
-          <div className="w-fit">
-            <h1 className="py-4 text-xl font-semibold text-justify text-white">
-              Categorias relacionadas
-            </h1>
-          </div>
-          <div className="inline-grid mobile:grid h-fit max-w-full text-white text-justify blur-cover p-4">
-            <div className="pb-4">
-              <Image
-                src={Photo}
-                alt="imagem"
-                className="rounded-xl h-32 w-full object-cover"
-              />
-            </div>
-            <span className="ml-auto font-light bg-rose-200 text-red-600 rounded-full shadow-sm shadow-rose-200">
-              <p className="text-right p-2 text-xs">Desenvolvimento</p>
-            </span>
-            <span className="p-2">
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry.
-              </p>
-            </span>
           </div>
         </div>
       </div>
