@@ -73,7 +73,7 @@ const PostPage: React.FC = () => {
             />
           </div>
           <p className="text-3xl pt-4">Mário Afonso</p>
-          <span className="inline-flex gap-6 self-center laptop:self-start">
+          <span className="inline-flex gap-6 justify-center laptop:self-start">
             <p className="text-zinc-500">Software Engineer</p>
             <p className="text-zinc-500">Portugal</p>
           </span>
@@ -86,8 +86,8 @@ const PostPage: React.FC = () => {
         </div>
       </div>
       <div className="w-full laptop:w-2/3 p-4 order-2">
-        <div className="desktop:pt-32 mobile:pt-8 [text-align:-webkit-center] laptop:text-left mx-8">
-          <div className="w-fit p-4 inline-grid laptop:text-left text-center">
+        <div className="desktop:pt-32 mobile:pt-8 [text-align:-webkit-center] laptop:text-left mx-2">
+          <div className="w-fit p-2 inline-grid laptop:text-left text-center">
             <h1 className="text-white font-bold text-3xl mobile:text-5xl">
               {post?.title}
             </h1>
