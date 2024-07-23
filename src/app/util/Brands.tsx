@@ -14,8 +14,8 @@ const MyComponent = () => {
         <li className="flex p-2 bg-opacity-5 invert">
           <Image
             src={PSQL}
-            width={50}
-            height={50}
+            width={40}
+            height={40}
             alt="Picture of the author"
             className="mySvg"
           />{" "}
@@ -24,8 +24,8 @@ const MyComponent = () => {
         <li className="flex p-2 bg-transparent backdrop-blur-sm">
           <Image
             src={JavaScript}
-            width={50}
-            height={50}
+            width={40}
+            height={40}
             alt="Picture of the author"
             className="full-shadow invert rounded-sm"
           />{" "}
@@ -34,17 +34,17 @@ const MyComponent = () => {
         <li className="flex p-2 invert ">
           <Image
             src={java}
-            width={50}
-            height={50}
+            width={40}
+            height={40}
             alt="Picture of the author"
           />{" "}
         </li>
 
-        <li className="flex p-2 invert">
+        <li className="flex p-2 invert ">
           <Image
             src={Csharp}
-            width={50}
-            height={50}
+            width={40}
+            height={40}
             alt="Picture of the author"
           />{" "}
         </li>
