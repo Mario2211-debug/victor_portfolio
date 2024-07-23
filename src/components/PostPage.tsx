@@ -62,9 +62,9 @@ const PostPage: React.FC = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="grid laptop:flex laptop:justify-center laptop:items-start mx-20 gap-5">
-      <div className="w-full laptop:w-1/4 p-4 order-1">
-        <div className="grid laptop:inline-grid justify-between text-white desktop:pt-48 mobile:pt-8">
+    <div className="grid laptop:flex justify-center laptop:items-start mx-20 gap-5">
+      <div className="w-full  laptop:w-1/4 p-4 order-1 text-center">
+        <div className="grid laptop:inline-grid justify-between items-center text-white desktop:pt-48 mobile:pt-8">
           <div className="flex">
             <Image
               src={Photo}
@@ -87,7 +87,7 @@ const PostPage: React.FC = () => {
       </div>
       <div className="w-full laptop:w-2/3 p-4 order-2">
         <div className="desktop:pt-32 mobile:pt-8">
-          <div className="w-fit p-4 inline-grid">
+          <div className="w-fit p-4 inline-grid text-center">
             <h1 className="text-white font-bold text-3xl mobile:text-5xl">
               {post?.title}
             </h1>
@@ -105,13 +105,13 @@ const PostPage: React.FC = () => {
             </div>
             <div className="inline-grid gap-2 text-justify w-[-webkit-fill-available]">
               <div className="flex">
-                <div className="inline-flex float-left gap-4 p-2">
+                <div className="inline-flex float-left gap-2 tablet:gap-4 p-2 text-sm tablet:text-base">
                   <span className="text-zinc-400 font-semibold">2.5m</span>
                   <span className="text-zinc-400 font-semibold">2.5m</span>
                 </div>
-                <div className="inline-flex ml-auto  float-right items-end">
+                <div className="inline-flex ml-auto p-2 float-right items-end">
                   <span className="font-medium bg-rose-50 text-red-600 rounded-full shadow-sm shadow-rose-200">
-                    <p className="text-right p-2 text-xs">Desenvolvimento</p>
+                    <p className="text-right p-2 text-xs font-thin tablet:font-normal ">Desenvolvimento</p>
                   </span>
                 </div>
               </div>
