@@ -62,9 +62,9 @@ const PostPage: React.FC = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="grid laptop:flex justify-center laptop:items-start mx-14 gap-5">
+    <div className="grid laptop:flex justify-center laptop:items-start gap-5">
       <div className="w-full laptop:w-1/4 p-4 order-1 text-center">
-        <div className="grid laptop:inline-grid justify-between laptop:justify-center items-center text-white desktop:pt-48 mobile:pt-8">
+        <div className="grid laptop:inline-grid laptop:justify-between justify-center items-center text-white desktop:pt-48 mobile:pt-8">
           <div className="flex justify-center">
             <Image
               src={Photo}
@@ -73,7 +73,7 @@ const PostPage: React.FC = () => {
             />
           </div>
           <p className="text-3xl pt-4">Mário Afonso</p>
-          <span className="inline-flex gap-6 laptop:self-start  laptop:justify-center">
+          <span className="inline-flex gap-6 self-center laptop:self-start">
             <p className="text-zinc-500">Software Engineer</p>
             <p className="text-zinc-500">Portugal</p>
           </span>
@@ -86,7 +86,7 @@ const PostPage: React.FC = () => {
         </div>
       </div>
       <div className="w-full laptop:w-2/3 p-4 order-2">
-        <div className="desktop:pt-32 mobile:pt-8 [text-align:-webkit-center] laptop:text-left">
+        <div className="desktop:pt-32 mobile:pt-8 [text-align:-webkit-center] laptop:text-left mx-8">
           <div className="w-fit p-4 inline-grid laptop:text-left text-center">
             <h1 className="text-white font-bold text-3xl mobile:text-5xl">
               {post?.title}
