@@ -12,7 +12,7 @@ export default function PreSection() {
           <h1 className="text-white text mobile:text-5xl font-Bellefair p-4 md:text-7xl font-bold">
             Full Stack Dev
           </h1>
-          <div className="inline-block p outline-1 outline outline-slate-900 rounded-sm bg-opacity-50 backdrop-blur-md">
+          <div className="inline-block p outline-1 outline outline-slate-700 rounded-sm bg-opacity-50 backdrop-blur-md">
             <Brands />
           </div>
         </div>
