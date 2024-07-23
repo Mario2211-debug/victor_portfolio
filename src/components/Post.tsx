@@ -5,7 +5,6 @@ import Image, { StaticImageData } from "next/image";
 export interface PostProps {
   _id: string;
   title?: string;
-  description:string;
   content?: string;
   date?: string;
   readers?: string;

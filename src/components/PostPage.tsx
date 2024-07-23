@@ -11,7 +11,6 @@ interface Post {
   _id: string;
   title?: string;
   content?: string;
-  description: string;
   date?: string;
   readers?: string;
   className?: string;
@@ -89,7 +88,9 @@ const PostPage: React.FC = () => {
       <div className="w-full laptop:w-2/3 p-4 order-2">
         <div className="desktop:pt-32 mobile:pt-8">
           <div className="w-fit p-4 inline-grid">
-            <h1 className="text-white font-bold text-3xl mobile:text-5xl">{post?.title}</h1>
+            <h1 className="text-white font-bold text-3xl mobile:text-5xl">
+              {post?.title}
+            </h1>
             <span className="text-zinc-400 text-2xl my-4">{post?.content}</span>
 
             <span className="text-zinc-400">{post?.date}</span>
