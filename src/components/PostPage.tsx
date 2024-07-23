@@ -62,10 +62,10 @@ const PostPage: React.FC = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="grid laptop:flex justify-center laptop:items-start mx-20 gap-5">
-      <div className="w-full  laptop:w-1/4 p-4 order-1 text-center">
-        <div className="grid laptop:inline-grid justify-between items-center text-white desktop:pt-48 mobile:pt-8">
-          <div className="flex">
+    <div className="grid laptop:flex justify-center laptop:items-start mx-14 gap-5">
+      <div className="w-full laptop:w-1/4 p-4 order-1 text-center">
+        <div className="grid laptop:inline-grid justify-between laptop:justify-center items-center text-white desktop:pt-48 mobile:pt-8">
+          <div className="flex justify-center">
             <Image
               src={Photo}
               alt="imagem"
@@ -73,7 +73,7 @@ const PostPage: React.FC = () => {
             />
           </div>
           <p className="text-3xl pt-4">Mário Afonso</p>
-          <span className="inline-flex gap-6">
+          <span className="inline-flex gap-6 laptop:self-start  laptop:justify-center">
             <p className="text-zinc-500">Software Engineer</p>
             <p className="text-zinc-500">Portugal</p>
           </span>
@@ -86,8 +86,8 @@ const PostPage: React.FC = () => {
         </div>
       </div>
       <div className="w-full laptop:w-2/3 p-4 order-2">
-        <div className="desktop:pt-32 mobile:pt-8">
-          <div className="w-fit p-4 inline-grid text-center">
+        <div className="desktop:pt-32 mobile:pt-8 [text-align:-webkit-center] laptop:text-left">
+          <div className="w-fit p-4 inline-grid laptop:text-left text-center">
             <h1 className="text-white font-bold text-3xl mobile:text-5xl">
               {post?.title}
             </h1>
@@ -111,7 +111,9 @@ const PostPage: React.FC = () => {
                 </div>
                 <div className="inline-flex ml-auto p-2 float-right items-end">
                   <span className="font-medium bg-rose-50 text-red-600 rounded-full shadow-sm shadow-rose-200">
-                    <p className="text-right p-2 text-xs font-thin tablet:font-normal ">Desenvolvimento</p>
+                    <p className="text-right p-2 text-xs font-thin tablet:font-normal ">
+                      Desenvolvimento
+                    </p>
                   </span>
                 </div>
               </div>
