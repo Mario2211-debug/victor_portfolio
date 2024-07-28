@@ -15,7 +15,7 @@ interface Post {
   content?: string;
   description?: string;
   imageUrl?: string | "@/app/icons/turned-gray-laptop-computer.jpg";
-  date?: Date;
+  date?: Date | string;
   readers?: string;
   className?: string;
   imgclassName?: string;
