@@ -7,10 +7,11 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'www.andacademy.com',
+                hostname: 'imagedelivery.net',
                 port: '',
-                pathname: '/resources/wp-content/uploads/2023/09/Inside8-2.webp',
-            },
+                pathname: '/uBqAtZO4sPEULxkQkcAiNg/**'
+
+            }
         ],
     },
 

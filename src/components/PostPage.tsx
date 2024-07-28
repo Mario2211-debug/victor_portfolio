@@ -6,17 +6,20 @@ import Image from "next/image";
 import Photo from "@/app/icons/turned-gray-laptop-computer.jpg";
 import type { StaticImageData } from "next/image";
 import offlineData from "@/app/api/data.json";
+import { format } from "date-fns";
 
 interface Post {
-  _id: string;
+  _id?: string;
   title?: string;
   content?: string;
-  date?: string;
+  description?: string;
+  imageUrl?: string;
+  date?: Date;
   readers?: string;
   className?: string;
   imgclassName?: string;
-  src: StaticImageData | string;
-  alt: string;
+  src?: StaticImageData | string;
+  alt?: string;
 }
 
 interface OfflineData {
@@ -29,6 +32,14 @@ const PostPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const params = useParams();
   const id = params?.id;
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    if (!isNaN(date.getTime())) {
+      return format(date, "dd/MM/yyyy : h:m:s");
+    }
+    return "Data inválida";
+  };
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -93,14 +104,16 @@ const PostPage: React.FC = () => {
             </h1>
             <span className="text-zinc-400 text-2xl my-4">{post?.content}</span>
 
-            <span className="text-zinc-400">{post?.date}</span>
+            <span className="text-zinc-400">{formatDate(post.date)}</span>
           </div>
           <div className="max-w-full p-4">
             <div className="items-center justify-center">
               <Image
-                src={Photo}
+                src={post.imageUrl}
                 alt={post?.title || "post image"}
                 className="desktop:max-w-screen-md w-full rounded-xl desktop:h-80 laptop:h-52 object-cover"
+                width={1000000}
+                height={1000000}
               />
             </div>
             <div className="inline-grid gap-2 text-justify w-[-webkit-fill-available]">

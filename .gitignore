@@ -7,6 +7,9 @@
 
 #env file 
 /.env
+.env
+.env*.local
+!.env.example
 # testing
 /coverage
 

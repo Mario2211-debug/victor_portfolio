@@ -7,12 +7,15 @@ import Image from "next/image";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { StaticImageData } from "next/image";
+import { format } from "date-fns";
 
 interface Post {
   _id: string;
   title?: string;
   content?: string;
-  date?: string;
+  description?: string;
+  imageUrl?: string | "@/app/icons/turned-gray-laptop-computer.jpg";
+  date?: Date;
   readers?: string;
   className?: string;
   imgclassName?: string;
@@ -46,6 +49,13 @@ export default function Blog() {
     fetchPosts();
   }, []);
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    if (!isNaN(date.getTime())) {
+      return format(date, "dd/MM/yyyy: h:m:s");
+    }
+    return "Data inválida";
+  };
   const last = posts.at(-1);
 
   return (
@@ -57,7 +67,9 @@ export default function Blog() {
         {last && (
           <div className="content items-center justify-between text-white my-16 laptop:mx-32 laptop:flex p-4 blur-cover">
             <div className="text-justify self-start max-h-fit ">
-              <span className="text-gray-700 text-center p-2">{last.date}</span>
+              <span className="text-gray-700 text-center p-2">
+                {formatDate(last.date)}
+              </span>
               <h2 className="font-semibold text-2xl p-2">{last.title}</h2>
               <p className="p-2">{last.content}</p>
             </div>
@@ -65,9 +77,11 @@ export default function Blog() {
               <div className="inline-flex">
                 <a href={`blog/articles/${last._id}`}>
                   <Image
-                    src={Photo}
+                    src={last.imageUrl}
                     alt="Post Image"
                     className="w-screen rounded-xl desktop:w-auto h-[20rem] laptop:h-80 laptop:w-96 object-cover"
+                    width={1000000}
+                    height={1000000}
                   />
                 </a>
               </div>
@@ -82,9 +96,7 @@ export default function Blog() {
                 <a href={`blog/articles/${post._id}`}>
                   <Post
                     _id={post._id}
-                    src={Photo}
-                    width={200}
-                    height={200}
+                    src={post.imageUrl}
                     alt={post.title || "Post Image"}
                     title={post.title}
                     content={post.content}

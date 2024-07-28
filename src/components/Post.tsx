@@ -1,21 +1,29 @@
 "use client";
 
+import { format } from "date-fns";
 import Image, { StaticImageData } from "next/image";
 
 export interface PostProps {
-  _id: string;
+  _id?: string;
   title?: string;
   content?: string;
-  date?: string;
+  description?: string;
+  imageUrl?: string;
+  date?: Date;
   readers?: string;
   className?: string;
   imgclassName?: string;
-  src: StaticImageData | string;
-  alt: string;
-  width: number;
-  height: number;
+  src?: StaticImageData | string;
+  alt?: string;
 }
 
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  if (!isNaN(date.getTime())) {
+    return format(date, "dd/MM/yyyy: h:m:s");
+  }
+  return "Data inválida";
+};
 export default function Post(props: PostProps) {
   return (
     <>
@@ -26,6 +34,8 @@ export default function Post(props: PostProps) {
           className={
             props.imgclassName || "rounded-xl w-[-webkit-fill-available]"
           }
+          width={1000000}
+          height={1000000}
         />
 
         <div className="inline-grid gap-2 text-justify">
@@ -36,13 +46,12 @@ export default function Post(props: PostProps) {
             <span className="text-zinc-400 font-semibold text-sm laptop:text-base">
               2.5m
             </span>
-            
           </div>
           <h1 className="text-white font-bold text-md">{props.title}</h1>
           <span className="text-zinc-400 text-justify text-balance tracking-normal line-clamp-2 leading-relaxed whitespace-normal font-medium text-md laptop:text-sm">
             {props.content}
           </span>
-          <span className="text-zinc-400">{props.date}</span>
+          <span className="text-zinc-400">{formatDate(props.date)}</span>
         </div>
       </div>
     </>
