@@ -92,7 +92,7 @@ export default function Blog() {
         <div className="flex items-center justify-center my-10 laptop:mx-32 text-white">
           <div className="grid grid-cols-1 py-10 text-justify tablet:grid-cols-2 laptop:grid-cols-3 ">
             {posts.map((post) => (
-              <div key={post._id} className="m-6 p-4 blur-cover">
+              <div key={post._id} className="m-0 mobile:m-6 p-4 blur-cover">
                 <a href={`blog/articles/${post._id}`}>
                   <Post
                     _id={post._id}

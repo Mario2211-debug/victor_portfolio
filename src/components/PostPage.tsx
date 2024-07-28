@@ -33,10 +33,10 @@ const PostPage: React.FC = () => {
   const params = useParams();
   const id = params?.id;
 
-  const formatDate = (dateString) => {
+  const formatDate = (dateString: any) => {
     const date = new Date(dateString);
     if (!isNaN(date.getTime())) {
-      return format(date, "dd/MM/yyyy : h:m:s");
+      return format(date, "dd/MM/yyyy: h:m:s");
     }
     return "Data inválida";
   };
@@ -74,35 +74,13 @@ const PostPage: React.FC = () => {
 
   return (
     <div className="grid laptop:flex justify-center laptop:items-start gap-5">
-      <div className="w-full laptop:w-1/4 p-4 order-1 text-center">
-        <div className="grid laptop:inline-grid laptop:justify-between justify-center items-center text-white desktop:pt-48 mobile:pt-8">
-          <div className="flex justify-center">
-            <Image
-              src={Photo}
-              alt="imagem"
-              className="w-36 h-36 border border-slate-700 p-2 rounded-full"
-            />
-          </div>
-          <p className="text-3xl pt-4">Mário Afonso</p>
-          <span className="inline-flex gap-6 justify-center laptop:self-start">
-            <p className="text-zinc-500">Software Engineer</p>
-            <p className="text-zinc-500">Portugal</p>
-          </span>
-          <span className="text-white -tracking-tighter leading-5 text-justify text-xs">
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.
-            </p>
-          </span>
-        </div>
-      </div>
       <div className="w-full laptop:w-2/3 p-4 order-2">
-        <div className="desktop:pt-32 mobile:pt-8 [text-align:-webkit-center] laptop:text-left mx-2">
+        <div className="desktop:pt-32 mobile:pt-20 [text-align:-webkit-center] laptop:text-left mx-2">
           <div className="w-fit p-2 inline-grid laptop:text-left text-center">
-            <h1 className="text-white font-bold text-3xl mobile:text-5xl">
+            <h1 className="text-white p-2 font-bold text-3xl mobile:text-5xl">
               {post?.title}
             </h1>
-            <span className="text-zinc-400">{formatDate(post.date)}</span>
+            <span className="text-zinc-400 p-2">{formatDate(post.date)}</span>
           </div>
           <div className="max-w-full p-4">
             <div className="items-center justify-center">
