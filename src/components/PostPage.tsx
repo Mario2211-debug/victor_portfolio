@@ -102,8 +102,6 @@ const PostPage: React.FC = () => {
             <h1 className="text-white font-bold text-3xl mobile:text-5xl">
               {post?.title}
             </h1>
-            <span className="text-zinc-400 text-2xl my-4">{post?.content}</span>
-
             <span className="text-zinc-400">{formatDate(post.date)}</span>
           </div>
           <div className="max-w-full p-4">
@@ -130,7 +128,8 @@ const PostPage: React.FC = () => {
                   </span>
                 </div>
               </div>
-              <span className="text-zinc-400">{post?.content}</span>
+              <span className="text-zinc-400 text-2xl">{post?.content}</span>
+              <span className=" text-white my-4">{post?.description}</span>
             </div>
           </div>
         </div>
