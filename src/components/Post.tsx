@@ -8,8 +8,9 @@ export interface PostProps {
   title?: string;
   content?: string;
   description?: string;
-  imageUrl?: string;
-  date?: Date;
+  imageUrl?: string | "@/app/icons/turned-gray-laptop-computer.jpg";
+  category?: string;
+  date?: Date | string;
   readers?: string;
   className?: string;
   imgclassName?: string;
@@ -17,7 +18,7 @@ export interface PostProps {
   alt?: string;
 }
 
-const formatDate = (dateString) => {
+const formatDate = (dateString: any) => {
   const date = new Date(dateString);
   if (!isNaN(date.getTime())) {
     return format(date, "dd/MM/yyyy: h:m:s");
@@ -43,15 +44,19 @@ export default function Post(props: PostProps) {
             <span className="text-zinc-400 font-semibold text-sm laptop:text-base">
               2.5m
             </span>
+
             <span className="text-zinc-400 font-semibold text-sm laptop:text-base">
               2.5m
             </span>
           </div>
+
           <h1 className="text-white font-bold text-md">{props.title}</h1>
           <span className="text-zinc-400 text-justify text-balance tracking-normal line-clamp-2 leading-relaxed whitespace-normal font-medium text-md laptop:text-sm">
             {props.content}
           </span>
-          <span className="text-zinc-400">{formatDate(props.date)}</span>
+          <span className="text-zinc-400 text-xs">
+            {formatDate(props.date)}
+          </span>
         </div>
       </div>
     </>

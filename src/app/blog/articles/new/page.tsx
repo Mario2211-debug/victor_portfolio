@@ -13,6 +13,7 @@ interface Post {
   content?: string;
   description?: string;
   imageUrl?: string | "@/app/icons/turned-gray-laptop-computer.jpg";
+  category?: string;
   date?: Date;
   readers?: string;
   className?: string;
@@ -26,16 +27,34 @@ export default function NewArticle() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
   const [posts, setPosts] = useState<Post[]>([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     fetchPosts();
+    fetchCategories();
   }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/blog/categories`
+      );
+      setCategories(res.data);
+    } catch (error) {
+      console.error("Erro carregando categorias", error);
+    }
+  };
 
   const fetchPosts = async () => {
     try {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/blog`);
-      setPosts(res.data);
+      // Ordena os posts por data, do mais recente para o mais antigo
+      const sortedPosts = res.data.sort((a: Post, b: Post) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      });
+      setPosts(sortedPosts);
     } catch (error) {
       console.error("erro carregando os posts", error);
     }
@@ -50,6 +69,7 @@ export default function NewArticle() {
     form.append("title", title);
     form.append("content", content);
     form.append("description", description);
+    form.append("category", category);
     form.append("file", selectedFile);
 
     try {
@@ -103,6 +123,20 @@ export default function NewArticle() {
               value={content}
               onChange={(e) => setContent(e.target.value)}
             />
+          </div>
+          <div>
+            <select
+              name="category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              <option value="">Selecione uma categoria</option>
+              {categories.map((cat) => (
+                <option key={cat._id} value={cat._id}>
+                  {cat.name}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="inline p-2">
             <input

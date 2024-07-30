@@ -14,6 +14,11 @@ interface Post {
   content?: string;
   description?: string;
   imageUrl?: string;
+  category?: {
+    _id: string;
+    name: string;
+    description: string;
+  };
   date?: Date;
   readers?: string;
   className?: string;
@@ -46,9 +51,12 @@ const PostPage: React.FC = () => {
       if (id) {
         try {
           const response = await axios.get<Post>(
-            `${process.env.NEXT_PUBLIC_API_URL}/blog/${id}`
+            ` ${process.env.NEXT_PUBLIC_API_URL}/blog/post/${id}`
           );
           setPost(response.data);
+          console.log(response.data.category.name);
+          console.log(response.data);
+
           setLoading(false);
         } catch (apiError) {
           console.error("Erro ao buscar post da API: ", apiError);
@@ -66,6 +74,11 @@ const PostPage: React.FC = () => {
         }
       }
     };
+
+    /////////////
+    //         //
+    /////////////
+
     fetchPost();
   }, [id]);
 
@@ -101,7 +114,7 @@ const PostPage: React.FC = () => {
                 <div className="inline-flex ml-auto p-2 float-right items-end">
                   <span className="font-medium bg-rose-50 text-red-600 rounded-full shadow-sm shadow-rose-200">
                     <p className="text-right p-2 text-xs font-thin tablet:font-normal ">
-                      Desenvolvimento
+                      {post?.category[0].name}
                     </p>
                   </span>
                 </div>

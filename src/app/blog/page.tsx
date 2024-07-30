@@ -15,6 +15,7 @@ interface Post {
   content?: string;
   description?: string;
   imageUrl?: string | "@/app/icons/turned-gray-laptop-computer.jpg";
+  category?: string;
   date?: Date | string;
   readers?: string;
   className?: string;
@@ -37,8 +38,11 @@ export default function Blog() {
         const res = await axios.get<Post[]>(
           `${process.env.NEXT_PUBLIC_API_URL}/blog`
         );
+        const sortedPosts = res.data.sort((a: Post, b: Post) => {
+          return new Date(b.date).getTime() - new Date(a.date).getTime();
+        });
         console.log("Posts fetched:", res.data);
-        setPosts(res.data);
+        setPosts(sortedPosts);
       } catch (error) {
         console.error("Erro ao buscar posts: ", error);
         // Fallback to offline data if API call fails
@@ -100,6 +104,7 @@ export default function Blog() {
                     alt={post.title || "Post Image"}
                     title={post.title}
                     content={post.content}
+                    date={post.date}
                   />
                 </a>
               </div>
