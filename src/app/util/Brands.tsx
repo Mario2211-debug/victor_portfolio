@@ -80,7 +80,7 @@ const MyComponent = () => {
       <div className="inline-block p blur-cover">
         <div className="h-15 flex items-center justify-center">
           <ul className="md:justify-center contents justify-between relative">
-            <li className="flex p-2 bg-transparent backdrop-blur-sm">
+            <li className="flex p-2">
               <PostGreee
                 className={`w-10 h-10 ${
                   theme === "dark" ? "fill-white" : "fill-black"
