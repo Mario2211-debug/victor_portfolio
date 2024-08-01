@@ -74,7 +74,7 @@ export default function Blog() {
                     Explore the World of Development
                   </h1>
                   <h2 className=" text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-                    Dive into the latest trends and insights in the tech
+                  Let´s dive into the latest trends and insights in the tech
                     industry.
                   </h2>
                 </div>

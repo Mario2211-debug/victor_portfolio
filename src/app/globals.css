@@ -54,6 +54,7 @@
   body {
     background-color: var(--background-color);
     color: var(--text-color);
+    --color-backdrop: hsla(158, 23%, 18%, .7);
   }
 .navbar-element{
   background-color: var(--navbar-bg);
@@ -71,15 +72,6 @@
     color: var(--footer-element-color);
   }
 
-  .github {
-    background-image: url("./icons/icons8-github-512.svg");
-  }
-  .gitbub:focus,
-  .github:hover {
-    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg)
-      brightness(104%) contrast(97%);
-  }
-
   .blogFont {
     font-family: system-ui, sans-serif, "Plus Jakarta Sans", "Noto Sans";
     font-size: medium;
@@ -87,10 +79,8 @@
   .full-shadow {
     filter: drop-shadow(0 0 5px 2px rgb(34, 49, 255));
   }
-  .mySVG {
-    
-  }
-  .animation-delay-2000 {
+ 
+ .animation-delay-2000 {
     animation-delay: 2s;
   }
   .animation-delay-4000 {
@@ -104,15 +94,12 @@
   }
 
   .blur-cover {
-    --tw-backdrop-blur: blur(12px);
+    backdrop-filter: blur(12px)  saturate(1.7);
     --tw-bg-opacity: 0.05;
-    --tw-border-opacity: 5;
-    backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness)
-      var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale)
-      var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert)
-      var(--tw-backdrop-opacity) var(--tw-backdrop-saturate)
-      var(--tw-backdrop-sepia);
-    border: 1px rgb(83 82 82 / var(--tw-border-opacity)) solid;
+    --tw-border-opacity: 20;
+    -webkit-backdrop-filter: blur(20px) saturate(1.7);
+
+    border: 1px rgb(47 46 46 / var(--tw-border-opacity)) solid;
     border-radius: 0.5rem;
   }
 }
