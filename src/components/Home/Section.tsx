@@ -1,5 +1,9 @@
+"use client";
 import Brands from "../../app/util/Brands";
+import { useTheme } from "next-themes";
+
 export default function PreSection() {
+  const { theme } = useTheme();
   return (
     <div className="text-center">
       <div className="md:pt-40 mobile:px-2 mobile:py-20">
@@ -8,13 +12,17 @@ export default function PreSection() {
             Hi, I am Mário Afonso
           </h2>
           <span className="home-element inline-block md:w-2/3 w-full">
-            <h1 className="font-extralight text-xl md:text-2xl inline-block overflow-hidden whitespace-nowrap mobile:justify-center mobile:inline-block">
+            <h1 className="black:font-extralight text-xl md:text-2xl inline-block overflow-hidden whitespace-nowrap mobile:justify-center mobile:inline-block">
               Software Developer
             </h1>
           </span>
 
           <span className="inline-block w-full">
-            <p className=" mobile:text-wrap p-4 mobile-landscape:p-0 font-extralight text-xs md:text-lg text-nowrap inline-block overflow-hidden whitespace-nowrap mobile:justify-center mobile:inline-block">
+            <p
+              className={`mobile:text-wrap p-4 mobile-landscape:p-0 font-extralight text-xs md:text-lg text-nowrap inline-block overflow-hidden whitespace-nowrap mobile:justify-center mobile:inline-block ${
+                theme === "dark" ? "font-extralight" : "font-normal"
+              }`}
+            >
               Programadores e artistas são os únicos profissionais que tem como
               hobby a própria profissão.
             </p>
