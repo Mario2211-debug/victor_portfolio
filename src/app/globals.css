@@ -11,11 +11,84 @@
 }
 
 @layer utilities {
+  body {
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .light-theme {
+    --background-color: #ffffff;
+    --text-color: #1c160c;
+    --section-element-color: #a18249;
+    --footer-element-color: #a18249;
+    --particle-color: rgb(28, 22, 12);
+    --second-color: #f4efe6;
+    --navbar-bg: #ffffff;
+    --navbar-icon:#1c160c;
+
+
+     /* cor especial para o modo claro */
+  }
+
+  .dark-theme {
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+    --section-element-color: #838383;
+    --footer-element-color: #7f7f7f;
+    --particle-color: rgb(255, 255, 255);
+    --second-color: #2e2e2e;
+    --navbar-bg:#1a1a1a;
+    --navbar-icon:#ffffff;
+
+
+    --svg-color: --tw-invert: invert(100%);
+    filter: var(--tw-blur) var(--tw-brightness) 
+    var(--tw-contrast) var(--tw-grayscale) 
+    var(--tw-hue-rotate) var(--tw-invert) 
+    var(--tw-saturate) var(--tw-sepia) 
+    var(--tw-drop-shadow); /* cor especial para o modo claro */
+    /* cor especial para o modo claro */
+    /* cor especial para o modo claro */
+    /* cor especial para o modo claro */
+  }
+
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+.navbar-element{
+  background-color: var(--navbar-bg);
+}
+.navbar-icon{
+  background-color: var(--navbar-icon);
+}
+  .home-element {
+    color: var(--section-element-color);
+  }
+.second-element{
+  background-color: var(--second-color);
+}
+  .footer-element {
+    color: var(--footer-element-color);
+  }
+
+  .github {
+    background-image: url("./icons/icons8-github-512.svg");
+  }
+  .gitbub:focus,
+  .github:hover {
+    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg)
+      brightness(104%) contrast(97%);
+  }
+
+  .blogFont {
+    font-family: system-ui, sans-serif, "Plus Jakarta Sans", "Noto Sans";
+    font-size: medium;
+  }
   .full-shadow {
     filter: drop-shadow(0 0 5px 2px rgb(34, 49, 255));
   }
   .mySVG {
-    filter: drop-shadow(0 0 40px #0b03ff);
+    
   }
   .animation-delay-2000 {
     animation-delay: 2s;
@@ -33,13 +106,13 @@
   .blur-cover {
     --tw-backdrop-blur: blur(12px);
     --tw-bg-opacity: 0.05;
-    --tw-border-opacity: 1;
+    --tw-border-opacity: 5;
     backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness)
       var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale)
       var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert)
       var(--tw-backdrop-opacity) var(--tw-backdrop-saturate)
       var(--tw-backdrop-sepia);
-    border: 1px rgb(30 41 59 / var(--tw-border-opacity)) solid;
+    border: 1px rgb(83 82 82 / var(--tw-border-opacity)) solid;
     border-radius: 0.5rem;
   }
 }

@@ -1,56 +1,123 @@
+"use client";
 import React from "react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 
 // Supondo que as imagens sejam importadas ou tenham seus caminhos definidos
-import PSQL from "../icons/postgresql-svgrepo-com.svg";
-import JavaScript from "../icons/js-square-svgrepo-com.svg";
-import java from "../icons/java-svgrepo-com.svg";
-import Csharp from "../icons/c-sharp-svgrepo-com (1).svg";
-
+import { PostGreee, JavaScript, Java, Csharp } from "../icons/IconsSvg";
 const MyComponent = () => {
-  return (
-    <div className="h-15 flex items-center justify-center">
-      <ul className="md:justify-center contents justify-between relative">
-        <li className="flex p-2 bg-opacity-5 invert">
-          <Image
-            src={PSQL}
-            width={40}
-            height={40}
-            alt="Picture of the author"
-            className="mySvg"
-          />{" "}
-        </li>
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const { theme } = useTheme(); // Get the current theme
 
-        <li className="flex p-2 bg-transparent backdrop-blur-sm">
-          <Image
-            src={JavaScript}
-            width={40}
-            height={40}
-            alt="Picture of the author"
-            className="full-shadow invert rounded-sm"
-          />{" "}
-        </li>
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth >= 480);
+    };
 
-        <li className="flex p-2 invert ">
-          <Image
-            src={java}
-            width={40}
-            height={40}
-            alt="Picture of the author"
-          />{" "}
-        </li>
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    // Initial check on mount
 
-        <li className="flex p-2 invert ">
-          <Image
-            src={Csharp}
-            width={40}
-            height={40}
-            alt="Picture of the author"
-          />{" "}
-        </li>
-      </ul>
-    </div>
-  );
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const laptop = () => {
+    return (
+      <div className="flex p-10 justify-center ">
+        <div className="grid laptop:flex tracking-wide grid-cols-2 gap-3 items-start ">
+          <div className="h-full pr-36 gap-4 p-2 grid hover:bg-indigo-200 hover:bg-opacity-10 blur-cover bg-[rgb(83,82,82)]">
+            <PostGreee
+              className={`w-10 h-10 ${
+                theme === "dark" ? "fill-white" : "fill-black"
+              }`}
+            />
+            <div>
+              <span className=" max-w-max font-medium text-sm">PostgreSql</span>
+            </div>
+          </div>
+          <div className="h-full pr-36 gap-4 p-2 grid blur-cover hover:bg-yellow-300 hover:bg-opacity-10 bg-[rgb(83,82,82)]">
+            <JavaScript
+              className={`w-10 h-10 ${
+                theme === "dark" ? "fill-white" : "fill-black"
+              }`}
+            />
+            <div>
+              <span className=" max-w-max font-medium text-sm">JavaScript</span>
+            </div>
+          </div>
+          <div className="h-full max-w-lg pr-36 gap-4 p-2 grid blur-cover bg-[rgb(83,82,82)]">
+            <Java
+              className={`w-10 h-10 ${
+                theme === "dark" ? "fill-white" : "fill-black"
+              }`}
+            />
+            <div>
+              <span className="max-w-max font-medium text-sm">Java</span>
+            </div>
+          </div>
+          <div className="h-full max-w-lg pr-36 gap-4 p-2 grid blur-cover bg-[rgb(83,82,82)]">
+            <div className="flex ">
+              <Csharp
+                className={`w-10 h-10 ${
+                  theme === "dark" ? "stroke-white" : "stroke-black"
+                }`}
+              />
+            </div>
+            <div className="grid">
+              <span className=" max-w-max font-medium text-sm">Csharp</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const mobile = () => {
+    return (
+      <div className="inline-block p outline-1 outline outline-slate-700 rounded-sm bg-opacity-50 backdrop-blur-md">
+        <div className="h-15 flex items-center justify-center">
+          <ul className="md:justify-center contents justify-between relative">
+            <li className="flex p-2 bg-transparent backdrop-blur-sm">
+              <PostGreee
+                className={`w-10 h-10 ${
+                  theme === "dark" ? "fill-white" : "fill-black"
+                }`}
+              />
+            </li>
+
+            <li className="flex p-2 invert ">
+              <JavaScript
+                className={`w-10 h-10 ${
+                  theme === "dark" ? "fill-white" : "fill-black"
+                }`}
+              />
+            </li>
+
+            <li className="flex p-2 invert ">
+              <Java
+                className={`w-10 h-10 ${
+                  theme === "dark" ? "fill-white" : "fill-black"
+                }`}
+              />
+            </li>
+
+            <li className="flex p-2 invert ">
+              <Csharp
+                className={`w-10 h-10 ${
+                  theme === "dark" ? "stroke-white" : "stroke-black"
+                }`}
+              />
+            </li>
+          </ul>
+        </div>
+      </div>
+    );
+  };
+
+  return !isLargeScreen ? mobile() : laptop();
 };
 
 export default MyComponent;

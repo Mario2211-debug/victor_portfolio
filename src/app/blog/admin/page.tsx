@@ -3,7 +3,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Image, { StaticImageData } from "next/image";
-import Post from "@/components/Post";
+import Post from "@/components/Blog/Post";
 import { format, formatDate } from "date-fns";
 import { ACTION_REFRESH } from "next/dist/client/components/router-reducer/router-reducer-types";
 
@@ -22,8 +22,6 @@ interface Post {
 }
 
 export default function NewArticle() {
-
-  
   const [selectedFile, setSelectedFile] = useState(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");

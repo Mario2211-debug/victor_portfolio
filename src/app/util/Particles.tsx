@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import { useMousePosition } from "./mouse";
+import { useTheme } from "next-themes";
 
 interface ParticlesProps {
   className?: string;
@@ -26,6 +27,7 @@ export default function Particles({
   const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -46,7 +48,7 @@ export default function Particles({
 
   useEffect(() => {
     initCanvas();
-  }, [refresh]);
+  }, [refresh, theme]);
 
   const initCanvas = () => {
     resizeCanvas();
@@ -121,10 +123,15 @@ export default function Particles({
   const drawCircle = (circle: Circle, update = false) => {
     if (context.current) {
       const { x, y, translateX, translateY, size, alpha } = circle;
+      const rootStyles = getComputedStyle(document.documentElement);
+      const particleColor = rootStyles.getPropertyValue("--particle-color");
       context.current.translate(translateX, translateY);
       context.current.beginPath();
       context.current.arc(x, y, size, 0, 2 * Math.PI);
-      context.current.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+      context.current.fillStyle = particleColor.replace(
+        /rgba\((.+), 1\)/,
+        `rgba($1, ${alpha})`
+      );
       context.current.fill();
       context.current.setTransform(dpr, 0, 0, dpr, 0, 0);
 

@@ -34,8 +34,14 @@ const config: Config = {
         mobile: "340px",
         // => @media (min-width: 375px) { ... }
 
+        landescape: "480px",
+        // => @media (min-width: 480px) { ... }
+
         tablet: "768px",
         // => @media (min-width: 640px) { ... }
+
+        tablet_landscape: "864px",
+        // => @media (min-width: 864px) { ... }
 
         laptop: "1024px",
         // => @media (min-width: 1024px) { ... }
@@ -84,5 +90,6 @@ const config: Config = {
       extend: {},
     },
   },
+  plugins: [require("@tailwindcss/container-queries")],
 };
 export default config;

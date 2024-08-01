@@ -6,9 +6,9 @@ export default function Projects() {
   const renderBrieflyText = () => {
     return (
       <>
-        <div className="block py-52">
+        <div className="block py-40 font-sans">
           <span className=" inline text-center ">
-            <h1 className=" text-white text-6xl">Brevemente</h1>
+            <h1 className="text-6xl">Brevemente</h1>
             <p>Os meu projetos aparecerão aqui</p>
           </span>
         </div>
@@ -21,7 +21,7 @@ export default function Projects() {
       <>
         return (
         <>
-          <h1 className=" flex items-center">PROJETOS</h1>
+          <h1 className=" flex items-center font-sans">PROJETOS</h1>
 
           <div className="grid grid-cols-3 gap-4 content-center">
             <Item
