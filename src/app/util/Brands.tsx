@@ -77,7 +77,7 @@ const MyComponent = () => {
 
   const mobile = () => {
     return (
-      <div className="inline-block p outline-1 outline outline-slate-700 rounded-sm bg-opacity-50 backdrop-blur-md">
+      <div className="inline-block p blur-cover">
         <div className="h-15 flex items-center justify-center">
           <ul className="md:justify-center contents justify-between relative">
             <li className="flex p-2 bg-transparent backdrop-blur-sm">
