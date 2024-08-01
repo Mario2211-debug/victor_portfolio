@@ -14,7 +14,7 @@ export default function PreSection() {
           </span>
 
           <span className="inline-block w-full">
-            <p className=" mobile:text-wrap text-xs md:text-lg text-nowrap inline-block overflow-hidden whitespace-nowrap mobile:justify-center mobile:inline-block">
+            <p className=" mobile:text-wrap p-4 mobile:p-0 text-xs md:text-lg text-nowrap inline-block overflow-hidden whitespace-nowrap mobile:justify-center mobile:inline-block">
               Programadores e artistas são os únicos profissionais que tem como
               hobby a própria profissão.
             </p>

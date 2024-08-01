@@ -88,7 +88,7 @@ const MyComponent = () => {
               />
             </li>
 
-            <li className="flex p-2 invert ">
+            <li className="flex p-2">
               <JavaScript
                 className={`w-10 h-10 ${
                   theme === "dark" ? "fill-white" : "fill-black"
@@ -96,7 +96,7 @@ const MyComponent = () => {
               />
             </li>
 
-            <li className="flex p-2 invert ">
+            <li className="flex p-2">
               <Java
                 className={`w-10 h-10 ${
                   theme === "dark" ? "fill-white" : "fill-black"
@@ -104,7 +104,7 @@ const MyComponent = () => {
               />
             </li>
 
-            <li className="flex p-2 invert ">
+            <li className="flex p-2">
               <Csharp
                 className={`w-10 h-10 ${
                   theme === "dark" ? "stroke-white" : "stroke-black"

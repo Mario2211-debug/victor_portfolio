@@ -152,7 +152,7 @@ const PostPage: React.FC = () => {
             </p>
           </div>
         </div>
-        <p className="text-base font-normal leading-normal pb-3 pt-1 px-4">
+        <p className="text-base font-normal tracking-wide leading-normal pb-3 pt-1 px-4">
           {post.content}
         </p>
         <div className="flex flex-wrap gap-4 px-4 py-2">
