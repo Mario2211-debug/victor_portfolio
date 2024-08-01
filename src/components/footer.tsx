@@ -30,40 +30,19 @@ const Footer: React.FC = () => {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href={"https://linkedin.com/in/mario-afonso-018107141"}>
               <span className="inline-flex">
-                <Linkedin
-                  alt="Linkedin"
-                  className={`w-7 h-7 ${
-                    theme === "dark"
-                      ? "fill-[#7f7f7f] hover:fill-white"
-                      : "fill-black"
-                  }`}
-                />
+                <Linkedin alt="Linkedin" className={`w-7 h-7`} />
               </span>
             </Link>
 
             <Link href={"https://github.com/Mario2211-debug"}>
               <span className="inline-flex">
-                <Github
-                  alt="Github"
-                  className={`w-7 h-7 ${
-                    theme === "dark"
-                      ? "fill-[#7f7f7f] hover:fill-white"
-                      : "stroke-black"
-                  }`}
-                />
+                <Github alt="Github" className={`w-7 h-7`} />
               </span>
             </Link>
 
             <Link href={"https://github.com/Mario2211-debug"}>
               <span className="inline-flex">
-                <Mail
-                  alt="Mail"
-                  className={`w-7 h-7 ${
-                    theme === "dark"
-                      ? "fill-[#7f7f7f] hover:fill-white"
-                      : "stroke-black"
-                  }`}
-                />
+                <Mail alt="Mail" className={`w-7 h-7`} />
               </span>
             </Link>
           </div>
