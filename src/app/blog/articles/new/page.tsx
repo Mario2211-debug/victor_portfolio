@@ -5,9 +5,13 @@ import React, { useState, useEffect } from "react";
 import Image, { StaticImageData } from "next/image";
 import Post from "@/components/Blog/Post";
 import { format, formatDate } from "date-fns";
-import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
+import dynamic from "next/dynamic";
 
+
+const DynamicHeader = dynamic(() => import("react-quill-new"), {
+  ssr: false,
+});
 interface Post {
   _id: string;
   title?: string;
@@ -18,7 +22,7 @@ interface Post {
     _id: string;
     name: string;
   };
-  date?: Date;
+  date?: string;
   readers?: string;
   className?: string;
   imgclassName?: string;
@@ -27,10 +31,11 @@ interface Post {
 }
 
 export default function NewArticle() {
+  const [value, setValue] = useState<string>("");
   const [selectedFile, setSelectedFile] = useState(null);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState<string>("");
+  const [content, setContent] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
   const [category, setCategory] = useState("");
   const [posts, setPosts] = useState<Post[]>([]);
   const [categories, setCategories] = useState([]);
@@ -53,10 +58,6 @@ export default function NewArticle() {
 
     ["clean"], // remove formatting button
   ];
-  useEffect(() => {
-    fetchPosts();
-    fetchCategories();
-  }, []);
 
   const fetchCategories = async () => {
     try {
@@ -82,7 +83,12 @@ export default function NewArticle() {
     }
   };
 
-  const fileSelectedHandler = (event) => {
+  const deletePost = async (id: any) => {
+    await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/blog/post/${id}`);
+    setPosts(posts.filter((post) => post._id !== id));
+  };
+
+  const fileSelectedHandler = (event: any) => {
     setSelectedFile(event.target.files[0]);
   };
 
@@ -105,13 +111,11 @@ export default function NewArticle() {
       console.error("Erro criando o post", error);
     }
   };
-
-  const deletePost = async (id) => {
-    await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/blog/post/${id}`);
-    setPosts(posts.filter((post) => post._id !== id));
-  };
-
-  const formatedDate = (dataString) => {
+  useEffect(() => {
+    fetchPosts();
+    fetchCategories();
+  }, []);
+  const formatedDate = (dataString: any) => {
     const date = new Date(dataString);
     if (!isNaN(date.getDate())) return format(date, "dd/MM/yyyy: h:m:s");
     else return "Data is not valid";
@@ -288,12 +292,12 @@ export default function NewArticle() {
           </div>
           <div className="flex max-w-[480px] max-h-fit flex-wrap items-end gap-4 px-4 py-3">
             <div className="flex flex-col min-w-40 flex-1">
-              <ReactQuill
+              <DynamicHeader
                 theme="snow"
-                value={content}
-                onChange={setContent}
+                value={value}
+                onChange={setValue}
                 modules={{ toolbar: toolbarOptions }}
-              />
+              />{" "}
             </div>
           </div>
           <div className="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
