@@ -5,8 +5,8 @@ import React, { useState, useEffect } from "react";
 import Image, { StaticImageData } from "next/image";
 import Post from "@/components/Blog/Post";
 import { format, formatDate } from "date-fns";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import ReactQuill from "react-quill-new";
+import "react-quill-new/dist/quill.snow.css";
 
 interface Post {
   _id: string;
