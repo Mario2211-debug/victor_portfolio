@@ -1,11 +1,12 @@
 "use client";
 
 import axios from "axios";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Image, { StaticImageData } from "next/image";
 import Post from "@/components/Blog/Post";
 import { format, formatDate } from "date-fns";
-import { ACTION_REFRESH } from "next/dist/client/components/router-reducer/router-reducer-types";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 interface Post {
   _id: string;
@@ -33,7 +34,25 @@ export default function NewArticle() {
   const [category, setCategory] = useState("");
   const [posts, setPosts] = useState<Post[]>([]);
   const [categories, setCategories] = useState([]);
+  const toolbarOptions = [
+    ["bold", "italic", "underline", "strike"], // toggled buttons
+    ["blockquote", "code-block"],
+    ["link", "image", "video", "formula"],
+    [{ header: 1 }, { header: 2 }], // custom button values
+    [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
+    [{ script: "sub" }, { script: "super" }], // superscript/subscript
+    [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
+    [{ direction: "rtl" }], // text direction
 
+    [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+    [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+    [{ font: [] }],
+    [{ align: [] }],
+
+    ["clean"], // remove formatting button
+  ];
   useEffect(() => {
     fetchPosts();
     fetchCategories();
@@ -267,15 +286,15 @@ export default function NewArticle() {
               />
             </label>
           </div>
-          <div className="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-            <label className="flex flex-col min-w-40 flex-1">
-              <textarea
-                placeholder="Conteúdo da publicação"
+          <div className="flex max-w-[480px] max-h-fit flex-wrap items-end gap-4 px-4 py-3">
+            <div className="flex flex-col min-w-40 flex-1">
+              <ReactQuill
+                theme="snow"
                 value={content}
-                onChange={(e) => setContent(e.target.value)}
-                className="form-input placeholder:home-element  flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl  focus:outline-0 focus:ring-0 border border-[#E9DFCE] bg-[#FFFFFF] focus:border-[#E9DFCE] h-14 placeholder:text-[#A18249] p-[15px] text-base font-normal leading-normal"
+                onChange={setContent}
+                modules={{ toolbar: toolbarOptions }}
               />
-            </label>
+            </div>
           </div>
           <div className="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
             <label className="flex placeholder:home-element  flex-col min-w-40 flex-1">

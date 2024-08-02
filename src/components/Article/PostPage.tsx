@@ -7,6 +7,7 @@ import Photo from "@/app/icons/turned-gray-laptop-computer.jpg";
 import type { StaticImageData } from "next/image";
 import offlineData from "@/app/api/data.json";
 import { format } from "date-fns";
+import RichTextRenderer from "../RichTextRender";
 
 interface Post {
   _id?: string;
@@ -153,7 +154,7 @@ const PostPage: React.FC = () => {
           </div>
         </div>
         <p className="text-base font-normal tracking-wide leading-normal pb-3 pt-1 px-4">
-          {post.content}
+          <RichTextRenderer content={post.content} />
         </p>
         <div className="flex flex-wrap gap-4 px-4 py-2">
           <div className="flex items-center justify-center gap-2 px-3 py-2">
