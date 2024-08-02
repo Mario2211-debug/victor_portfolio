@@ -53,13 +53,12 @@ export default function Blog() {
     fetchPosts();
   }, []);
 
-  const last = posts.at(-2);
-  const lastT = posts.at(-1);
+  const last = posts.at(-1);
 
   return (
     <>
       <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
-        {lastT && (
+        {last && (
           <div className="container">
             <div className="flex flex-col gap-6 px-4 py-10 md:gap-8 lg:flex-row">
               <div

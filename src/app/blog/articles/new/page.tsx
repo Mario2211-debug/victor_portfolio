@@ -8,7 +8,6 @@ import { format, formatDate } from "date-fns";
 import "react-quill-new/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 
-
 const DynamicHeader = dynamic(() => import("react-quill-new"), {
   ssr: false,
 });
@@ -106,6 +105,13 @@ export default function NewArticle() {
           "Content-Type": "multipart/form-data",
         },
       });
+
+      setTitle("");
+      setContent("");
+      setDescription("");
+      setCategory("");
+      setSelectedFile(undefined);
+
       fetchPosts();
     } catch (error) {
       console.error("Erro criando o post", error);
@@ -115,6 +121,7 @@ export default function NewArticle() {
     fetchPosts();
     fetchCategories();
   }, []);
+
   const formatedDate = (dataString: any) => {
     const date = new Date(dataString);
     if (!isNaN(date.getDate())) return format(date, "dd/MM/yyyy: h:m:s");
@@ -294,8 +301,8 @@ export default function NewArticle() {
             <div className="flex flex-col min-w-40 flex-1">
               <DynamicHeader
                 theme="snow"
-                value={value}
-                onChange={setValue}
+                value={content}
+                onChange={setContent}
                 modules={{ toolbar: toolbarOptions }}
               />{" "}
             </div>
@@ -322,6 +329,7 @@ export default function NewArticle() {
               <input
                 type="file"
                 onChange={fileSelectedHandler}
+                
                 className="
     min-w-0
     max-w-min
