@@ -7,7 +7,7 @@ import Image from "next/image";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { StaticImageData } from "next/image";
-import { DateValues, isDate } from "date-fns";
+import { LeftArrow, RightArrow } from "../icons/IconsSvg";
 
 interface Post {
   _id: string;
@@ -73,7 +73,7 @@ export default function Blog() {
                     Explore the World of Development
                   </h1>
                   <h2 className=" text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
-                  Let´s dive into the latest trends and insights in the tech
+                    Let´s dive into the latest trends and insights in the tech
                     industry.
                   </h2>
                 </div>
@@ -172,15 +172,7 @@ export default function Blog() {
               data-size="18px"
               data-weight="regular"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18px"
-                height="18px"
-                fill="currentColor"
-                viewBox="0 0 256 256"
-              >
-                <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path>
-              </svg>
+              <LeftArrow />
             </div>
           </a>
           <a
@@ -197,15 +189,7 @@ export default function Blog() {
               data-size="18px"
               data-weight="regular"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18px"
-                height="18px"
-                fill="currentColor"
-                viewBox="0 0 256 256"
-              >
-                <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path>
-              </svg>
+              <RightArrow />
             </div>
           </a>
         </div>
