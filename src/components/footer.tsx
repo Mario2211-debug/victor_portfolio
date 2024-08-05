@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
               </span>
             </Link>
           </div>
-          <p className="p-2 footer-element ">©️ 2024 | Blog</p>
+          <p className="p-2 footer-element ">©️ 2024 | Mário Afonso</p>
         </footer>
       </div>
     </footer>
