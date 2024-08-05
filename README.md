@@ -1,14 +1,15 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-<h1 align="center">Hi 👋, I'm Mário Afonso / OLÁ eu me chamo Mário Afonso</h1>
-<h3 align="center">From Angola to the World</h3>
+<h1 align="center">Hi 👋, I'm Mário Afonso / Ólá chamo-me Mário Afonso</h1>
+<h3 align="center">rom Angola to the World</h3>
 
 <p> live demo project: https://victor-portfolio-sepia.vercel.app/
  </p>
-- 🤝 I hope I can help you with the creation of your portfolio, in this project I used the basics, just with the front part, I was able to explore a little about image manipulation with tailwind, routes with next, and I hope you use yours imagination to give a look to your design. **Victor Portfolio**
+- 🤝 Partilho contigo o meu portifólio criado do zero.
+
 <h3 align="center">Languages and Tools:</h3>
 <p align="center"> <a href="https://nextjs.org/" target="_blank" rel="noreferrer"> <img src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg" alt="nextjs" width="40" height="40"/> </a> <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/> </a>  <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a> <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="tailwind" width="40" height="40"/> </a> <a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="40" height="40"/> </a> </p>
-<img src="/src/app/icons/Home.png" align="center">
+<img src="/src/app/icons/screenshot.png" align="center">
 Documentação do Projeto: Portifolio e Blog Pessoal
 
 <h1>Visão Geral:</h1>    
