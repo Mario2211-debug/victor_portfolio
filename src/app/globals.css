@@ -24,6 +24,13 @@
     --second-color: #f4efe6;
     --navbar-bg: #ffffff;
     --navbar-icon:#1c160c;
+    --cv-color:rgb(86 84 84);
+    --cv-body-color:rgb(250, 250, 250);
+    --border-blur-cover: 89 89 89;
+    --tw-border-opacity: 0.15;
+
+
+
 
 
      /* cor especial para o modo claro */
@@ -38,6 +45,13 @@
     --second-color: #2e2e2e;
     --navbar-bg:#1a1a1a;
     --navbar-icon:#ffffff;
+    --cv-color:rgb(188 185 185);
+    --cv-body-color:rgb(38, 37, 37);
+        --border-blur-cover: 89 89 89;
+        --tw-border-opacity: 20;
+
+
+
 
 
     --svg-color: --tw-invert: invert(100%);
@@ -58,7 +72,16 @@
   }
 .navbar-element{
   background-color: var(--navbar-bg);
+ 
 }
+
+.cv-body-element{
+}
+
+.cv-element{
+    color: var(--cv-color);
+}
+
 .navbar-icon{
   background-color: var(--navbar-icon);
 }
@@ -96,10 +119,8 @@
   .blur-cover {
     backdrop-filter: blur(12px)  saturate(1.7);
     --tw-bg-opacity: 0.05;
-    --tw-border-opacity: 20;
     -webkit-backdrop-filter: blur(20px) saturate(1.7);
-
-    border: 1px rgb(47 46 46 / var(--tw-border-opacity)) solid;
+    border: 1px rgb(42 42 42 / var(--tw-border-opacity)) solid;
     border-radius: 0.5rem;
   }
 }
