@@ -141,15 +141,17 @@ export default function AboutMe() {
                   style={{ lineHeight: 1.5 }}
                 >
                   <p className="text-base font-bold leading-tight">Goals</p>
-                  <p className="cv-element m-3 text-justify text-sm font-normal leading-loose">
+                  <p className="cv-element m-3 text-sm font-normal leading-loose">
                     <ul className="list-disc">
                       <li className="line-through">Obter a licenciatura </li>
                       <li className="line-through">
                         Primeiro emprego na área de tecnologias{" "}
                       </li>
-                      <li className="line-through">Primeiro carro</li>
-                      <li className="">Obter a licenciatura </li>
-                      <li className="line-through">Obter a licenciatura </li>
+                      <li className="line-through">Aprender um novo idioma</li>
+                      <li className="">Primeiro emprego como programador</li>
+                      <li className="">
+                        Especialização em engenharia de software
+                      </li>
                     </ul>
                   </p>
                 </div>
