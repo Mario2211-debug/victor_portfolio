@@ -58,7 +58,7 @@ function MobileNav({ open, setOpen }: MobileNavProps) {
           className={`text-2xl font-bold hover:text-red-500 my-4 ${
             pathname === "/projects" ? "hidden" : "flex"
           }`}
-          href="/projects/id"
+          href="/projects"
         >
           Projects
         </a>
