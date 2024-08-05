@@ -66,7 +66,7 @@ function MobileNav({ open, setOpen }: MobileNavProps) {
         <a
           href="/about"
           className={`text-2xl font-bold hover:text-red-500 my-4 link ${
-            pathname === "/about" ? "active" : ""
+            pathname === "/about" ? "hidden" : "flex"
           }`}
         >
           Sobre
@@ -153,14 +153,14 @@ export default function FullScreenNavBar() {
                   <a
                     href="/projects"
                     className={`items-center w-11/12 flex-1 justify-start p-4 md:order-2 
-                      ${pathname === "/about" ? "hidden" : "flex"}`}
+                      ${pathname === "/projects" ? "hidden" : "flex"}`}
                   >
                     Projects
                   </a>
                   <a
                     href="/about"
                     className={`items-center w-11/12 flex-1 justify-start p-4 md:order-2 
-                      ${pathname === "/projects" ? "hidden" : "flex"}`}
+                      ${pathname === "/about" ? "hidden" : "flex"}`}
                   >
                     Sobre
                   </a>
