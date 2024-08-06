@@ -11,10 +11,6 @@ export default function AboutMe() {
     Goals: {},
   };
 
-  const formula = new Date();
-  const age = formula.getFullYear() - 1997;
-
-  console.log(formula.getUTCFullYear().toString);
 
   return (
     <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
