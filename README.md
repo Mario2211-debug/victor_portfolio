@@ -131,13 +131,11 @@ Railway:</li>
 <p>Escrever testes unitários e de integração para garantir a qualidade do código e evitar regressões.</p>
 </ul>
 
-
-Observações:
-• Se gostou ajude-me a crescer e deixe o teu feedback
-
-<h3 align="left">Connect with me:</h3>
+<h1>Observações:</h1>
+<ul>
+<li>Se gostou ajude-me a crescer e deixe o teu feedback</li>
 <p align="left"> Linkedin: www.linkedin.com/in/mario-afonso-018107141
-</p>
+</p></ul>
 
 ## Getting Started
 
