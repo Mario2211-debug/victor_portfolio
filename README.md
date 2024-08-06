@@ -1,7 +1,5 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 <h1 align="center">Hi 👋, I'm Mário Afonso / Ólá chamo-me Mário Afonso</h1>
-<h3 align="center">rom Angola to the World</h3>
+<h3 align="center">from Angola to the World</h3>
 
 <p> live demo project: https://victor-portfolio-sepia.vercel.app/
  </p>
@@ -50,6 +48,9 @@ Lista de artigos com títulos, resumos e datas de publicação.
 <p>Biblioteca para fazer requisições HTTP ao backend (Blog API).</p>
 
 <li>Next Themes:</li> <p>Biblioteca para implementar o modo claro/escuro (dark mode).</p>
+
+<li>ReactQuill:</li> <p>Biblioteca para implementar o rich text nos posts.</p>
+
 <li>Vercel:</li>
 <p>Plataforma de hospedagem e deploy para Next.js.</p>
   </ul>
@@ -137,37 +138,49 @@ Railway:</li>
 <p align="left"> Linkedin: www.linkedin.com/in/mario-afonso-018107141
 </p></ul>
 
-## Getting Started
+## Local Development
 
-First, run the development server:
+Para rodar o projeto localmente siga os passos abaixo:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Você vai precisar dos seguintes softwares instalados:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- npm
+- Git
+- Node.js
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Installation
 
-## Learn More
+1. Crie um arquivo .env.local na raiz do projeto frontend e adicione a URL da sua API:
+   NEXT_PUBLIC_API_URL=https://sua-api-do-blog.railway.app
 
-To learn more about Next.js, take a look at the following resources:
+2. Install all client-side NPM packages.
+   ```sh
+   cd Client
+   npm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<!-- CONTRIBUTING -->
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Contributing
 
-## Deploy on Vercel
+Contribuições são bem vindas!
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/MyFeature`)
+3. Commit your Changes (`git commit -m 'Add my feature'`)
+4. Push to the Branch (`git push origin feature/MyFeature`)
+5. Open a Pull Request
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<!-- LICENSE -->
+
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+## Acknowledgements
+
+- Glow Labs
+- [ReactQuill](https://www.npmjs.com/package/react-quill)
+- [next-theme from UI.org](https://nextui.org/docs/customization/dark-mode)
