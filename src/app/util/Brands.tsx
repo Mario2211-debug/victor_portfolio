@@ -7,8 +7,8 @@ import { useTheme } from "next-themes";
 // Supondo que as imagens sejam importadas ou tenham seus caminhos definidos
 import { PostGreee, JavaScript, Java, Csharp } from "../icons/IconsSvg";
 const MyComponent = () => {
-  const [isLargeScreen, setIsLargeScreen] = useState(false);
   const { theme } = useTheme(); // Get the current theme
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -77,13 +77,13 @@ const MyComponent = () => {
 
   const mobile = () => {
     return (
-      <div className="inline-block p blur-cover">
+      <div className="inline-block blur-cover">
         <div className="h-15 flex items-center justify-center">
-          <ul className="md:justify-center contents justify-between relative">
+          <ul className="md:justify-center contents justify-between">
             <li className="flex p-2">
               <PostGreee
                 className={`w-10 h-10 ${
-                  theme === "dark" ? "fill-white" : "fill-black"
+                  theme != "dark" ? "fill-black" : "fill-white"
                 }`}
               />
             </li>
@@ -91,7 +91,7 @@ const MyComponent = () => {
             <li className="flex p-2">
               <JavaScript
                 className={`w-10 h-10 ${
-                  theme === "dark" ? "fill-white" : "fill-black"
+                  theme != "dark" ? "fill-black" : "fill-white"
                 }`}
               />
             </li>
@@ -99,7 +99,7 @@ const MyComponent = () => {
             <li className="flex p-2">
               <Java
                 className={`w-10 h-10 ${
-                  theme === "dark" ? "fill-white" : "fill-black"
+                  theme != "dark" ? "fill-black" : "fill-white"
                 }`}
               />
             </li>
@@ -107,7 +107,7 @@ const MyComponent = () => {
             <li className="flex p-2">
               <Csharp
                 className={`w-10 h-10 ${
-                  theme === "dark" ? "stroke-white" : "stroke-black"
+                  theme != "dark" ? "stroke-black" : "stroke-white"
                 }`}
               />
             </li>

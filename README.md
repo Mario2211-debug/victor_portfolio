@@ -20,20 +20,23 @@ Documentação do Projeto: Portifolio e Blog Pessoal
 <li>Plataformas: Web (responsivo para diferentes dispositivos).</li>
 </ul>
 
-2. Funcionalidades Principais (Frontend):
-   • Home:
-   o Apresentação geral com nome, breve descrição e foto(brevemente).
-   o Destaque para projetos selecionados.
-   o Links para as outras seções do portfólio (Projetos, Blog, Sobre).
-   • Projetos:
-   o Lista de projetos com imagens, descrições e links para demonstrações ou repositórios.
-   o Filtros por categoria ou tecnologias utilizadas.
-   • Blog:
-   o Lista de artigos com títulos, resumos e datas de publicação.
-   o Página de detalhes para cada artigo com o conteúdo completo.
-   • Sobre:
-   o Informações sobre experiência profissional, habilidades e interesses.
-   o Links para redes sociais e contato.
+<h1>Funcionalidades Principais (Frontend):</h1>
+<ul>
+<li>Home:</li>
+Apresentação geral com nome, breve descrição e foto(brevemente).
+Destaque para projetos selecionados.
+Links para as outras seções do portfólio (Projetos, Blog, Sobre).
+<li>Projetos:</li>
+Lista de projetos com imagens, descrições e links para demonstrações ou repositórios.
+Filtros por categoria ou tecnologias utilizadas.
+<li>Blog:</li>
+Lista de artigos com títulos, resumos e datas de publicação.
+   Página de detalhes para cada artigo com o conteúdo completo.
+   <li>Sobre:</li>
+   Informações sobre experiência profissional, habilidades e interesses.
+   Links para redes sociais e contato.
+
+</ul>
 
 3. Tecnologias Utilizadas (Frontend):
    • Next.js: Framework React para renderização do lado do servidor (SSR) e geração de sites estáticos.
