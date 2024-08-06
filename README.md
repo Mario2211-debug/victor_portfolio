@@ -61,49 +61,76 @@ Lista de artigos com títulos, resumos e datas de publicação.
    <p>Upload e gerenciamento de imagens para os posts.</p>
 </ul>
 
-5. Tecnologias Utilizadas (Backend):
-   • Node.js: Ambiente de execução JavaScript para o backend.
-   • Express.js: Framework web minimalista para Node.js.
-   • MongoDB: Banco de dados NoSQL para armazenar os posts do blog.
-   • Cloudflare: Serviço de CDN e otimização de imagens para armazenar e entregar as imagens dos posts.
-   • Railway: Plataforma de hospedagem em nuvem para o backend.
+<h1>Tecnologias Utilizadas (Backend):</h1>
+<ul>
+<li>
+Node.js:</li>
+<p>Ambiente de execução JavaScript para o backend.</p>
+<li>
+Express.js:</li>
+<p>Framework web minimalista para Node.js.</p>
+<li>
+MongoDB:</li>
+<p>Banco de dados NoSQL para armazenar os posts do blog.</p>
+<li>
+Cloudflare:</li>
+<p>Serviço de CDN e otimização de imagens para armazenar e entregar as imagens dos posts.</p>
+<li>
+Railway:</li>
+<p>Plataforma de hospedagem em nuvem para o backend.</p>
+<li>
+</ul>
 
-6. Estrutura do Banco de Dados (MongoDB):
-   • Coleção posts:
-   o \_id (chave primária)
-   o title (título do post)
-   o content (conteúdo do post em formato HTML ou Markdown)
-   o description (breve descrição do post)
-   o imageUrl (URL da imagem do post armazenada no Cloudflare)
-   o category (categoria do post)
-   o date (data de publicação)
+<h1>Estrutura do Banco de Dados (MongoDB):</h1>
+<ul>
+<li>Coleção posts:</li>
+<p>_id (chave primária)</p>
+<p>title (título do post)</p>
+<p>content (conteúdo do post em formato HTML ou Markdown)</p>
+<p>description (breve descrição do post)</p>
+<p>imageUrl (URL da imagem do post armazenada no Cloudflare)</p>
+<p>category (categoria do post)</p>
+<p>date (data de publicação)</p>
+</ul>
 
-7. Arquitetura da API (Blog API):
-   • Endpoints:
-   o GET /posts: Retorna a lista de todos os posts.
-   o GET /posts/:id: Retorna um post específico pelo ID.
-   o POST /posts: Cria um novo post.
-   o PUT /posts/:id: Atualiza um post existente.
-   o DELETE /posts/:id: Exclui um post.
-   o Endpoints adicionais para upload de imagens, etc.
+<h1>Arquitetura da API (Blog API):</h1>
+<ul>
+<li>Endpoints:</li>
+<p><b>GET /posts</b>: Retorna a lista de todos os posts.</p>
+<p><b> GET /posts/:id</b>: Retorna um post específico pelo ID.</p>
+<p><b>POST /posts</b>: Cria um novo post.</p>
+<p><b>PUT /posts/:id</b>: Atualiza um post existente.</p>
+<p><b>DELETE /posts/</b>: Exclui um post.</p>
 
-8. Deploy:
-   • Frontend: Implantado no Vercel, com integração contínua com o repositório do GitHub.
-   • Backend: Hospedado no Railway.
+</ul>
 
-9. Próximos Passos:
-   • Funcionalidades Adicionais:
-   o Seção de depoimentos ou recomendações.
-   • Autenticação e Autorização (opcional):
-   o Restringir o acesso a alguns endpoints da API (como criar, atualizar e excluir posts), você precisará implementar um sistema de autenticação e autorização.
-   o Integração com outras APIs (por exemplo, para exibir projetos do GitHub).
-   • Melhorias de Design:
-   o Explorar diferentes layouts para as páginas: Blog e Artigo do blog. E diferentes estilos visuais(Fontes, PopUps, etc…).
-   • Otimização de Performance:
-   o Implementar técnicas de otimização de imagens e carregamento preguiçoso (lazy loading).
-   o Minificar e otimizar o código CSS e JavaScript.
-   • Testes:
-   o Escrever testes unitários e de integração para garantir a qualidade do código e evitar regressões.
+<h1>Deploy:</h1>
+<ul>
+<li>Frontend</li>
+<p>Implantado no Vercel, com integração contínua com o repositório do GitHub.</p>
+<li>Backend</li>
+<p>Hospedado no Railway</p>
+</ul>
+
+<h1>Próximos Passos:</h1>
+<ul>
+<li>Funcionalidades Adicionais:</li>
+<p>Seção de depoimentos ou recomendações.</p>
+<li>Autenticação e Autorização (opcional):</li>
+<p>Restringir o acesso a alguns endpoints da API (como criar, atualizar e excluir posts), você precisará implementar um sistema de autenticação e autorização.</p>
+<p>Integração com outras APIs (por exemplo, para exibir projetos do GitHub).</p>
+<li>Melhorias de Design</li>
+<p>Explorar diferentes layouts para as páginas: Blog e Artigo do blog. E diferentes estilos visuais(Fontes, PopUps, etc…).</p>
+<li>Otimização de Performance</li>
+<p>Implementar técnicas de otimização de imagens e carregamento preguiçoso (lazy loading).</p>
+<p>Minificar e otimizar o código CSS e JavaScript.</p>
+
+<li>Testes:</li>
+<p>Hospedado no Railway</p>
+<li>Backend</li>
+<p>Escrever testes unitários e de integração para garantir a qualidade do código e evitar regressões.</p>
+</ul>
+
 
 Observações:
 • Se gostou ajude-me a crescer e deixe o teu feedback
