@@ -40,22 +40,26 @@ Lista de artigos com títulos, resumos e datas de publicação.
 
 <h1> Tecnologias Utilizadas (Frontend):</h1>
   <ul>
-  <li>Next.js:</li>Framework React para renderização do lado do servidor (SSR) e geração de sites estáticos.
-  
-<li>Tailwind CSS:</li> Framework CSS utilitário para estilização rápida e responsiva.
+  <li>Next.js:</li>
+<p>Framework React para renderização do lado do servidor (SSR) e geração de sites estáticos.</p>
 
-<li>Axios:</li>Biblioteca para fazer requisições HTTP ao backend (Blog API).
+<li>Tailwind CSS:</li> 
+<p>Framework CSS utilitário para estilização rápida e responsiva.</p>
 
-<li>Next Themes:</li> Biblioteca para implementar o modo claro/escuro (dark mode).
+<li>Axios:</li>
+<p>Biblioteca para fazer requisições HTTP ao backend (Blog API).</p>
 
-<li>Vercel:</li>Plataforma de hospedagem e deploy para Next.js.
-
+<li>Next Themes:</li> <p>Biblioteca para implementar o modo claro/escuro (dark mode).</p>
+<li>Vercel:</li>
+<p>Plataforma de hospedagem e deploy para Next.js.</p>
   </ul>
 
-4. Funcionalidades Principais (Backend - Blog API):
-   • Gerenciamento de Posts:
-   o Criar, ler, atualizar e deletar posts do blog.
-   o Upload e gerenciamento de imagens para os posts.
+<h1>Funcionalidades Principais (Backend - Blog API):</h1>
+<ul>
+<li>Gerenciamento de Posts:</li>
+   <p>Criar, ler, atualizar e deletar posts do blog.</p>
+   <p>Upload e gerenciamento de imagens para os posts.</p>
+</ul>
 
 5. Tecnologias Utilizadas (Backend):
    • Node.js: Ambiente de execução JavaScript para o backend.
