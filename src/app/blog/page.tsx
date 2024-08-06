@@ -58,7 +58,9 @@ export default function Blog() {
   return (
     <>
       <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
-        <h1 className="text-2xl text-right">Filtro de buscas brevemente...</h1>
+        <h1 className="text-2xl text-right">
+          Filtro de buscas em construção...
+        </h1>
 
         <h1 className=" text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 text-left pb-3 pt-5">
           Ultimas publicações
