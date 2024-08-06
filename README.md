@@ -40,10 +40,9 @@ Lista de artigos com títulos, resumos e datas de publicação.
 
 <h1> Tecnologias Utilizadas (Frontend):</h1>
   <ul>
-  <li>Next.js:</li>
-  Framework React para renderização do lado do servidor (SSR) e geração de sites estáticos.
-</li>
-     <li>Tailwind CSS:</li> Framework CSS utilitário para estilização rápida e responsiva.
+  <li>Next.js:</li>Framework React para renderização do lado do servidor (SSR) e geração de sites estáticos.
+  
+<li>Tailwind CSS:</li> Framework CSS utilitário para estilização rápida e responsiva.
 
 <li>Axios:</li>Biblioteca para fazer requisições HTTP ao backend (Blog API).
 
