@@ -38,12 +38,20 @@ Lista de artigos com títulos, resumos e datas de publicação.
 
 </ul>
 
-3. Tecnologias Utilizadas (Frontend):
-   • Next.js: Framework React para renderização do lado do servidor (SSR) e geração de sites estáticos.
-   • Tailwind CSS: Framework CSS utilitário para estilização rápida e responsiva.
-   • Axios: Biblioteca para fazer requisições HTTP ao backend (Blog API).
-   • Next Themes: Biblioteca para implementar o modo claro/escuro (dark mode).
-   • Vercel: Plataforma de hospedagem e deploy para Next.js.
+<h1> Tecnologias Utilizadas (Frontend):</h1>
+  <ul>
+  <li>Next.js:</li>
+  Framework React para renderização do lado do servidor (SSR) e geração de sites estáticos.
+</li>
+     <li>Tailwind CSS:</li> Framework CSS utilitário para estilização rápida e responsiva.
+
+<li>Axios:</li>Biblioteca para fazer requisições HTTP ao backend (Blog API).
+
+<li>Next Themes:</li> Biblioteca para implementar o modo claro/escuro (dark mode).
+
+<li>Vercel:</li>Plataforma de hospedagem e deploy para Next.js.
+
+  </ul>
 
 4. Funcionalidades Principais (Backend - Blog API):
    • Gerenciamento de Posts:
