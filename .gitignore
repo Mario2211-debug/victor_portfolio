@@ -5,8 +5,17 @@
 /.pnp
 .pnp.js
 
+/.vscode
+/.vscode/
+/vscode
+
+/.anima
+/.anima/
+/anima
+
 #env file 
 /.env
+env
 .env
 .env*.local
 !.env.example
