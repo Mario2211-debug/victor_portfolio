@@ -7,14 +7,12 @@ export default function Home() {
     <>
       <section>
         <PreSection />
-        <div className="flex justify-center p-1">
-          <span className="absolute w-3/4 border-t border-gray-500"></span>
-        </div>
-        <Blob />
-
-        <Projects />
-        <div className="flex justify-center p-4">
-          <span className="absolute w-3/4 border-t border-gray-500"></span>
+        <div className="grid justify-center p-1 mx-5">
+          <h1 className="text-3xl p-4 content-around">Os meus últimos projetos</h1>
+          <div className="p-8 inline-flex ">
+            {" "}
+            <Projects />
+          </div>
         </div>
       </section>
     </>

@@ -41,8 +41,11 @@ export default function RootLayout({
             className="absolute blur-sm inset-0 -z-10 animate-fade-in"
             quantity={150}
           />
+
           <div className="relative flex size-full min-h-screen flex-col">
             <div className="layout-container flex h-full grow flex-col">
+              <Blob />
+
               <FullScreenNavBar />
               <div className="px-40 mobile:px-6 md:px-8 lg:px-10 xl:px-12 flex flex-1 justify-center pt-28 blog-font">
                 {children}
