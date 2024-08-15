@@ -89,7 +89,7 @@ const PostPage: React.FC = () => {
       <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
         <div className="@container">
           <div className="@[480px]:px-4 @[480px]:py-3">
-            <h1 className="p-4 text-4xl font-extrabold tablet:text-5xl">
+            <h1 className="p-4 text-2xl font-extrabold tablet:text-5xl">
               {post.title}
             </h1>
             <div
@@ -99,7 +99,7 @@ const PostPage: React.FC = () => {
               }}
             >
               <div className="flex p-8">
-                <p className="text-white tracking-light text-[28px] font-bold leading-tight">
+                <p className="text-white text-base tracking-light tablet:text-[28px] font-bold leading-tight">
                   {post.description}{" "}
                 </p>
               </div>
