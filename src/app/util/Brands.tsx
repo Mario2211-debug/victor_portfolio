@@ -83,7 +83,7 @@ const MyComponent = () => {
             <li className="flex p-2">
               <PostGreee
                 className={`w-10 h-10 ${
-                  theme === "dark" ? "" : "fill-black"
+                  theme === "dark" ? undefined : "fill-black"
                 }`}
               />
             </li>
@@ -91,7 +91,7 @@ const MyComponent = () => {
             <li className="flex p-2">
               <JavaScript
                 className={`w-10 h-10 ${
-                  theme === "dark" ? "" : "fill-black"
+                  theme === "dark" ? undefined : "fill-black"
                 }`}
               />
             </li>
@@ -99,7 +99,7 @@ const MyComponent = () => {
             <li className="flex p-2">
               <Java
                 className={`w-10 h-10 ${
-                  theme === "dark" ? "" : "fill-black"
+                  theme === "dark" ? undefined : "fill-black"
                 }`}
               />
             </li>
