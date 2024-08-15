@@ -11,11 +11,11 @@ export default function PreSection() {
       <div className="text-center">
         <div className="md:pt-40 mobile:px-2 mobile:py-20">
           <div className="inline tracking-wide text-center md:w-6 w-full md:flex-1">
-            <span className="inline-flex items-center w-52 h-52">
+            <span className="inline-flex items-center w-60 h-60">
               <Image
                 src={profile}
                 alt="Mario Afonso"
-                className=" rounded-full"
+                className="rounded-full object-cover h-[-webkit-fill-available] w-[-webkit-fill-available]"
               />
             </span>
             <h2 className="mobile:text-5xl font-Bellefair p-2 md:text-5xl font-bold">
