@@ -82,25 +82,19 @@ const MyComponent = () => {
           <ul className="md:justify-center contents justify-between">
             <li className="flex p-2">
               <PostGreee
-                className={`w-10 h-10 ${
-                  theme === "dark" ? undefined : "fill-black"
-                }`}
+                className={`w-10 h-10 ${theme != "dark" ? "" : "!fill-white"}`}
               />
             </li>
 
             <li className="flex p-2">
               <JavaScript
-                className={`w-10 h-10 ${
-                  theme === "dark" ? undefined : "fill-black"
-                }`}
+                className={`w-10 h-10 ${theme != "dark" ? "" : "!fill-white"}`}
               />
             </li>
 
             <li className="flex p-2">
               <Java
-                className={`w-10 h-10 ${
-                  theme === "dark" ? undefined : "fill-black"
-                }`}
+                className={`w-10 h-10 ${theme != "dark" ? "" : "!fill-white"}`}
               />
             </li>
 
