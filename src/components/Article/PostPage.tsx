@@ -85,11 +85,11 @@ const PostPage: React.FC = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="px-4 mobile:px-6 md:px-8 lg:px-10 xl:px-12 flex flex-1 justify-center py-5">
+    <div className="px-4 py-5">
       <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
         <div className="@container">
           <div className="@[480px]:px-4 @[480px]:py-3">
-            <h1 className="p-4 text-2xl font-extrabold tablet:text-5xl">
+            <h1 className="py-10 text-2xl font-extrabold tablet:text-5xl">
               {post.title}
             </h1>
             <div
@@ -153,7 +153,7 @@ const PostPage: React.FC = () => {
             </p>
           </div>
         </div>
-        <p className="text-base font-normal tracking-wide leading-normal pb-3 pt-1 px-4">
+        <p className="text-base font-normal tracking-wide leading-normal pb-3 pt-1 tablet:px-4">
           <RichTextRenderer content={post.content} />
         </p>
         <div className="flex flex-wrap gap-4 px-4 py-2">
