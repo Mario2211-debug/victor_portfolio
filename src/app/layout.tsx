@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Noto_Sans } from "next/font/google";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+
 import { Providers } from "./providers";
 import Particles from "./util/Particles";
 import FullScreenNavBar from "@/components/Navbar";
@@ -49,6 +51,7 @@ export default function RootLayout({
               <FullScreenNavBar />
               <div className="px-40 mobile:px-6 md:px-8 lg:px-10 xl:px-12 flex flex-1 justify-center pt-28 blog-font">
                 {children}
+                <Analytics />
               </div>
               <Footer />
             </div>
