@@ -34,7 +34,7 @@ const CurrencyConverter = () => {
     };
 
     return (
-        <div className="rounded-xl justify-items-end w-fit float-right">
+        <div className="rounded-xl hidden sm:block justify-items-end w-fit float-right">
             <div className="text-xs text-neutral-400 mb-2 bg-gray-600 bg-opacity-30 backdrop-blur-sm shadow-sm shadow-neutral-900 p-[0.35rem] rounded-lg">Currency Converter</div>
 
             {/* Campo de entrada para o valor */}

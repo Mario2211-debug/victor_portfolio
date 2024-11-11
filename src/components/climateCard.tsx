@@ -36,13 +36,16 @@ export const ClimateCard = (prop: Weather) => {
                     <div>
                         <CloudIcon className="h-8 w-8" />
                     </div>
-                    <div className="flex gap-4">
+                    <div className="flex justify-between gap-4">
                         <span>
                             <p>Nublado</p>
                             <p className="text-xs text-neutral-400">{prop.location}</p>
                         </span>
+                        <span className="">
+                            {time.toLocaleTimeString()}
+                        </span>
                     </div>
-                    {time.toLocaleTimeString()}
+
                 </div>
 
                 <div className=" items-center gap-3 pt-4">
