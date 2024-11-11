@@ -10,7 +10,7 @@ const MapboxMap = ({ radios, currentCategory, onRadioSelect, selectedRadio }) =>
   const mapRef = useRef(null);
   const markersRef = useRef([]);
   const [visibleMarkers, setVisibleMarkers] = useState([]);
-  const maxMarkers = 500;  // Limite máximo de marcadores por vez
+  const maxMarkers = 100;  // Limite máximo de marcadores por vez
 
 
   useEffect(() => {
@@ -111,8 +111,8 @@ const MapboxMap = ({ radios, currentCategory, onRadioSelect, selectedRadio }) =>
   const setCurrent = () => {
     // Verifica se a estação é a selecionada para aplicar um estilo especial
     radios.className = selectedRadio && selectedRadio.stationuuid === currentCategory.stationuuid
-        ? "w-2 h-2 bg-blue-500 border border-solid border-white rounded-full cursor-pointer" // Estilo normal para outros marcadores
-        : "w-2 h-2 bg-transparent border border-solid border-white rounded-full cursor-pointer" // Estilo para o marcador destacado
+      ? "w-2 h-2 bg-blue-500 border border-solid border-white rounded-full cursor-pointer" // Estilo normal para outros marcadores
+      : "w-2 h-2 bg-transparent border border-solid border-white rounded-full cursor-pointer" // Estilo para o marcador destacado
 
   }
 
@@ -181,7 +181,7 @@ const MapboxMap = ({ radios, currentCategory, onRadioSelect, selectedRadio }) =>
         mapRef.current.off("moveend", handleMapMove);  // Remove o evento ao sair
       }
     };
-  }, [radios, currentCategory,, setCurrent(), selectedRadio]);
+  }, [radios, currentCategory, , setCurrent(), selectedRadio]);
 
   return <div id="map-container" ref={mapContainerRef} style={{ height: "100%", width: "100%" }} />;
 };
