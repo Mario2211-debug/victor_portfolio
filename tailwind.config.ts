@@ -31,7 +31,7 @@ const config: Config = {
       },
 
       screens: {
-        mobile: "375",
+        mobile: "320",
         // => @media (min-width: 375px) { ... }
 
         landescape: "480px",

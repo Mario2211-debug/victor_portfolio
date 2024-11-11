@@ -87,17 +87,17 @@ const PostPage: React.FC = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="desktop:px-72 md:px-20 px-12 py-44">
+    <div className="desktop:px-72 mobile:px-20 px-4 py-16">
+      <a href="/" className="mb-14 ml-6 block">Voltar</a>
       <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
         <div className="@container">
           <div className="@[480px]:px-4 @[480px]:py-3">
-            <a href="/" className="py-6 absolute top-20">Voltar</a>
             <h1 className="py-2 text-2xl font-extrabold tablet:text-5xl">
               {post?.title}
             </h1>
             <div className="bg-cover bg-center flex flex-col justify-end overflow-hidden">
               <div className="flex">
-                <p className="text-xl tracking-light tablet:text-[28px] font-light leading-tight">
+                <p className="tablet:text-xl text-sm tracking-light tablet:text-[28px] font-light leading-tight">
                   {post?.description}
                 </p>
               </div>
