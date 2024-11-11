@@ -64,7 +64,7 @@ const RadioMapPage = () => {
 
 
     return (
-        <div className="relative h-screen w-screen flex flex-col items-center">
+        <div className="relative h-screen w-screen  flex flex-col items-center">
             {/* Componente do mapa */}
 
             <div className="flex-1 w-full h-full">
@@ -83,7 +83,7 @@ const RadioMapPage = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="absolute w-[-webkit-fill-available] desktop:bottom-16 laptop:w-[250px] desktop:w-[250px] bottom-16 mx-4 rounded-lg p-2 blur-cover">
+                className="absolute block w-[-webkit-fill-available] mb-10 mobile:mb-5 laptop:w-[250px] desktop:w-[250px] bottom-16 mx-4 rounded-lg p-2 blur-cover">
                 <input
                     type="text"
                     value={categorySearch}
