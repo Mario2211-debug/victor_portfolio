@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
 
 
   return (
-    <footer className={`[inset-area:bottom] my-6 w-[-webkit-fill-available] bottom-4 mx-10 ${pathname == "/mapView" ? 'hidden' : ''}`}>
+    <footer className={` my-6 w-[-webkit-fill-available] bottom-4 mx-10 ${pathname == "/mapView" ? 'hidden' : ''}`}>
       <div className="mx-auto flex items-center gap-4 justify-between">
 
         <div className="flex gap-4 items-center">
