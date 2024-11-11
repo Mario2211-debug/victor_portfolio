@@ -36,7 +36,7 @@ export default function Home() {
                   <button onClick={() => handleSectionChange('projects')} className={`${activeSection === 'projects' ? 'border-b-2 border-solid border-[#ffffff] text-[#ffffff]' : ''}`}>Projects</button>
                 </ul>
 
-                <div className="pt-4 inline-flex transition-all duration-200 ">
+                <div className="py-4 transition-all duration-200 ">
                   {activeSection === 'about' && <About />}
                   {activeSection === 'contacts' && <Contacts />}
                   {activeSection === 'projects' && <Projects />}
