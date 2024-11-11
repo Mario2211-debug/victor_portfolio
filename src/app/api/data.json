@@ -3,10 +3,11 @@
     [
       {
         "_id": "66907002b0588d69b8dbcb17",
-        "title": "Meu Primeiro Post",
-        "content": "Este é o conteúdo do meu primeiro post.",
-        "description": "Something new",
-        "imageUrl": "www.example.com",
+        "title": "Componentes no React",
+        "description": "Aprenda a diferenciar e a usar componentes no React",
+        "content": "No React, existem dois tipos de componentes: componentes funcionais e componentes de classe. Ambos podem renderizar a interface do usuário (UI), mas possuem diferenças fundamentais em como lidam com o estado, ciclo de vida e o gerenciamento de efeitos colaterais.\n\n### 1. Componentes Funcionais\n\nComponentes funcionais são funções JavaScript que retornam elementos de UI (geralmente em JSX). Eles foram introduzidos como uma maneira mais simples de criar componentes em React, mas antes da introdução dos Hooks, eram limitados por não poderem ter estado ou ciclo de vida. Hoje, os Hooks (como `useState` e `useEffect`) permitem que componentes funcionais gerenciem estado e efeitos, tornando-os amplamente usados.\n\nExemplo de um Componente Funcional:\n```javascript\nimport React, { useState } from 'react';\n\nfunction Contador() {\n  const [contador, setContador] = useState(0);\n\n  return (\n    <div>\n      <p>Contador: {contador}</p>\n      <button onClick={() => setContador(contador + 1)}>Incrementar</button>\n    </div>\n  );\n}\n\nexport default Contador;\n```\n\n \n\n###Principais Características dos Componentes Funcionais:\n\n \n- Sintaxe mais simples: Como são funções, eles não têm métodos complexos.\n- Uso de Hooks: Podem usar hooks como `useState` e `useEffect` para gerenciar estado e ciclo de vida.\n- Desempenho: Em alguns casos, são mais performáticos, pois não possuem o overhead da estrutura de classe.\n\nHooks principais:\n- `useState`: Para criar e gerenciar estado.\n- `useEffect`: Para lidar com efeitos colaterais (como chamadas a APIs e manipulação do DOM).\n- `useContext`: Para compartilhar dados em toda a árvore de componentes.\n\n### 2. Componentes de Classe\n\nComponentes de classe eram o modo tradicional de criar componentes antes da introdução dos Hooks. Eles são baseados em classes ES6 e possuem métodos específicos de ciclo de vida, como `componentDidMount`, `componentDidUpdate` e `componentWillUnmount`.\n\nExemplo de um Componente de Classe:\n```javascript\nimport React, { Component } from 'react';\n\nclass Contador extends Component {\n  constructor(props) {\n    super(props);\n    this.state = { contador: 0 };\n  }\n\n  incrementar = () => {\n    this.setState((prevState) => ({ contador: prevState.contador + 1 }));\n  };\n\n  render() {\n    return (\n      <div>\n        <p>Contador: {this.state.contador}</p>\n        <button onClick={this.incrementar}>Incrementar</button>\n      </div>\n    );\n  }\n}\n\nexport default Contador;\n```\n\nPrincipais Características dos Componentes de Classe:\n- Ciclo de vida: Possuem métodos de ciclo de vida específicos, como `componentDidMount`, `componentDidUpdate`, `componentWillUnmount`, que ajudam a controlar o que ocorre antes, durante e depois de o componente ser exibido.\n- Estado e métodos de classe: O estado é definido no `this.state`, e atualizações de estado ocorrem usando `this.setState`.\n- `this`: No código de componentes de classe, `this` é comum, e ele pode introduzir complexidade, pois o contexto de `this` precisa ser definido.\n\nMétodos de ciclo de vida comuns:\n- `componentDidMount`: Chamado uma vez, logo após o componente ser montado.\n- `componentDidUpdate`: Chamado após o componente atualizar.\n- `componentWillUnmount`: Chamado antes do componente ser desmontado.\n\n\n\n ### Comparação entre Componentes Funcionais e de Classe\n\nOs componentes funcionais e os componentes de classe em React têm diferenças importantes em vários aspectos:\n- **Sintaxe**: Os componentes funcionais usam uma sintaxe mais simples, baseada em funções e JSX, enquanto os componentes de classe exigem uma estrutura mais formal baseada em classes ES6.\n- **Estado**: Componentes funcionais gerenciam o estado usando `useState` e `useReducer`, enquanto componentes de classe utilizam `this.state` e `this.setState`.\n- **Ciclo de Vida**: Os componentes funcionais controlam o ciclo de vida com hooks como `useEffect`, enquanto componentes de classe dispõem de métodos específicos de ciclo de vida como `componentDidMount`, `componentDidUpdate` e `componentWillUnmount`.\n- **Desempenho**: Em geral, componentes funcionais são mais eficientes por sua simplicidade estrutural, enquanto os componentes de classe podem ter overhead devido à estrutura de classe.\n\n5. **Complexidade do Código**: Componentes funcionais oferecem um código menos complexo, uma vez que não precisam de `this`, ao contrário dos componentes de classe, que exigem um controle de contexto com `this` que pode adicionar complexidade ao código. \n\n### Quando usar cada um\n\n1. Componentes Funcionais:\n   - Ideais para componentes mais simples e quando o uso de Hooks é suficiente para o estado e ciclo de vida.\n   - Indicados quando se quer um código mais simples e conciso.\n - Recomendados para a maioria dos novos projetos, pois Hooks tornam os componentes funcionais tão poderosos quanto os de classe.\n\n2. Componentes de Classe:\n - Úteis em códigos legados que já usam classes.\n   - Quando precisa-se de métodos de ciclo de vida mais granulares e específicos.\n   - Embora sejam cada vez menos comuns em novos projetos, ainda têm seu uso quando lidando com código antigo.\n\nCom a popularidade dos Hooks, os componentes funcionais se tornaram o padrão, tornando a criação e manutenção de componentes mais simples e direta. Isso também ajuda a consolidar padrões no desenvolvimento React, mantendo o código mais fácil de entender e evoluir.\n",    
+        "imageUrl": null,
+        "teste":"",
         "date": "2023-07-12T15:00:00.000Z",
         "readers": "string",
         "className": "string",
@@ -15,82 +16,6 @@
         "alt": "string",
         "crated_at": "2024-07-11T23:51:30.136Z",
         "updated_at": "2024-07-11T23:51:30.136Z"
-      },
-      {
-        "_id": "6690a619516518efc1482bfe",
-        "title": "Meu Segundo Post",
-        "content": "Este é o conteúdo do meu segundo post.",
-        "description": "Something new",
-        "imageUrl": "www.example.com",
-        "date": "2024-07-12T03:42:17.393Z",
-        "readers": "string",
-        "className": "string",
-        "imgclassName": "string",
-        "src": "StaticImageData",
-
-        "alt": "string",
-        "crated_at": "2024-07-12T03:42:17.394Z",
-        "updated_at": "2024-07-12T03:42:17.394Z"
-      },
-      {
-        "_id": "6690a644516518efc1482c00",
-        "title": "Meu terceiro Post",
-        "content": "Este é o conteúdo do meu terceiro post.",
-        "description": "Something new",
-        "imageUrl": "www.example.com",
-        "date": "2024-07-12T03:43:00.355Z",
-        "readers": "string",
-        "className": "string",
-        "imgclassName": "string",
-        "src": "StaticImageData",
-        "alt": "string",
-        "crated_at": "2024-07-12T03:43:00.355Z",
-        "updated_at": "2024-07-12T03:43:00.356Z"
-      },
-      {
-        "_id": "6690b2219d01f648edaea709",
-        "title": "Meu Primeiro Post",
-        "content": "Este é o conteúdo do meu primeiro post.",
-        "description": "Something new",
-        "imageUrl": "www.example.com",
-        "date": "2024-07-12T04:33:37.189Z",
-        "readers": "string",
-        "className": "string",
-        "imgclassName": "string",
-        "src": "StaticImageData",
-        "alt": "string",
-        "crated_at": "2024-07-12T04:33:37.189Z",
-        "updated_at": "2024-07-12T04:33:37.189Z"
-      },
-      {
-        "_id": "6690b23b9d01f648edaea70b",
-        "title": "Meu Segundo Post",
-        "content": "Este é o conteúdo do meu segundo post.",
-        "description": "Something new",
-        "imageUrl": "www.example.com",
-        "date": "2024-07-12T04:34:03.628Z",
-        "readers": "string",
-        "className": "string",
-        "imgclassName": "string",
-        "src": "StaticImageData",
-        "alt": "string",
-        "crated_at": "2024-07-12T04:34:03.628Z",
-        "updated_at": "2024-07-12T04:34:03.628Z"
-      },
-      {
-        "_id": "6690b2639d01f648edaea70d",
-        "title": "Meu Segundo Post",
-        "content": "Este é o conteúdo do meu segundo post.",
-        "description": "Something new",
-        "imageUrl": "www.example.com",
-        "date": "2024-07-12T04:34:43.330Z",
-        "readers": "string",
-        "className": "string",
-        "imgclassName": "string",
-        "src": "StaticImageData",
-        "alt": "string",
-        "crated_at": "2024-07-12T04:34:43.330Z",
-        "updated_at": "2024-07-12T04:34:43.330Z"
       }
     ]
   ]

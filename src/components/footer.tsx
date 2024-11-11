@@ -1,55 +1,60 @@
 "use client";
 import { useTheme } from "next-themes";
+import { useState, useEffect } from "react";
 import { Github, Linkedin, Mail } from "@/app/icons/IconsSvg";
 import Link from "next/link";
-
+//import { LinkIcon } from "@nextui-org/react";
+import { LinkIcon } from "@heroicons/react/outline";
 const Footer: React.FC = () => {
   const { theme, setTheme } = useTheme();
+  const [open, setOpen] = useState(false)
+
+  const handleLink = () => {
+    if (open == true) {
+      setOpen(false)
+    } else {
+      setOpen(true)
+    }
+  }
+  useEffect(() => {
+    handleLink()
+  }, [])
+
+  console.log(open)
 
   return (
-    <footer className="flex justify-center">
-      <div className="flex max-w-[960px] flex-1 flex-col">
-        <footer className="flex flex-col gap-6 px-5 pt-20 pb-8 text-center @container">
-          <div className="flex footer-element flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
-            <a
-              className="text-base footer-element font-normal leading-normal min-w-40"
-              href="#"
-            >
-              Privacy Policy
-            </a>
-            <a
-              className="text-base font-normal leading-normal min-w-40"
-              href="#"
-            >
-              Terms of Service
-            </a>
+    <footer className="relative bottom-2 mx-10">
+      <div className="mx-auto flex items-center gap-4 justify-between">
+
+        <div className="flex gap-4 items-center">
+          <div className="flex">
+            <LinkIcon onClick={() => handleLink()} className="w-4 h-4  text-gray-400 hover:text-white transition-colors" />
           </div>
-          <p className="text-base footer-element  font-normal leading-normal">
-            Made by Mário Afonso
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
+
+          <div className={`${open == true ? 'flex gap-2' : 'hidden'}`}>
             <Link href={"https://linkedin.com/in/mario-afonso-018107141"}>
-              <span className="inline-flex">
-                <Linkedin alt="Linkedin" className={`w-7 h-7`} />
+              <span>
+                <Linkedin alt="Linkedin" className="w-5 h-5 text-gray-400 hover:text-white transition-colors" />
               </span>
             </Link>
-
             <Link href={"https://github.com/Mario2211-debug"}>
-              <span className="inline-flex">
-                <Github alt="Github" className={`w-7 h-7`} />
+              <span>
+                <Github alt="Github" className="w-5 h-5 text-gray-400 hover:text-white transition-colors" />
               </span>
             </Link>
-
-            <Link href={"https://github.com/Mario2211-debug"}>
-              <span className="inline-flex">
-                <Mail alt="Mail" className={`w-7 h-7`} />
+            <Link href={"mailto:mario.afonso@example.com"}>
+              <span>
+                <Mail alt="Mail" className="w-5 h-5 text-gray-400 hover:text-white transition-colors" />
               </span>
             </Link>
           </div>
-          <p className="p-2 footer-element ">©️ 2024 | Mário Afonso</p>
-        </footer>
+        </div>
+        <div className="flex">
+          <p className="text-xs text-gray-400">©️ 2024 | Mário Afonso</p>
+        </div>
       </div>
     </footer>
   );
 };
+
 export default Footer;

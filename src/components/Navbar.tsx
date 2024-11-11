@@ -32,32 +32,28 @@ function MobileNav({ open, setOpen }: MobileNavProps) {
 
   return (
     <div
-      className={`fixed top-0 left-0 right-0 bottom-0 w-full navbar-element h-full overflow-y-hidden z-10 transform ${
-        open ? "-translate-y-0" : "-translate-y-full"
-      } transition-transform duration-300 ease-in-out filter`}
+      className={`fixed top-0 left-0 right-0 bottom-0 w-full navbar-element h-full overflow-y-hidden z-10 transform ${open ? "-translate-y-0" : "-translate-y-full"
+        } transition-transform duration-300 ease-in-out filter`}
     >
       <div className="flex flex-col justify-center items-center mt-28">
         <a
           href="/"
-          className={`text-2xl font-bold  hover:text-red-500 my-4 ${
-            pathname === "/" ? "hidden" : "flex"
-          }`}
+          className={`text-2xl font-bold  hover:text-red-500 my-4 ${pathname === "/" ? "hidden" : "flex"
+            }`}
         >
           Home
         </a>
 
         <a
-          className={`text-2xl font-bold hover:text-red-500 my-4 ${
-            pathname === "/blog" ? "hidden" : "flex"
-          }`}
-          href="/blog"
+          className={`text-2xl font-bold hover:text-red-500 my-4 ${pathname === "/mapView" ? "hidden" : "flex"
+            }`}
+          href="/mapView"
         >
-          Blog
+          Mapa
         </a>
         <a
-          className={`text-2xl font-bold hover:text-red-500 my-4 ${
-            pathname === "/projects" ? "hidden" : "flex"
-          }`}
+          className={`text-2xl font-bold hover:text-red-500 my-4 ${pathname === "/projects" ? "hidden" : "flex"
+            }`}
           href="/projects"
         >
           Projects
@@ -65,9 +61,8 @@ function MobileNav({ open, setOpen }: MobileNavProps) {
 
         <a
           href="/about"
-          className={`text-2xl font-bold hover:text-red-500 my-4 link ${
-            pathname === "/about" ? "hidden" : "flex"
-          }`}
+          className={`text-2xl font-bold hover:text-red-500 my-4 link ${pathname === "/about" ? "hidden" : "flex"
+            }`}
         >
           Sobre
         </a>
@@ -104,7 +99,7 @@ export default function FullScreenNavBar() {
 
           {/* ^Hamburguer */}
           <div className="w-11/12 flex flex-1 justify-end items-center md:order-2 fixed:false">
-            <div className="flex md:px-0 items-center px-10">
+            {/* <div className="flex md:px-0 items-center px-10">
               <button
                 onClick={() => setTheme("light")}
                 className={`
@@ -132,7 +127,7 @@ export default function FullScreenNavBar() {
               >
                 <MoonIcon className="w-6 h-6" />
               </button>
-            </div>{" "}
+            </div>{" "} */}
             <div className="hidden md:flex">
               <ul>
                 <li className="px-4 flex self-center whitespace-nowrap">
@@ -144,11 +139,11 @@ export default function FullScreenNavBar() {
                     Home
                   </a>
                   <a
-                    href="/blog"
+                    href="/mapView"
                     className={`items-center w-11/12 flex-1 justify-start p-4 md:order-2 
-                      ${pathname === "/blog" ? "hidden" : "flex"}`}
+                      ${pathname === "/mapView" ? "hidden" : "flex"}`}
                   >
-                    Blog
+                    Mapa
                   </a>
                   <a
                     href="/projects"
@@ -175,19 +170,16 @@ export default function FullScreenNavBar() {
             >
               {/* {Hamburguer btn} */}
               <span
-                className={`h-1 w-full navbar-icon rounded-lg group-hover:text-red-500 cursor-pointer transform transition duration-300 ease-in-out ${
-                  open ? "rotate-45 translate-y-2.5" : ""
-                }`}
+                className={`h-1 w-full navbar-icon rounded-lg group-hover:text-red-500 cursor-pointer transform transition duration-300 ease-in-out ${open ? "rotate-45 translate-y-2.5" : ""
+                  }`}
               ></span>
               <span
-                className={`h-1 w-9 navbar-icon rounded-lg group-hover:text-red-500 cursor-pointer transform transition duration-300 ease-in-out  ${
-                  open ? "w-10" : "w-full"
-                }`}
+                className={`h-1 w-9 navbar-icon rounded-lg group-hover:text-red-500 cursor-pointer transform transition duration-300 ease-in-out  ${open ? "w-10" : "w-full"
+                  }`}
               ></span>
               <span
-                className={`h-1 w-full navbar-icon navbar-element rounded-lg group-hover:text-red-500 cursor-pointer transform transition duration-300 ease-in-out ${
-                  open ? "w-0" : "w-full"
-                }`}
+                className={`h-1 w-full navbar-icon navbar-element rounded-lg group-hover:text-red-500 cursor-pointer transform transition duration-300 ease-in-out ${open ? "w-0" : "w-full"
+                  }`}
               ></span>
             </div>
           </div>

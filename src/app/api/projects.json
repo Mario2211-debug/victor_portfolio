@@ -1,3 +1,38 @@
 {
-  "projects": [{}]
+  "projects": [
+    {
+      "timeframe": "JUL 2024 - PRESENT",
+      "employmentType": "Self Employer",
+      "role": "Fullstack Developer",
+      "company": "Self Employer",
+      "name": "Blog and Portfolio Website",
+      "link": "/",
+      "type": "Web Development",
+      "technologies": ["Next.js", "NodeJS", "MongoDB", "Tailwind CSS", "Vercel"],
+      "description":
+          "A personal portfolio website to showcase my projects, skills and tutorials."
+  },
+  {
+      "timeframe": "SEP 2023 - OCT 2023",
+      "employmentType": "FULL TIME",
+      "role": "Frontend Developer",
+      "company": "Self Employer",
+      "name": "Simple Raio App",
+      "link": "/mapView",
+      "type": "Web FrontEnd Development",
+      "technologies": ["Mapbox", "React", "Next.js"],
+      "description":"A simple Web application to listen to and follow more than 6000 radio stations around the world, not all of them will be visible on the map, but just search in the search bar"
+  },
+  {
+      "timeframe": "AGU 2024 - PRESENT",
+      "employmentType": "FULL TIME",
+      "role": "Frontend Developer",
+      "company": "Rosa Cosméticos",
+      "name": "Booking Platform",
+      "link": "",
+      "type": "FullStack Development",
+      "technologies": ["React", "Node.js", "MongoDB", "Express"],
+      "description": "Ongoing project, booking platform for beauty salon services"
+  }
+     ]
 }

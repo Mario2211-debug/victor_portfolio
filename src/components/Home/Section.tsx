@@ -8,36 +8,29 @@ export default function PreSection() {
   const { theme } = useTheme();
   return (
     <>
-      <div className="text-center">
-        <div className="md:pt-40 mobile:px-2 mobile:py-20">
-          <div className="inline tracking-wide text-center md:w-6 w-full md:flex-1">
-            <span className="inline-flex items-center">
-              <Image
-                src={profile}
-                alt="Mario Afonso"
-                className="rounded-full h-56 w-56 object-cover"
-              />
-            </span>
-            <h2 className="mobile:text-5xl font-Bellefair p-2 md:text-5xl font-bold">
-              Hi, I am Mário Afonso
-            </h2>
-            <span className="home-element inline-block md:w-2/3 w-full">
-              <h1 className="black:font-extralight text-xl md:text-2xl inline-block overflow-hidden whitespace-nowrap mobile:justify-center mobile:inline-block">
-                Software Developer
-              </h1>
-            </span>
+      <div className="text-center py-4">
+        <div className="mobile:px-2 gap-3 flex">
+          <span className="relative content-center place-items-center">
+            <Image
+              src={profile}
+              alt="Mario Afonso"
+              className="rounded-full h-14 w-14 m-2 object-cover"
+            />
+          </span>
+          <div className="flex tracking-wide text-center w-full">
 
-            <span className="inline-block w-full">
-              <p
-                className={`mobile:text-wrap p-4 mobile-landscape:p-0 font-extralight text-xs md:text-lg text-nowrap inline-block overflow-hidden whitespace-nowrap mobile:justify-center mobile:inline-block ${
-                  theme === "dark" ? "font-extralight" : "font-normal"
-                }`}
-              >
-                Programadores e artistas são os únicos profissionais que tem
-                como hobby a própria profissão.
-              </p>
-            </span>
-            <Brands />
+            <div className="text-justify font-Bellefair p-2">
+              <span className="flex">
+
+                <h2 className="font-sans pr-1 home-element">Hi, I am</h2> <h2 className="font-sans font-semibold">Mário Afonso</h2>
+
+              </span>
+              <span className="home-element md:w-2/3 w-full">
+                <h1 className="black:font-extralight text-sm overflow-hidden  whitespace-nowrap">
+                  Software Developer based in Porto.
+                </h1>
+              </span>
+            </div>
           </div>
         </div>
       </div>

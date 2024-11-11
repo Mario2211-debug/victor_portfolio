@@ -58,9 +58,22 @@ export default function Blog() {
   return (
     <>
       <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
-        <h1 className="text-2xl text-right">
-          Filtro de buscas em construção...
-        </h1>
+        <header className="py-6">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 className="text-4xl font-bold">Blog</h1>
+            <p className="mt-4 font-light text-sm tracking-wide leading-normal line-clamp-4 text-gray-400">
+              Bem vindo ao meu blog pessoal. Seja você um colega desenvolvedor
+              em busca de dicas, um recrutador interessado em conhecer meu
+              processo de trabalho, ou simplesmente alguém curioso sobre o mundo
+              da tecnologia, espero que este blog ofereça valor e inspiração.
+              Aqui você encontrará tutoriais, insights sobre desafios técnicos,
+              tutoriais práticos e novidades nas áreas em que trabalho.
+            </p>
+            <h1 className="text-2xl pt-4 text-right">
+              Filtro de buscas em construção...
+            </h1>
+          </div>
+        </header>
 
         <h1 className=" text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 text-left pb-3 pt-5">
           Ultimas publicações
