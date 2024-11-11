@@ -74,8 +74,6 @@ const RadioMapPage = () => {
 
             />
 
-            {isSearchOpen && <SearchBar onClose={closeSearch} />}
-
             {/* Barra de pesquisa para categorias */}
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
@@ -133,7 +131,7 @@ const RadioMapPage = () => {
                 )}
             </motion.div>
             <div className="relative top-4">
-                <BottomToolbar onSearchClick={openSearch} />
+                <BottomToolbar/>
             </div>
         </div>
     );
