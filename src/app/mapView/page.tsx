@@ -5,7 +5,7 @@ import MapboxMap from "@/components/MapBox";
 import BottomToolbar from "@/components/BottomToolbar";
 import SearchBar from '@/components/SearchBar';
 import { motion } from 'framer-motion';
-
+import { useTheme } from 'next-themes';
 const RadioMapPage = () => {
     const [currentCategory, setCurrentCategory] = useState("All");
     const [selectedRadio, setSelectedRadio] = useState(null);
@@ -61,6 +61,8 @@ const RadioMapPage = () => {
         setSelectedRadio(station);
     };
 
+    const { theme } = useTheme()
+
 
 
     return (
@@ -115,7 +117,7 @@ const RadioMapPage = () => {
 
                 {/* Player de Rádio */}
                 {selectedRadio && (
-                    <div key={selectedRadio.stationuuid} className="sm:p-2 bg-transparent rounded-sm text-white h-fit">
+                    <div key={selectedRadio.stationuuid} className="sm:p-2 bg-transparent rounded-sm h-fit">
                         <div className='flex gap-2 items-center justify-between'>
 
                             <div>
@@ -123,7 +125,7 @@ const RadioMapPage = () => {
                             </div>
                             <div className="float-left">
                                 <p className="sm:text-sm sm:w-28 w-20 text-xs sm:font-semibold truncate">{selectedRadio.name}</p>
-                                <p className="text-sm text-gray-300">{selectedRadio.country}</p>
+                                <p className={`text-sm  ${theme == 'ligth' ? '' : 'text-gray-300'}`}>{selectedRadio.country}</p>
                             </div>
                             <div className="float-right h-fit w-fit self-end">
                                 <audio className='sm:w-[240px] w-[200px] rounded-none' ref={audioRef} controls style={{ borderRadius: '0.125rem', background: 'transparent' }} >
