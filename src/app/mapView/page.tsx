@@ -1,21 +1,21 @@
-"use client";
+'use client'
+
 import { fetchStations } from '@/app/api/apiRadio';
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import MapboxMap from "@/components/MapBox";
-import BottomToolbar from "@/components/BottomToolbar";
-import SearchBar from '@/components/SearchBar';
+import debounce from 'lodash.debounce';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
+
 const RadioMapPage = () => {
     const [currentCategory, setCurrentCategory] = useState("All");
-    const [selectedRadio, setSelectedRadio] = useState(null);
+    const [selectedRadio, setSelectedRadio] = useState<any>(null);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
-    const [categorySearch, setCategorySearch] = useState(""); // Novo estado para a pesquisa de categorias
-    const audioRef = useRef(null);
+    const [categorySearch, setCategorySearch] = useState("");
+    const audioRef = useRef<HTMLAudioElement | null>(null);
 
-    const [stations, setStations] = useState([]);
-    const [stationsWithGeo, setStationsWithGeo] = useState([])
-
+    const [stations, setStations] = useState<any[]>([]);
+    const [stationsWithGeo, setStationsWithGeo] = useState<any[]>([]);
 
     const openSearch = () => setIsSearchOpen(true);
     const closeSearch = () => setIsSearchOpen(false);
@@ -23,13 +23,12 @@ const RadioMapPage = () => {
     useEffect(() => {
         const getStations = async () => {
             const { allStations, stationsWithGeo } = await fetchStations();
-            setStations(allStations); // Guarda todas as estações para a pesquisa
-            setStationsWithGeo(stationsWithGeo); // Filtra as estações com coordenadas para os marcadores no mapa
+            setStations(allStations);
+            setStationsWithGeo(stationsWithGeo);
         };
         getStations();
     }, []);
 
-    // Limpa a estação selecionada ao mudar de categoria
     useEffect(() => {
         setSelectedRadio(null);
         if (audioRef.current) {
@@ -39,62 +38,57 @@ const RadioMapPage = () => {
     }, [currentCategory]);
 
     useEffect(() => {
-        if (audioRef.current) {
+        if (audioRef.current && selectedRadio) {
             audioRef.current.load();
             audioRef.current.play();
         }
     }, [selectedRadio]);
 
-    // Função para manipular a mudança de categoria na barra de pesquisa
-    const handleCategorySearch = (event: any) => {
-        setCategorySearch(event.target.value);
+    // Definir o debounce fora do useCallback para evitar problemas de renderização
+    const debouncedSearch = debounce((value: string) => {
+        setCategorySearch(value);
+    }, 150);
+
+    const handleCategorySearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+        debouncedSearch(event.target.value);
     };
 
-    // Estações filtradas com base na pesquisa por nome, país ou tags
     const filteredStations = stations.filter((station) =>
         station.name.toLowerCase().includes(categorySearch.toLowerCase()) ||
         station.country.toLowerCase().includes(categorySearch.toLowerCase()) ||
-        station.tags.some((tag: any) => tag.toLowerCase().includes(categorySearch.toLowerCase()))
+        station.tags.some((tag: string) => tag.toLowerCase().includes(categorySearch.toLowerCase()))
     );
-    // Função para lidar com a seleção da estação no mapa
+
     const handleRadioSelect = (station: any) => {
         setSelectedRadio(station);
     };
 
-    const { theme } = useTheme()
-
-
+    const { theme } = useTheme();
 
     return (
         <div className="relative min-h-screen items-center">
-            {/* Componente do mapa */}
-
             <div className="flex-1 absolute inset-0 w-full h-full">
                 <MapboxMap
                     radios={stationsWithGeo}
                     currentCategory={currentCategory}
-                    onRadioSelect={handleRadioSelect} // Passando a função para selecionar a estação
-                    selectedRadio={selectedRadio} // Passa a estação selecionada para o mapa
-
+                    onRadioSelect={handleRadioSelect}
+                    selectedRadio={selectedRadio}
                 />
             </div>
 
-
-            {/* Barra de pesquisa para categorias */}
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="fixed w-[320px] mb-10 bottom-0 [position-area:bottom] left-0 right-0 justify-center items-center z-10 tablet:mb-5 laptop:w-[250px] desktop:w-[250px] mx-4 rounded-lg p-2 blur-cover">
+                className="fixed w-[350px] mb-10 bottom-0 [position-area:bottom] left-0 right-0 justify-center items-center z-10 tablet:mb-5 sm:w-[420px] mx-4 rounded-lg p-2 blur-cover">
+
                 <input
                     type="text"
-                    value={categorySearch}
-                    onChange={handleCategorySearch}
+                    onChange={handleCategorySearch}  // Usa a função handleCategorySearch
                     placeholder="Pesquisar categoria"
                     className="p-2 bg-transparent w-[-webkit-fill-available] focus:outline-0 focus:border-b focus:border-neutral-900 placeholder:text-sm text-white"
                 />
 
-                {/* Lista de sugestões de estações de rádio */}
                 {categorySearch && (
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
@@ -115,21 +109,21 @@ const RadioMapPage = () => {
                     </motion.div>
                 )}
 
-                {/* Player de Rádio */}
                 {selectedRadio && (
                     <div key={selectedRadio.stationuuid} className="sm:p-2 bg-transparent rounded-sm h-fit">
                         <div className='flex gap-2 items-center justify-between'>
-
                             <div>
-                                <span className="text-sm w-28 font-semibold"><img src={selectedRadio.favicon} alt="" /></span>
+                                {selectedRadio.favicon && (
+                                    <img src={selectedRadio.favicon} alt={`${selectedRadio.name} logo`} />
+                                )}
                             </div>
                             <div className="float-left">
                                 <p className="sm:text-sm sm:w-28 w-20 text-xs sm:font-semibold truncate">{selectedRadio.name}</p>
-                                <p className={`text-sm  ${theme == 'ligth' ? '' : 'text-gray-300'}`}>{selectedRadio.country}</p>
+                                <p className={`text-sm ${theme === 'light' ? '' : 'text-gray-300'}`}>{selectedRadio.country}</p>
                             </div>
                             <div className="float-right h-fit w-fit self-end">
-                                <audio className='sm:w-[240px] w-[200px] rounded-none' ref={audioRef} controls style={{ borderRadius: '0.125rem', background: 'transparent' }} >
-                                    <source src={selectedRadio.urlResolved} type="audio/mpeg" className='bg-transparent' />
+                                <audio className='w-[160px] max-w-xl sm:w-[200px] rounded-none' ref={audioRef} controls style={{ borderRadius: '0.125rem', background: 'transparent' }}>
+                                    <source src={selectedRadio.urlResolved} type="audio/mpeg" />
                                 </audio>
                             </div>
                         </div>

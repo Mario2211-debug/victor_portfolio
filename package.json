@@ -17,6 +17,7 @@
     "date-fns": "^3.6.0",
     "dompurify": "^3.1.6",
     "framer-motion": "^11.11.11",
+    "lodash.debounce": "^4.0.8",
     "mapbox-gl": "^3.7.0",
     "next": "^14.2.4",
     "next-themes": "^0.3.0",

@@ -5,10 +5,27 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
-const MapboxMap = ({ radios, currentCategory, onRadioSelect, selectedRadio }) => {
-  const mapContainerRef = useRef(null);
-  const mapRef = useRef(null);
-  const markersRef = useRef([]);
+// Define o tipo para uma estação de rádio
+interface Radio {
+  stationuuid: any;
+  name: string;
+  longitude: number;
+  latitude: number;
+  className: string
+}
+
+// Define o tipo para as props do componente
+interface MapboxMapProps {
+  radios: Radio[];
+  currentCategory: string;
+  onRadioSelect: (station: Radio) => void;
+  selectedRadio: Radio | null;
+}
+
+const MapboxMap: React.FC<MapboxMapProps> = React.memo(({ radios, currentCategory, onRadioSelect, selectedRadio }) => {
+  const mapContainerRef = useRef<HTMLDivElement | null>(null);
+  const mapRef = useRef<mapboxgl.Map | null>(null);
+  const markersRef = useRef<mapboxgl.Marker[]>([]);
   const [visibleMarkers, setVisibleMarkers] = useState([]);
   const maxMarkers = 100;  // Limite máximo de marcadores por vez
 
@@ -109,12 +126,15 @@ const MapboxMap = ({ radios, currentCategory, onRadioSelect, selectedRadio }) =>
 
 
   const setCurrent = () => {
-    // Verifica se a estação é a selecionada para aplicar um estilo especial
-    radios.className = selectedRadio && selectedRadio.stationuuid === currentCategory.stationuuid
-      ? "w-2 h-2 bg-blue-500 border border-solid border-white rounded-full cursor-pointer" // Estilo normal para outros marcadores
-      : "w-2 h-2 bg-transparent border border-solid border-white rounded-full cursor-pointer" // Estilo para o marcador destacado
+    radios.forEach((radio) => {
+      // Verifica se a estação é a selecionada para aplicar um estilo especial
+      radio.className =
+        selectedRadio && selectedRadio.stationuuid === radio.stationuuid
+          ? "w-2 h-2 bg-blue-500 border border-solid border-white rounded-full cursor-pointer"
+          : "w-2 h-2 bg-transparent border border-solid border-white rounded-full cursor-pointer";
+    });
+  };
 
-  }
 
   // Função para adicionar novos marcadores
   const addMarkers = () => {
@@ -184,6 +204,6 @@ const MapboxMap = ({ radios, currentCategory, onRadioSelect, selectedRadio }) =>
   }, [radios, currentCategory, , setCurrent(), selectedRadio]);
 
   return <div id="map-container" ref={mapContainerRef} style={{ height: "100%", width: "100%" }} />;
-};
+});
 
 export default MapboxMap;
