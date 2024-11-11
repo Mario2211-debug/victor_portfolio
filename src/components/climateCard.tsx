@@ -4,8 +4,8 @@ import { SunIcon, CloudIcon } from "@heroicons/react/outline";
 
 
 interface Weather {
-    temperature: "22°C",
-    location: "New York"
+    temperature: string,
+    location: string
 }
 
 

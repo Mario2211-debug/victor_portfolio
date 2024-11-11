@@ -93,7 +93,7 @@ export default function BottomToolbar() {
       <WorkPagePopup isOpen={isPopupOpen} onClose={closePopup}>
         {/* Renderize o conteúdo desejado aqui */}
         <div className="flex justify-between py-4">
-          <ClimateCard temperature="22°C" location="New York" />
+          <ClimateCard temperature="22°C" location="Porto" />
           <CalculatorWidget />
         </div>
         <TaskManager />

@@ -16,11 +16,6 @@ const Footer: React.FC = () => {
       setOpen(true)
     }
   }
-  useEffect(() => {
-    handleLink()
-  }, [])
-
-  console.log(open)
 
   return (
     <footer className="relative bottom-2 mx-10">
