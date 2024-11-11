@@ -57,6 +57,8 @@ export default function RootLayout({
             <div>
               <BottomToolbar />
               {children}
+              <Footer />
+
             </div>
           </TaskProvider>
           <Analytics />

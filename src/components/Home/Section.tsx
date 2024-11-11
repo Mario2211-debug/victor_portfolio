@@ -8,7 +8,7 @@ export default function PreSection() {
   const { theme } = useTheme();
   return (
     <>
-      <div className="text-center py-4">
+      <div className="text-center  md:w-[400px] w-[350px]  py-4">
         <div className="mobile:px-2 gap-3 flex">
           <span className="relative content-center place-items-center">
             <Image

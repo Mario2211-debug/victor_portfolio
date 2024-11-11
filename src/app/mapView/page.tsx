@@ -64,7 +64,7 @@ const RadioMapPage = () => {
 
 
     return (
-        <div className="relative h-screen w-screen ">
+        <div className="relative h-screen w-screen max-h-screen ">
             {/* Componente do mapa */}
             <MapboxMap
                 radios={stationsWithGeo}
@@ -79,7 +79,7 @@ const RadioMapPage = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="absolute w-[450px] end-8 bottom-8 rounded-lg p-2 blur-cover">
+                className="absolute sm:w-[450px] w-[-webkit-fill-available] sm:end-8 sm:bottom-8 mx-4 bottom-12 rounded-lg p-2 blur-cover">
                 <input
                     type="text"
                     value={categorySearch}
@@ -111,18 +111,18 @@ const RadioMapPage = () => {
 
                 {/* Player de Rádio */}
                 {selectedRadio && (
-                    <div key={selectedRadio.stationuuid} className="p-2 bg-transparent rounded-sm text-white h-fit">
+                    <div key={selectedRadio.stationuuid} className="sm:p-2 bg-transparent rounded-sm text-white h-fit">
                         <div className='flex gap-2 items-center justify-between'>
 
                             <div>
                                 <span className="text-sm w-28 font-semibold"><img src={selectedRadio.favicon} alt="" /></span>
                             </div>
                             <div className="float-left">
-                                <p className="text-sm w-28 font-semibold truncate">{selectedRadio.name}</p>
+                                <p className="sm:text-sm sm:w-28 w-20 text-xs sm:font-semibold truncate">{selectedRadio.name}</p>
                                 <p className="text-sm text-gray-300">{selectedRadio.country}</p>
                             </div>
                             <div className="float-right h-fit w-fit self-end">
-                                <audio className='w-[240px] rounded-none' ref={audioRef} controls style={{ borderRadius: '0.125rem', background: 'transparent' }} >
+                                <audio className='sm:w-[240px] w-[200px] rounded-none' ref={audioRef} controls style={{ borderRadius: '0.125rem', background: 'transparent' }} >
                                     <source src={selectedRadio.urlResolved} type="audio/mpeg" className='bg-transparent' />
                                 </audio>
                             </div>
@@ -130,9 +130,6 @@ const RadioMapPage = () => {
                     </div>
                 )}
             </motion.div>
-            <div className="relative top-4">
-                <BottomToolbar/>
-            </div>
         </div>
     );
 };

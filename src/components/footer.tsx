@@ -5,6 +5,7 @@ import { Github, Linkedin, Mail } from "@/app/icons/IconsSvg";
 import Link from "next/link";
 //import { LinkIcon } from "@nextui-org/react";
 import { LinkIcon } from "@heroicons/react/outline";
+import { usePathname } from "next/navigation";
 const Footer: React.FC = () => {
   const { theme, setTheme } = useTheme();
   const [open, setOpen] = useState(false)
@@ -16,9 +17,11 @@ const Footer: React.FC = () => {
       setOpen(true)
     }
   }
+  const pathname = usePathname();
+
 
   return (
-    <footer className="relative bottom-2 mx-10">
+    <footer className={`absolute [inset-area:bottom] w-[-webkit-fill-available] bottom-12 mx-10 ${pathname == "/mapView" ? 'hidden' : ''}`}>
       <div className="mx-auto flex items-center gap-4 justify-between">
 
         <div className="flex gap-4 items-center">

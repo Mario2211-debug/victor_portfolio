@@ -101,7 +101,7 @@ export default function BottomToolbar() {
       </WorkPagePopup>
       <AnimatePresence>
         <motion.div
-          className={`fixed transform backdrop-blur-sm items-center -translate-x-1/2 
+          className={`relative w-fit justify-self-center transform backdrop-blur-sm items-center -translate-x-1/2 
         rounded-xl px-3 py-2 [inset-area:top] flex space-x-4 shadow-lg ${pathname === "/mapView" ? "top-5" : "top-5"}
      ${gradientBorder} hover:shadow-xl transition-shadow duration-300`}
           variants={toolbarVariants}

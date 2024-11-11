@@ -19,8 +19,8 @@ export default function Home() {
 
   return (
     <>
-      <div className="relative flex size-full hide-scrollbar overflow-y-auto min-h-screen flex-col ">
-        <div className="layout-container flex h-full grow flex-col">
+      <div className="relative flex size-full hide-scrollbar overflow-y-auto max-h-screen flex-col ">
+        <div className="layout-container flex h-fit grow flex-col">
           {/* <Blob /> */}
           {/* <FullScreenNavBar /> */}
           <div className="px-40 mobile:px-6 md:px-8 lg:px-10 xl:px-12 flex flex-1 justify-center pt-20 blog-font">
@@ -44,7 +44,6 @@ export default function Home() {
               </div>
             </section>
           </div>
-          <Footer />
         </div>
       </div>
 
