@@ -68,7 +68,7 @@ export const About = () => {
         <>
             <>
                 <section className="flex flex-col items-center">
-                    <div className="grid gap-4 justify-center  md:w-[400px] w-[350px] max-h-[425px]  overflow-y-auto transition-all duration-1000 ease-in-out hide-scrollbar">
+                    <div className="grid gap-4 justify-center w-[400px] max-h-[425px]  overflow-y-auto transition-all duration-1000 ease-in-out hide-scrollbar">
                         <motion.div
                             className="p-4 place-self-center justify-between backdrop-blur-sm border border-neutral-900 rounded-lg"
                             initial={{ opacity: 0, y: 50 }}
@@ -117,7 +117,7 @@ export const Projects = () => {
     return (
         <>
             <div className="flex flex-col items-center">
-                <div className="grid gap-4 justify-center md:w-[400px] w-[350px] max-h-[445px] overflow-y-auto transition-all duration-1000 ease-in-out hide-scrollbar">
+                <div className="grid gap-4 justify-center w-[75vw] md:w-[400px] lg:h-[410px] md:h-[415px] h-[50vh] max-h-[80vh] overflow-y-auto transition-all duration-1000 ease-in-out hide-scrollbar">
                     {projectData.projects.map((project, index) => (
                         <motion.div
                             key={index}
@@ -208,7 +208,7 @@ export const Contacts = () => {
 
     return (
         <div className="">
-            <div className="flex md:w-[400px] w-[350px] flex-col gap-4 ">
+            <div className="flex w-[400px] flex-col gap-4 ">
                 {posts.map((blog) => (
                     <motion.div
                         key={blog._id}

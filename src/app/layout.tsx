@@ -42,6 +42,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${plus.className}`} suppressHydrationWarning>
+      <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
       <body className="overflow-x-hidden overscroll-none"
         style={
           {

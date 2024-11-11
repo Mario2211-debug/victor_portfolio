@@ -1,5 +1,5 @@
 "use client";
-import { fetchStations } from '../api/apiRadio';
+import { fetchStations } from '@/app/api/apiRadio';
 import React, { useEffect, useState, useRef } from "react";
 import MapboxMap from "@/components/MapBox";
 import BottomToolbar from "@/components/BottomToolbar";
@@ -79,7 +79,7 @@ const RadioMapPage = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="absolute sm:w-[450px] w-[-webkit-fill-available] sm:end-8 sm:bottom-8 mx-4 bottom-12 rounded-lg p-2 blur-cover">
+                className="absolute w-[-webkit-fill-available] mobile:bottom-16 mx-4 rounded-lg p-2 blur-cover">
                 <input
                     type="text"
                     value={categorySearch}
