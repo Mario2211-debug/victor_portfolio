@@ -83,7 +83,7 @@ const RadioMapPage = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="absolute block w-[-webkit-fill-available] mb-10 mobile:mb-5 laptop:w-[250px] desktop:w-[250px] bottom-16 mx-4 rounded-lg p-2 blur-cover">
+                className="absolute block w-[-webkit-fill-available] mb-32 bottom-16 tablet:mb-5 laptop:w-[250px] desktop:w-[250px] mx-4 rounded-lg p-2 blur-cover">
                 <input
                     type="text"
                     value={categorySearch}
