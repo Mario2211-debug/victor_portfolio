@@ -64,10 +64,10 @@ const RadioMapPage = () => {
 
 
     return (
-        <div className="relative h-screen w-screen  flex flex-col items-center">
+        <div className="relative min-h-screen items-center">
             {/* Componente do mapa */}
 
-            <div className="flex-1 w-full h-full">
+            <div className="flex-1 absolute inset-0 w-full h-full">
                 <MapboxMap
                     radios={stationsWithGeo}
                     currentCategory={currentCategory}
@@ -83,7 +83,7 @@ const RadioMapPage = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="absolute block w-[-webkit-fill-available] mb-32 bottom-16 tablet:mb-5 laptop:w-[250px] desktop:w-[250px] mx-4 rounded-lg p-2 blur-cover">
+                className="fixed w-[320px] mb-10 bottom-0 [position-area:bottom] left-0 right-0 justify-center items-center z-10 tablet:mb-5 laptop:w-[250px] desktop:w-[250px] mx-4 rounded-lg p-2 blur-cover">
                 <input
                     type="text"
                     value={categorySearch}
