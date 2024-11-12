@@ -59,8 +59,10 @@ export default function RootLayout({
               <BottomToolbar />
             </div>
             {children}
-            <div className="grid flex-1">
+
+            <div className="flex-1">
               <Footer />
+
             </div>
           </TaskProvider>
           <Analytics />

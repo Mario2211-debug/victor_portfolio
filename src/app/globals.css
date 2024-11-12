@@ -15,15 +15,10 @@
     transition: background-color 0.3s, color, 0.3s;
     margin:0;
     overscroll-behavior: none;
-    height: 100hv;
+    /* height: 100vw; */
     align-items: center;
     justify-content: center;
-    display: flex;
-  }
-
-  canvas{
-    width: 0px important;
-    height: 0px important;
+    /* display: grid; */
   }
 
   .light-theme {

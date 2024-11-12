@@ -90,7 +90,7 @@ const MapboxMap: React.FC<MapboxMapProps> = React.memo(({ radios, currentCategor
       // Oculta os ícones de cidade (marcadores) mas mantém os nomes visíveis
       layers.forEach((layer: any) => {
         if (layer.type === "symbol" && layer.layout["icon-image"]) {
-          mapRef.current.setLayoutProperty(layer.id, "icon-opacity", 0);
+          mapRef.current.setLayoutProperty(layer.id, "visibility", "none");
         }
       });
 
