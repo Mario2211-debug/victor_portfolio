@@ -117,7 +117,7 @@ export const Projects = () => {
     return (
         <>
             <div className="flex flex-col items-center">
-                <div className="grid gap-4 justify-center w-[350px] md:w-[400px] desktop:h-[400px] h-[50vh] overflow-y-auto transition-all duration-1000 ease-in-out hide-scrollbar">
+                <div className="grid gap-4 justify-center w-[350px] md:w-[400px] desktop:h-[400px] h-[56vh] overflow-y-auto transition-all duration-1000 ease-in-out hide-scrollbar">
                     {projectData.projects.map((project, index) => (
                         <motion.div
                             key={index}

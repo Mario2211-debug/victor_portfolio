@@ -55,11 +55,12 @@ export default function RootLayout({
         <Providers>
           <Particles className="absolute blur-sm inset-0 -z-10 animate-fade-in" quantity={150} />
           <TaskProvider>
-            <div className="grid">
+            <div className="grid flex-1">
               <BottomToolbar />
-              {children}
+            </div>
+            {children}
+            <div className="grid flex-1">
               <Footer />
-
             </div>
           </TaskProvider>
           <Analytics />
