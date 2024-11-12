@@ -16,9 +16,9 @@
     margin:0;
     overscroll-behavior: none;
     /* height: 100vw; */
-    align-items: center;
+    /* align-items: center;
     justify-content: center;
-    display: grid;
+    display: grid; */
   }
 
   .light-theme {

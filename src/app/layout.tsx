@@ -60,10 +60,8 @@ export default function RootLayout({
             </div>
             {children}
 
-            <div className="flex-1">
-              <Footer />
+            <Footer />
 
-            </div>
           </TaskProvider>
           <Analytics />
         </Providers>

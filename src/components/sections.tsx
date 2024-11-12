@@ -117,33 +117,25 @@ export const Projects = () => {
     return (
         <>
             <div className="flex flex-col items-center">
-                <div className="grid gap-4 justify-center w-[350px] md:w-[400px] desktop:h-[400px] h-[55vh] overflow-y-auto transition-all duration-1000 ease-in-out hide-scrollbar">
+                <div className="grid gap-4 justify-center w-[350px] md:w-[400px] desktop:h-[400px] h-[55vh] overflow-y-auto transition-all duration-1000 ease-in-out hide-scrollbar pb-16 relative">
                     {projectData.projects.map((project, index) => (
                         <motion.div
                             key={index}
-                            className={`p-4 place-self-center justify-between blur-cover`}
+                            className="p-4 place-self-center justify-between blur-cover"
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: index * 0.2 }}
                             whileHover={{
                                 opacity: 0.9,
-                                //background: "linear-gradient(135deg, rgba(255, 92, 88, 0.8), rgba(88, 185, 255, 0.8), rgba(88, 255, 163, 0.8))",
-                                //filter: "blur(4px)",
-                                // x: 2, 
-                                //filter: theme == 'light' ? 'brightness(0.9)' : "brightness(2.75)",
                                 rotate: 0.5,
-                                //y: -2,
-                                //boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)"
                             }}
-
                         >
-                            {/* Project Details */}
                             <div className="w-fit">
                                 <div className="gap-2">
                                     <span className="flex justify-between">
                                         <p className="text-gray-400 text-[0.65rem] tracking-wide">{project.timeframe}</p>
                                         {project.type && (
-                                            <a href={`${project.link}`}>
+                                            <a href={project.link}>
                                                 <p className="text-[0.65rem] tracking-wide flex text-gray-400">
                                                     {project.type}
                                                     <motion.button
@@ -155,7 +147,6 @@ export const Projects = () => {
                                                     </motion.button>
                                                 </p>
                                             </a>
-
                                         )}
                                     </span>
                                     <h2 className="pt-2 text-md project-element font-semibold">{project.name}</h2>
@@ -166,7 +157,7 @@ export const Projects = () => {
                                 <p className="project-element text-sm text-justify font-thin tracking-wide py-4">{project.description}</p>
                                 <div className="flex flex-wrap gap-2 float-right">
                                     {project.technologies.map((tech, techIndex) => (
-                                        <span key={techIndex} className="p-1 home-element text-[0.65rem] ">
+                                        <span key={techIndex} className="p-1 home-element text-[0.65rem]">
                                             {tech}
                                         </span>
                                     ))}
@@ -175,7 +166,11 @@ export const Projects = () => {
                         </motion.div>
                     ))}
                 </div>
+                {/* Gradiente de desvanecimento no final para suavizar a rolagem */}
+                <div className="absolute bottom-0 left-0 w-full h-16 backdrop-blur-sm"></div>
+
             </div>
+
         </>
     )
 }
