@@ -1,7 +1,7 @@
 'use client'
 
 import { fetchStations } from '@/app/api/apiRadio';
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import MapboxMap from "@/components/MapBox";
 import debounce from 'lodash.debounce';
 import { motion } from 'framer-motion';

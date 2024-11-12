@@ -207,3 +207,4 @@ const MapboxMap: React.FC<MapboxMapProps> = React.memo(({ radios, currentCategor
 });
 
 export default MapboxMap;
+MapboxMap.displayName = "Radio Streaming";
