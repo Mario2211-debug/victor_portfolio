@@ -18,7 +18,7 @@
     /* height: 100vw; */
     align-items: center;
     justify-content: center;
-    /* display: grid; */
+    display: grid;
   }
 
   .light-theme {

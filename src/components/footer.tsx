@@ -21,8 +21,8 @@ const Footer: React.FC = () => {
 
 
   return (
-    <footer className={`flex fixed my-4 w-[-webkit-fill-available] bottom-4 mx-10 ${pathname == "/mapView" ? 'hidden' : ''}`}>
-      <div className="mx-auto width: -webkit-fill-available; flex items-center gap-4 justify-between">
+    <footer className={`flex absolute my-4 w-[-webkit-fill-available] bottom-4 mx-10 ${pathname == "/mapView" ? 'hidden' : ''}`}>
+      <div className="mx-auto w-[-webkit-fill-available] flex items-center gap-4 justify-between">
 
         <div className="flex gap-4 items-center">
           <div className="flex">

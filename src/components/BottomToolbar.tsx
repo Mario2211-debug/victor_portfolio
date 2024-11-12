@@ -99,115 +99,116 @@ export default function BottomToolbar() {
         <TaskManager />
 
       </WorkPagePopup>
-      <AnimatePresence>
-        <motion.div
-          className={`fixed w-fit justify-self-center z-50 left-0 right-0 justify-center transform backdrop-blur-sm items-center -translate-x-1/2 
-        rounded-xl px-3 py-2 flex space-x-4 shadow-lg ${pathname === "/mapView" ? "top-5" : "top-5"}
-     ${gradientBorder} ${isPopupOpen == true ? 'hidden' : ''} hover:shadow-xl transition-shadow duration-300`}
-          variants={toolbarVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          onHoverStart={() => setIsHovered(true)}
-          onHoverEnd={() => setIsHovered(false)}
-        >
-
-          {/* Botões com animações aprimoradas */}
-          {/* Ícone de Pesquisa que chama a função onSearchClick */}
-          <motion.button
-            onClick={openSearch}
-            variants={buttonVariants}
-            whileHover="hover"
-            whileTap="tap"
-            className="transition-colors duration-200 hover:bg-opacity-20 rounded-lg p-1"
-          >
-            <SearchIcon className={`h-3.5 w-3.5 ${theme === "light" ? "text-gray-400" : "text-[#6b7280]"
-              } transition-colors duration-200`} />
-          </motion.button>
-
-
-          {/* Clima */}
-          {/* Divisor animado */}
+      <div className="fixed top-5 left-1/2 transform -translate-x-1/2 z-50">
+        <AnimatePresence>
           <motion.div
-            className={`h-3 w-[1px] bg-current opacity-10`}
-            animate={{
-              height: isHovered ? "16px" : "12px",
-              opacity: isHovered ? 0.2 : 0.1,
-            }}
-            transition={{ duration: 0.2 }}
-          />
+            className={`w-fit backdrop-blur-sm items-center rounded-xl px-3 py-2 flex space-x-4 shadow-lg
+         ${gradientBorder} ${isPopupOpen ? 'hidden' : ''} hover:shadow-xl transition-shadow duration-300`}
+            variants={toolbarVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            onHoverStart={() => setIsHovered(true)}
+            onHoverEnd={() => setIsHovered(false)}
+          >
 
-          {/* Theme Toggle com animação suave */}
-          <motion.div className="flex items-center space-x-1">
-            <AnimatePresence mode="wait">
-              {theme === "dark" ? (
-                <motion.button
-                  key="sun"
-                  onClick={() => setTheme("light")}
-                  variants={buttonVariants}
-                  whileHover="hover"
-                  whileTap="tap"
-                  initial={{ opacity: 0, rotate: -90 }}
-                  animate={{ opacity: 1, rotate: 0 }}
-                  exit={{ opacity: 0, rotate: 90 }}
-                  className="rounded-full text-[#6b7280]"
-                >
-                  <SunIcon className="w-5 h-5" />
-                </motion.button>
-              ) : (
-                <motion.button
-                  key="moon"
-                  onClick={() => setTheme("dark")}
-                  variants={buttonVariants}
-                  whileHover="hover"
-                  whileTap="tap"
-                  initial={{ opacity: 0, rotate: 90 }}
-                  animate={{ opacity: 1, rotate: 0 }}
-                  exit={{ opacity: 0, rotate: -90 }}
-                  className="rounded-full"
-                >
-                  <MoonIcon className="h-3.5 w-3.5 text-gray-400" />
-                </motion.button>
-              )}
-            </AnimatePresence>
-          </motion.div>
+            {/* Botões com animações aprimoradas */}
+            {/* Ícone de Pesquisa que chama a função onSearchClick */}
+            <motion.button
+              onClick={openSearch}
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+              className="transition-colors duration-200 hover:bg-opacity-20 rounded-lg p-1"
+            >
+              <SearchIcon className={`h-3.5 w-3.5 ${theme === "light" ? "text-gray-400" : "text-[#6b7280]"
+                } transition-colors duration-200`} />
+            </motion.button>
 
-          <div className={`h-3 w-[1px] bg-current opacity-10 ${isExpanded ? "hidden" : ""}`}></div>
 
-          {/* Timer */}
-          <div className={`flex items-center space-x-1 ${isExpanded ? "hidden" : ""}`}>
-            <span className={`text-xs ${theme === "light" ? "text-gray-400" : "text-[#6b7280]"}`}>
-              {time.toLocaleTimeString()}
-            </span>
-          </div>
-
-          <div className={`h-3 w-[1px] bg-current opacity-10 ${isExpanded ? "hidden" : ""}`}></div>
-
-          <div className={`${isExpanded ? "hidden" : ""}`}>
-            {/* Ícones de Navegação */}
-            <a href="/mapView" className={`${pathname != "/mapView" ? "flex" : "hidden"}`}>
-              <GlobeIcon className={`h-3.5 w-3.5 ${theme === "light" ? "text-gray-400" : "text-[#6b7280]"}`} />
-            </a>
-            <a href="/" className={`${pathname == "/mapView" ? "flex" : "hidden"}`}>
-              <ViewGridIcon className={`h-3.5 w-3.5 ${theme === "light" ? "text-gray-400" : "text-[#6b7280]"}`} />
-            </a>
-          </div>
-          <div className={`h-3 w-[1px] bg-current opacity-10 ${isExpanded ? "hidden" : ""}`}></div>
-
-          <div className={`flex ${isExpanded ? "hidden" : ""}`}>
-            <span className={`text-xs ${theme === "light" ? "text-gray-400" : "text-[#6b7280]"}`}>22°C</span>
-          </div>
-
-          <div className={`h-3 w-[1px] bg-current opacity-10 ${isExpanded ? "hidden" : ""}`}></div>
-
-          {/* Botão de Expansão */}
-          <button onClick={openPopup} className={`${isExpanded ? "absolute right-5" : ""}`}>
-            <ArrowSmDownIcon
-              className={`h-3.5 w-3.5 ${theme === "light" ? "text-gray-400" : "text-[#6b7280]"} transition-transform ${isPopupOpen ? "rotate-180 " : "rotate-0 "}`}
+            {/* Clima */}
+            {/* Divisor animado */}
+            <motion.div
+              className={`h-3 w-[1px] bg-current opacity-10`}
+              animate={{
+                height: isHovered ? "16px" : "12px",
+                opacity: isHovered ? 0.2 : 0.1,
+              }}
+              transition={{ duration: 0.2 }}
             />
-          </button>
-        </motion.div>
-      </AnimatePresence >
+
+            {/* Theme Toggle com animação suave */}
+            <motion.div className="flex items-center space-x-1">
+              <AnimatePresence mode="wait">
+                {theme === "dark" ? (
+                  <motion.button
+                    key="sun"
+                    onClick={() => setTheme("light")}
+                    variants={buttonVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                    initial={{ opacity: 0, rotate: -90 }}
+                    animate={{ opacity: 1, rotate: 0 }}
+                    exit={{ opacity: 0, rotate: 90 }}
+                    className="rounded-full text-[#6b7280]"
+                  >
+                    <SunIcon className="w-5 h-5" />
+                  </motion.button>
+                ) : (
+                  <motion.button
+                    key="moon"
+                    onClick={() => setTheme("dark")}
+                    variants={buttonVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                    initial={{ opacity: 0, rotate: 90 }}
+                    animate={{ opacity: 1, rotate: 0 }}
+                    exit={{ opacity: 0, rotate: -90 }}
+                    className="rounded-full"
+                  >
+                    <MoonIcon className="h-3.5 w-3.5 text-gray-400" />
+                  </motion.button>
+                )}
+              </AnimatePresence>
+            </motion.div>
+
+            <div className={`h-3 w-[1px] bg-current opacity-10 ${isExpanded ? "hidden" : ""}`}></div>
+
+            {/* Timer */}
+            <div className={`flex items-center space-x-1 ${isExpanded ? "hidden" : ""}`}>
+              <span className={`text-xs ${theme === "light" ? "text-gray-400" : "text-[#6b7280]"}`}>
+                {time.toLocaleTimeString()}
+              </span>
+            </div>
+
+            <div className={`h-3 w-[1px] bg-current opacity-10 ${isExpanded ? "hidden" : ""}`}></div>
+
+            <div className={`${isExpanded ? "hidden" : ""}`}>
+              {/* Ícones de Navegação */}
+              <a href="/mapView" className={`${pathname != "/mapView" ? "flex" : "hidden"}`}>
+                <GlobeIcon className={`h-3.5 w-3.5 ${theme === "light" ? "text-gray-400" : "text-[#6b7280]"}`} />
+              </a>
+              <a href="/" className={`${pathname == "/mapView" ? "flex" : "hidden"}`}>
+                <ViewGridIcon className={`h-3.5 w-3.5 ${theme === "light" ? "text-gray-400" : "text-[#6b7280]"}`} />
+              </a>
+            </div>
+            <div className={`h-3 w-[1px] bg-current opacity-10 ${isExpanded ? "hidden" : ""}`}></div>
+
+            <div className={`flex ${isExpanded ? "hidden" : ""}`}>
+              <span className={`text-xs ${theme === "light" ? "text-gray-400" : "text-[#6b7280]"}`}>22°C</span>
+            </div>
+
+            <div className={`h-3 w-[1px] bg-current opacity-10 ${isExpanded ? "hidden" : ""}`}></div>
+
+            {/* Botão de Expansão */}
+            <button onClick={openPopup} className={`${isExpanded ? "absolute right-5" : ""}`}>
+              <ArrowSmDownIcon
+                className={`h-3.5 w-3.5 ${theme === "light" ? "text-gray-400" : "text-[#6b7280]"} transition-transform ${isPopupOpen ? "rotate-180 " : "rotate-0 "}`}
+              />
+            </button>
+          </motion.div>
+        </AnimatePresence >
+      </div>
 
     </>
   );
