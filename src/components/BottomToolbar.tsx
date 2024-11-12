@@ -67,9 +67,10 @@ export default function BottomToolbar() {
     },
   };
 
-  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
   const pathname = usePathname();
+
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);

@@ -97,6 +97,11 @@
 
 }
 
+#map-container {
+  transition: background-color 0.5s ease;
+}
+
+
 .cv-element{
     color: var(--cv-color);
 }

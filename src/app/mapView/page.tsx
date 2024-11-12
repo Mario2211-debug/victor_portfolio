@@ -74,6 +74,7 @@ const RadioMapPage = () => {
                     onRadioSelect={handleRadioSelect}
                     selectedRadio={selectedRadio}
                 />
+
             </div>
 
             <motion.div
