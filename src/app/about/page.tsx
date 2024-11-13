@@ -96,7 +96,7 @@ export default function AboutMe() {
   return (
     <div ref={targetRef} className="justify-self-center max-w-full flex-1">
       <div className="container block">
-        <div className="gap-6 px-4 py-10 md:gap-8 lg:flex-row">
+        <div className="gap-6 px-4 py-20 md:gap-8 lg:flex-row">
           <div className=" gap-6 @[480px]:min-w-[400px] @[480px]:gap-8 @[864px]:justify-center">
             <div className=" gap-2 text-left">
               <h1 className="text-5xl font-black leading-tight tracking-[-0.033em] @[480px]:text-6xl">
