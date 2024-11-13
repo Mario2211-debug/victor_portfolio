@@ -37,41 +37,47 @@ export default function AboutMe() {
     `,
     WorkExperience: [
       {
-        position: "Junior Fullstack Developer",
+        position: "Fullstack Developer",
         company: "Blog and Portfolio Website",
-        period: "Jul 2024 – Presente",
+        period: "JUL 2024 – Presente",
         responsibilities: [
-          "Responsável por desenhar e construir o Front-End e o Back-End, utilizando Next.js, NodeJS e MongoDB. Tem como propósito mostrar as minhas habilidades, projetos, e artigos técnicos.",
-          "Algumas ferramentas importantes usadas como Tailwind CSS e Framer para melhorar o visual.",
-          "O projecto Front está hospedado e mantido na Vercel e o Back está hospedado no Cloudflare por se adaptar melhor as necessidades do projeto em si."
+          "Responsible for designing and building Front-End and Back-End, using Next.js, NodeJS and MongoDB. Its purpose is to showcase my skills, projects, and technical articles",
+          " The Front project is hosted and maintained on Vercel and the Back is hosted on Cloudflare as it better adapts to the needs of the project itself"
         ]
       },
+
       {
-        position: "Junior Fullstack Developer",
-        company: "Rosa Cosméticos",
-        period: "Agu 2024 – Presente",
+        position: "Front End Developer",
+        company: "Simple Radio Web App",
+        period: "OCT 2024 – Presente",
         responsibilities: [
-          "Projecto atualmente em curso, onde sou responsável por desenvolver uma plataforma de booking completa para serviços de beleza utilizando React, Node.js e MySQL.",
-          "Integrado com sistema de autenticação do google e o Back-End próprio.",
-          "Está em curso a segunda fase do projecto onde será desenvolvida a aplicação móvel."
-        ]
+          "A simple Web application to listen to and follow more than 6000 stream  radio stations around the world. "]
+      },
+
+      {
+        position: "Fullstack Developer",
+        company: "Rosa Cosméticos",
+        period: "AUG 2024 – Presente",
+        responsibilities: [
+          "Project currently under development, where I am responsible for developing a complete booking platform for beauty services using React, Node.js and MySQL.",
+          "Integrated with Google authentication system and its own Back-End"]
       },
       // Adicione mais experiências conforme necessário
     ],
     Education: [
       {
         institution: "UNIVERSIDADE PORTUCALENSE",
-        degree: "Mestrado em Engenharia Informática e Computação",
-        period: "2024 — Presente"
+        degree: "Master's Degree in Computer Engineering and Computing",
+        period: "2024 — Current"
       },
       {
         institution: "ISTITUTO SUPERIOR KALANDULA DE ANGOLA",
-        degree: "Licenciado Em Engenharia Informática",
+        degree: "Bachelor's Degree in Computer Engineering",
         period: "2016 — 2021"
       },
       {
         institution: "COLÉGIO MUNDO NOVO (ALDA LARA)",
-        degree: "Técnico Médio de Informática",
+        degree: "Intermediate Computer Technician",
         period: "2013 — 2015"
       }
     ],
@@ -83,9 +89,7 @@ export default function AboutMe() {
       "Especialização em engenharia de software"
     ],
     Articles: [
-      "Artigo 1 - Título do Artigo sobre Tecnologias Web",
-      "Artigo 2 - Título sobre Desenvolvimento Frontend Moderno",
-      "Artigo 3 - Título sobre Integração com APIs RESTful"
+      "React Components"
     ]
   };
 
@@ -112,7 +116,7 @@ export default function AboutMe() {
           <div className="flex flex-col" >
             {/* Profile */}
             <div className="flex-[3]">
-              <h1 className="text-[22px] font-bold px-4 pb-3 pt-5">Professional Profile</h1>
+              <h1 className="text-[22px] font-bold px-4 pb-3 pt-5">About</h1>
               <p className="cv-element m-3 text-justify text-sm font-normal leading-loose">
                 {Person.Profile}
               </p>
@@ -120,7 +124,7 @@ export default function AboutMe() {
 
             {/* Work Experience */}
             <div className="flex-[3]">
-              <h1 className="text-[22px] font-bold px-4 pb-3 pt-5">Work Experience</h1>
+              <h1 className="text-[22px] font-bold px-4 pb-3 pt-5">Practical Experience</h1>
               {Person.WorkExperience.map((job, index) => (
                 <div key={index} className="p-4 text-justify">
                   <h2 className="text-base font-bold  mb-2">{job.position} | {job.company}</h2>
@@ -180,8 +184,7 @@ export default function AboutMe() {
       </div>
 
       <div className='flex p-4 justify-between'>
-        <span>Based in porto</span>
-        <span>{time}</span>
+
       </div>
     </div>
   );

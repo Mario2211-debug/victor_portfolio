@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { ArrowSmRightIcon, BookOpenIcon, CodeIcon, BriefcaseIcon } from "@heroicons/react/outline";
+import { ArrowSmRightIcon, BookOpenIcon, ArrowUpIcon } from "@heroicons/react/outline";
 import Post from "@/components/Blog/Post";
 import { useEffect, useState } from "react";
 import { StaticImageData } from "next/image";
 import axios from "axios";
 import data from "@/app/api/data.json";
 import projectData from '@/app/api/projects.json'
+import { InformationCircleIcon } from "@heroicons/react/solid";
 
 
 interface Post {
@@ -64,6 +65,8 @@ const cardHoverVariants = {
 };
 
 export const About = () => {
+    const { theme } = useTheme()
+
     return (
         <>
             <>
@@ -76,7 +79,7 @@ export const About = () => {
                             transition={{ duration: 0.6 }}
                             whileHover={{
                                 opacity: 0.9,
-                                filter: "brightness(2.75)",
+                                filter: `${theme === 'light' ? 'brightness(-2.75)' : 'brightness(2.75)'}`,
                                 x: 1,
                                 //rotate: 0.5,
                                 boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)"
@@ -85,17 +88,27 @@ export const About = () => {
                             {/* About Me Content */}
                             <div className="w-fit text-justify tracking-wide whitespace-normal track">
                                 <div className="gap-2">
-                                    <p className="text-sm tracking-wide leading-6 pb-2 ">
+                                    <p className="text-sm tracking-wide leading-6 end pb-2 [text-align-last:end] ">
                                         Desenvolvedor Full Stack com experiência em projetos web baseados em React e NodeJS, automação de processos e integração de sistemas.
                                         Familiarizado com ferramentas e tecnologias como Next.js, Node.js, MongoDB e MySQL, Tailwind CSS e React.
                                     </p>
                                 </div>
+                                <div className="flex justify-between items-center">
+                                    <div>
+                                        <span className="py-1 flex px-2 home-element items-center h-0 text-[0.65rem]">
+                                            <a href="/about">
+                                                <InformationCircleIcon className={`w-5 h-5 animate-pulse rounded-full ${theme === "light" ? 'text-neutral-600' : 'text-white'}`} />
 
-                                <div className="flex flex-wrap gap-2 float-right">
-                                    <span className="py-1 px-2 home-element  text-[0.65rem] text-gray-500">Developer</span>
-                                    <span className="py-1 px-2 home-element  text-[0.65rem] text-gray-500">Database</span>
-                                    <span className="py-1 px-2 home-element  text-[0.65rem] text-gray-500">UI/UX</span>
-                                    <span className="py-1 px-2 home-element  text-[0.65rem] text-gray-500">APIs</span>
+                                            </a>
+                                        </span>
+                                    </div>
+                                    <div className="flex flex-wrap gap-2 float-right">
+                                        <span className="py-1 px-2 home-element  text-[0.65rem] text-gray-500">Developer</span>
+                                        <span className="py-1 px-2 home-element  text-[0.65rem] text-gray-500">Database</span>
+                                        <span className="py-1 px-2 home-element  text-[0.65rem] text-gray-500">UI/UX</span>
+                                        <span className="py-1 px-2 home-element  text-[0.65rem] text-gray-500">APIs</span>
+
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>
