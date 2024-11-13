@@ -87,7 +87,7 @@ const RadioMapPage = () => {
                     type="text"
                     onChange={handleCategorySearch}  // Usa a função handleCategorySearch
                     placeholder="Pesquisar categoria"
-                    className="p-2 bg-transparent w-[-webkit-fill-available] focus:outline-0 focus:border-b focus:border-neutral-900 placeholder:text-sm text-white"
+                    className="p-2 bg-transparent w-[-webkit-fill-available] focus:outline-0 focus:border-b focus:border-neutral-900 placeholder:text-sm"
                 />
 
                 {categorySearch && (
@@ -95,15 +95,15 @@ const RadioMapPage = () => {
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }} >
-                        <ul className="max-h-48 [scrollbar-width:thin] transition-transform ease-in-out delay-700 overflow-y-auto rounded-lg mt-2 text-white">
+                        <ul className="max-h-48 [scrollbar-width:thin] transition-transform ease-in-out delay-700 overflow-y-auto rounded-lg mt-2">
                             {filteredStations.map((station) => (
                                 <li
                                     key={station.stationuuid}
                                     className="p-2 cursor-pointer hover:bg-gray-700 hover:bg-opacity-20 hover:rounded-md"
                                     onClick={() => handleRadioSelect(station)}
                                 >
-                                    <p className="font-semibold truncate">{station.name}</p>
-                                    <p className="text-sm text-gray-300">{station.country}</p>
+                                    <p className={`font-semibold truncate text-sm ${theme === 'light' ? 'text-neutral-800' : 'text-gray-300'}`}>{station.name}</p>
+                                    <p className={`text-sm ${theme === 'light' ? 'text-gray-700' : 'text-gray-300'}`}>{station.country}</p>
                                 </li>
                             ))}
                         </ul>
@@ -119,7 +119,7 @@ const RadioMapPage = () => {
                                 )}
                             </div>
                             <div className="float-left">
-                                <p className="sm:text-sm sm:w-28 w-20 text-xs sm:font-semibold truncate">{selectedRadio.name}</p>
+                                <p className={`sm:text-sm sm:w-28 w-20 text-xs sm:font-semibold truncate`}>{selectedRadio.name}</p>
                                 <p className={`text-sm ${theme === 'light' ? '' : 'text-gray-300'}`}>{selectedRadio.country}</p>
                             </div>
                             <div className="float-right h-fit w-fit self-end">
