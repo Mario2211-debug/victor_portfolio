@@ -92,7 +92,7 @@ export default function SearchBar({ handleCategorySearch, isLoading, onClose, ca
                             onChange={handleCategorySearch}  // Usa a função handleCategorySearch
                             //value={searchTerm}
                             placeholder="Type a command or search..."
-                            className="w-full bg-transparent text-gray-300 placeholder-gray-500 focus:outline-none" />
+                            className="w-full h-8 bg-transparent text-gray-300 placeholder-gray-500 focus:outline-none" />
 
                         <div className={`flex p-4 ${isLoading === true ? "flex items-center right-1/3" : "[display:none]"}`}
                             style={{
@@ -100,8 +100,8 @@ export default function SearchBar({ handleCategorySearch, isLoading, onClose, ca
                                 backgroundPosition: `right`,
                                 backgroundRepeat: 'no-repeat',
                                 backgroundSize: 'cover',
-                                width: "2rem",
-                                height: "2rem"
+                                width: "0.5rem",
+                                height: "0.5rem"
                             }}>
                         </div>
 
