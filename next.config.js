@@ -19,15 +19,15 @@ const nextConfig = {
 
 }
 
-module.exports = withPWA({
-    pwa: {
-        dest: 'public',
-        register: true,
-        skipWaiting: true,
-    },
-    images: {
-        domains: ['exemplo.com'], // Domínios configurados
-    },
-});
+// module.exports = withPWA({
+//     pwa: {
+//         dest: 'public',
+//         register: true,
+//         skipWaiting: true,
+//     },
+//     images: {
+//         domains: ['exemplo.com'], // Domínios configurados
+//     },
+// });
 
 module.exports = nextConfig

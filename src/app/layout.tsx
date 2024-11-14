@@ -38,20 +38,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
 
-  useEffect(() => {
-    if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./service-worker.js').then(
-          (registration) => {
-            console.log('Service Worker registrado com sucesso:', registration);
-          },
-          (error) => {
-            console.error('Falha ao registrar o Service Worker:', error);
-          }
-        );
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+  //     window.addEventListener('load', () => {
+  //       navigator.serviceWorker.register('./service-worker.js').then(
+  //         (registration) => {
+  //           console.log('Service Worker registrado com sucesso:', registration);
+  //         },
+  //         (error) => {
+  //           console.error('Falha ao registrar o Service Worker:', error);
+  //         }
+  //       );
+  //     });
+  //   }
+  // }, []);
   return (
     <html lang="en" className={`${plus.className}`} suppressHydrationWarning>
       <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>

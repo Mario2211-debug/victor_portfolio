@@ -6,9 +6,11 @@ import MapboxMap from "@/components/MapBox";
 import debounce from 'lodash.debounce';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
-import { HeartIcon, SearchIcon, PlayIcon, PauseIcon, VolumeUpIcon } from '@heroicons/react/outline';
+import { HeartIcon, SearchIcon, PlayIcon, PauseIcon, VolumeUpIcon } from '@heroicons/react/solid';
 import SearchBar from '@/components/radio/searchBar';
 import spin from '@/components/radio/spin.gif'
+
+
 
 
 type Station = {
@@ -55,6 +57,17 @@ const RadioMapPage = () => {
 
     const openSearch = () => setIsSearchOpen(true);
     const closeSearch = () => setIsSearchOpen(false);
+    const [time, setTime] = useState(new Date());
+
+    useEffect(() => {
+        const timer = setInterval(() => setTime(new Date()), 1000);
+        return function cleanup() {
+            clearInterval(timer);
+        };
+
+    }, []);
+
+
 
     useEffect(() => {
         const getStations = async () => {
@@ -66,8 +79,8 @@ const RadioMapPage = () => {
         getStations();
     }, []);
 
-    useEffect(() => {
 
+    useEffect(() => {
     }, [currentCategory]);
 
     useEffect(() => {
@@ -109,7 +122,7 @@ const RadioMapPage = () => {
 
     console.log(filteredStations)
 
-    
+
     return (
         <div className="relative min-h-screen items-center">
             <div className="flex-1 absolute inset-0 w-full h-full">
@@ -123,9 +136,7 @@ const RadioMapPage = () => {
 
 
 
-            <motion.div
-
-            >
+            <motion.div>
                 {isSearchOpen && <SearchBar
                     id={''}
                     isLoading={isLoading}
@@ -139,50 +150,60 @@ const RadioMapPage = () => {
 
             </motion.div>
 
-            <div className="fixed w-[350px] mb-10  bottom-0 [position-area:bottom] left-0 right-0 justify-center items-center z-10 tablet:mb-5 sm:w-[420px] mx-4 rounded-lg p-2 blur-cover">
+            <div className="fixed w-[350px] mb-10  bottom-0 [position-area:bottom] left-0 right-0 justify-center items-center z-10 tablet:mb-5 sm:w-[420px] mx-4 rounded-lg p-4 blur-cover">
+                <div className="h-fit grid p-2 w-fit">
+                    <span className='flex'>
+                        {time.toLocaleTimeString()}
+                    </span>
+                </div>
+                {selectedRadio === null || undefined ?
 
-                {selectedRadio && (
-                    <div key={selectedRadio.stationuuid} className="sm:p-2 flex p-4 bg-transparent items-center rounded-sm h-10">
+                    <div className="sm:p-2 flex p-4 bg-transparent items-center rounded-sm">
                         <div className='grid gap-2 items-center w-[-webkit-fill-available]'>
-                            {/* <div>
+                            <div className="gap-2 flex w-[-webkit-fill-available]">
+                                <span className='float-left inline-grid items-center '>
+                                    <p className={`text-lg font-semibold truncate`}>Comece a ouvir</p>
+                                    <li className='flex gap-2 items-center'>
+                                        <p className={`text-sm ${theme === 'light' ? '' : 'text-gray-300'}`}>Rádio não selecionado</p>
+                                    </li>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    :
+                    selectedRadio && (
+                        <div key={selectedRadio.stationuuid} className="sm:p-2 flex p-4 bg-transparent items-center rounded-sm">
+                            <div className='grid gap-2 items-center w-[-webkit-fill-available]'>
+                                {/* <div>
                                 {selectedRadio.favicon && (
                                     <img className='w-5 h-5' src={selectedRadio.favicon} alt={`${selectedRadio.name} logo`} />
                                 )}
                                 </div> */}
-                            <div className="h-fit w-fit">
-                                <audio controls={false} muted={isPlaying} className='w-[160px] h-8 max-w-xl sm:w-[200px] rounded-none' ref={audioRef} style={{ borderRadius: '0.125rem', background: 'transparent' }}>
-                                    <source src={selectedRadio.urlResolved} type="audio/mpeg" />
-                                </audio>
-                            </div>
-                            <div className="gap-2 flex w-[-webkit-fill-available]">
-                                <span className='float-left inline-grid items-center '>
-                                    <p className={`text-lg font-semibold truncate`}>{selectedRadio.name}</p>
+                                <div className="h-fit w-fit">
+                                    <audio controls={false} muted={isPlaying} className='w-[160px] h-8 max-w-xl sm:w-[200px] rounded-none' ref={audioRef} style={{ borderRadius: '0.125rem', background: 'transparent' }}>
+                                        <source src={selectedRadio.urlResolved} type="audio/mpeg" />
+                                    </audio>
+                                </div>
+                                <div className="gap-2 flex w-[-webkit-fill-available]">
+                                    <span className='float-left inline-grid items-center '>
+                                        <p className={`text-lg font-semibold truncate`}>{selectedRadio.name}</p>
 
-                                    <li className='flex gap-2 items-center'>
-                                        <p className={`text-sm ${theme === 'light' ? '' : 'text-gray-300'}`}>{selectedRadio.country}</p>
-                                        <div className='rounded-full bg-white w-1 h-1'></div>
-                                        <p className={`text-sm ${theme === 'light' ? '' : 'text-gray-300'}`}>{selectedRadio.codec}</p>
-                                        <div className='rounded-full bg-white w-1 h-1'></div>
-                                        <p className={`text-sm ${theme === 'light' ? '' : 'text-gray-300'}`} > {selectedRadio.bitrate + "kbps"}</p>
-                                    </li>
-                                </span>
+                                        <li className='flex gap-2 items-center'>
+                                            <p className={`text-sm ${theme === 'light' ? '' : 'text-gray-300'}`}>{selectedRadio.country}</p>
+                                            <div className='rounded-full bg-white w-1 h-1'></div>
+                                            <p className={`text-sm ${theme === 'light' ? '' : 'text-gray-300'}`}>{selectedRadio.codec}</p>
+                                            <div className='rounded-full bg-white w-1 h-1'></div>
+                                            <p className={`text-sm ${theme === 'light' ? '' : 'text-gray-300'}`} > {selectedRadio.bitrate + "kbps"}</p>
+                                        </li>
+                                    </span>
+                                </div>
                             </div>
-                            {selectedRadio != null && isPlaying === false ?
-                                <div className={`flex p-4 ${isLoading === true ? "flex items-center right-1/3" : "[display:none]"}`}
-                                    style={{
-                                        backgroundImage: `url(${spin.src})`,
-                                        backgroundPosition: `right`,
-                                        backgroundRepeat: 'no-repeat',
-                                        backgroundSize: 'cover',
-                                        width: "2rem",
-                                        height: "2rem"
-                                    }}>
-                                </div> : ""}
                         </div>
-                    </div>
-                )}
+                    )
+                }
 
-                <div className=' flex gap-4 items-center justify-end p-2'>
+                <div className='flex gap-4 items-center justify-end pt-2'>
                     <button className='float-right inline-flex items-center'>
                         <SearchIcon className='w-6 h-6' onClick={() => setIsSearchOpen(!isSearchOpen)} />
                     </button>

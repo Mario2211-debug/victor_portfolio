@@ -147,7 +147,7 @@ export default function SearchBar({ handleCategorySearch, isLoading, onClose, ca
 
                                                     <div className='flex w-[-webkit-fill-available]'>
                                                         <ul className='flex gap-2 truncate'>
-                                                            <li className="text-gray-500">{station.country}</li>
+                                                            <li className="text-gray-500 truncate">{station.country}</li>
                                                             <li className="text-gray-500">{station.bitrate + "kbps"}</li>
                                                             <li className="text-gray-500">{station.language}</li>
                                                             <li className="text-gray-500">{station.tags[0]}</li>
