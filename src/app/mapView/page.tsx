@@ -6,7 +6,7 @@ import MapboxMap from "@/components/MapBox";
 import debounce from 'lodash.debounce';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
-import { HeartIcon, SearchIcon, PlayIcon, PauseIcon, VolumeUpIcon } from '@heroicons/react/solid';
+import { HeartIcon, SearchIcon, PlayIcon, PauseIcon, SunIcon, MoonIcon, VolumeUpIcon } from '@heroicons/react/solid';
 import SearchBar from '@/components/radio/searchBar';
 import spin from '@/components/radio/spin.gif'
 
@@ -54,7 +54,6 @@ const RadioMapPage = () => {
     const [stations, setStations] = useState<any[]>([]);
     const [stationsWithGeo, setStationsWithGeo] = useState<any[]>([]);
     const [isLoading, setIsloading] = useState(false)
-
     const openSearch = () => setIsSearchOpen(true);
     const closeSearch = () => setIsSearchOpen(false);
     const [time, setTime] = useState(new Date());
@@ -117,7 +116,7 @@ const RadioMapPage = () => {
     };
 
 
-    const { theme } = useTheme();
+    const { theme, setTheme } = useTheme();
 
 
     console.log(filteredStations)
@@ -151,9 +150,16 @@ const RadioMapPage = () => {
             </motion.div>
 
             <div className="fixed w-[350px] mb-10  bottom-0 [position-area:bottom] left-0 right-0 justify-center items-center z-10 tablet:mb-5 sm:w-[420px] mx-4 rounded-lg p-4 blur-cover">
-                <div className="h-fit grid p-2 w-fit">
+                <div className="h-fit flex gap-2 items-center p-2 w-fit">
                     <span className='flex'>
                         {time.toLocaleTimeString()}
+                    </span>
+
+                    <span className='flex float-right'>
+                        {theme === 'light' ?
+                            <MoonIcon className='w-6 h-6' onClick={() => setTheme('dark')} />
+                            :
+                            <SunIcon className='w-6 h-6' onClick={() => setTheme('light')} />}
                     </span>
                 </div>
                 {selectedRadio === null || undefined ?
