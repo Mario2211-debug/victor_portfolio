@@ -56,13 +56,29 @@ const RadioMapPage = () => {
     const [isLoading, setIsloading] = useState(false)
     const openSearch = () => setIsSearchOpen(true);
     const closeSearch = () => setIsSearchOpen(false);
-    const [time, setTime] = useState(new Date());
+    const [time, setTime] = useState<string>('');
+
 
     useEffect(() => {
-        const timer = setInterval(() => setTime(new Date()), 1000);
-        return function cleanup() {
-            clearInterval(timer);
+        // Função para atualizar o horário
+        const updateTime = () => {
+            const currentTime = new Date().toLocaleTimeString('en-US', {
+                hour12: false, // Usar formato de 24 horas
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+            });
+            setTime(currentTime);
         };
+
+        // Chama a função para definir a hora logo após a montagem
+        updateTime();
+
+        // Atualiza o tempo a cada segundo
+        const timer = setInterval(updateTime, 1000);
+
+        // Limpa o intervalo ao desmontar o componente
+        return () => clearInterval(timer);
 
     }, []);
 
@@ -125,12 +141,30 @@ const RadioMapPage = () => {
     return (
         <div className="relative min-h-screen items-center">
             <div className="flex-1 absolute inset-0 w-full h-full">
-                <MapboxMap
-                    radios={stationsWithGeo}
-                    currentCategory={currentCategory}
-                    onRadioSelect={handleRadioSelect}
-                    selectedRadio={selectedRadio}
-                />
+
+                <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    whileHover={theme === 'light' ? {} : {
+                        opacity: 0.9,
+                        //background: "linear-gradient(135deg, rgba(255, 92, 88, 0.8), rgba(88, 185, 255, 0.8), rgba(88, 255, 163, 0.8))",
+                        //filter: "blur(4px)",
+                        // x: 2, 
+                        filter: "brightness(1.75)",
+                        rotate: -0.2,
+                        //y: -2,
+                        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)"
+                    }}>
+
+                    <MapboxMap
+                        radios={stationsWithGeo}
+                        currentCategory={currentCategory}
+                        onRadioSelect={handleRadioSelect}
+                        selectedRadio={selectedRadio}
+                    />
+                </motion.div>
+
             </div>
 
 
@@ -150,9 +184,9 @@ const RadioMapPage = () => {
             </motion.div>
 
             <div className="fixed w-[350px] mb-10  bottom-0 [position-area:bottom] left-0 right-0 justify-center items-center z-10 tablet:mb-5 sm:w-[420px] mx-4 rounded-lg p-4 blur-cover">
-                <div className="h-fit flex gap-2 items-center p-2 w-fit">
+                <div className="h-fit flex gap-2  justify-between items-center p-2 w-[-webkit-fill-available]">
                     <span className='flex'>
-                        {time.toLocaleTimeString()}
+                        {time}
                     </span>
 
                     <span className='flex float-right'>
@@ -170,7 +204,7 @@ const RadioMapPage = () => {
                                 <span className='float-left inline-grid items-center '>
                                     <p className={`text-lg font-semibold truncate`}>Comece a ouvir</p>
                                     <li className='flex gap-2 items-center'>
-                                        <p className={`text-sm ${theme === 'light' ? '' : 'text-gray-300'}`}>Rádio não selecionado</p>
+                                        <p className={`text-sm ${theme === 'light' ? 'text-gray-600' : 'text-gray-300'}`}>Rádio não selecionado</p>
                                     </li>
                                 </span>
                             </div>
