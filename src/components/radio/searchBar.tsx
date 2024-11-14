@@ -2,12 +2,11 @@
 import { SearchIcon, SunIcon, XIcon } from '@heroicons/react/outline';
 import React, { useCallback, useMemo, useEffect, useState, useRef } from "react";
 import debounce from 'lodash.debounce';
-
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
-import defaultFavicon from '@/app/icons/56.jpg'
 import spin from './spin.gif'
-
+import sample from './sample.jpg'
 
 
 
@@ -70,6 +69,8 @@ export default function SearchBar({ handleCategorySearch, isLoading, onClose, ca
 
     const [searchTerm, setSearchTerm] = useState("");
 
+    console.log(sample.src)
+
     return (
         <>
             <motion.div
@@ -83,7 +84,7 @@ export default function SearchBar({ handleCategorySearch, isLoading, onClose, ca
                 transition={{ duration: 0.3, ease: "easeInOut" }}>
 
                 <div className={`p-8 rounded-2xl w-full max-w-lg border bg-black ${theme === 'light' ? 'bg-gray-100' : 'text-white border-slate-900'}`}>
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center gap-4">
                         {/* Barra de pesquisa */}
                         <SearchIcon className="h-5 w-5 text-gray-500" />
 
@@ -129,8 +130,12 @@ export default function SearchBar({ handleCategorySearch, isLoading, onClose, ca
                                                 className={`flex items-center w-[-webkit-fill-available] gap-4 p-2 cursor-pointer hover:bg-opacity-20 hover:rounded-md ${theme === 'light' ? 'hover:bg-gray-300' : 'hover:bg-gray-700'}`}>
                                                 <div className='flex gap-2 items-center'>
                                                     <span className='flex bg-slate-900 rounded w-10 h-10 '>
-                                                        <img src={station.favicon} alt={`${station.name} logo`}
-                                                            loading="lazy" className='p-2 object-cover rounded-sm' />
+                                                        <img src={station.favicon || `${sample.src}`} alt={`${station.name} logo`} placeholder="blur"
+                                                            // blurDataURL="./app/icons/57.jpg" // Carrega um blur até a imagem estar pronta
+                                                            onError={(e) => {
+                                                                e.currentTarget.src = `${sample.src}`; // Define imagem padrão em caso de erro
+                                                            }} loading="lazy" width={40} height={40} className='p-2 object-cover rounded'
+                                                        />
                                                     </span>
                                                 </div >
                                                 <div className='grid'>

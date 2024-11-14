@@ -98,9 +98,8 @@ const RadioMapPage = () => {
     );
 
     const handleRadioSelect = (station: any) => {
-        setIsloading(true)
-        setSelectedRadio(station);
         setIsloading(false)
+        setSelectedRadio(station);
 
     };
 
@@ -109,6 +108,8 @@ const RadioMapPage = () => {
 
 
     console.log(filteredStations)
+
+    
     return (
         <div className="relative min-h-screen items-center">
             <div className="flex-1 absolute inset-0 w-full h-full">
@@ -123,7 +124,7 @@ const RadioMapPage = () => {
 
 
             <motion.div
-             
+
             >
                 {isSearchOpen && <SearchBar
                     id={''}

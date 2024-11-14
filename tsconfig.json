@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     "src/app/providers.tsx",
     "src/app/globals.css."
-  ],
+, "service-worker.js"  ],
   "exclude": ["node_modules"]
 }

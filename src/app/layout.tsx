@@ -1,6 +1,6 @@
-
+"use client"
 import "./globals.css";
-import type { Metadata } from "next";
+import { metadata } from "@/app/metadata";
 import { Inter } from "next/font/google";
 import { Noto_Sans } from "next/font/google";
 import { Plus_Jakarta_Sans } from "next/font/google";
@@ -15,7 +15,7 @@ import Blob from "@/components/blob";
 import myGif from '../app/loading-gif.gif'
 import BottomToolbar from "@/components/BottomToolbar";
 import SearchBar from "@/components/SearchBar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // If loading a variable font, you don't need to specify the font weight
 const inter = Inter({
   subsets: ["latin"],
@@ -31,16 +31,27 @@ const plus = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "God Is Also a Designer",
-};
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js').then(
+          (registration) => {
+            console.log('Service Worker registrado com sucesso:', registration);
+          },
+          (error) => {
+            console.error('Falha ao registrar o Service Worker:', error);
+          }
+        );
+      });
+    }
+  }, []);
   return (
     <html lang="en" className={`${plus.className}`} suppressHydrationWarning>
       <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
