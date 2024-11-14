@@ -5,13 +5,14 @@ import { Inter } from "next/font/google";
 import { Noto_Sans } from "next/font/google";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { TaskProvider } from "@/components/taskContext";
 import { Providers } from "./providers";
 import Particles from "./util/Particles";
 import FullScreenNavBar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import Blob from "@/components/blob";
-import myGif from './myGif.gif'
+import myGif from '../app/loading-gif.gif'
 import BottomToolbar from "@/components/BottomToolbar";
 import SearchBar from "@/components/SearchBar";
 import { useState } from "react";
@@ -46,7 +47,7 @@ export default function RootLayout({
       <body className="overflow-x-hidden overscroll-none"
         style={
           {
-            backgroundImage: `url(${'myGif.src'})`,
+            backgroundImage: `url(${"myGif.src"})`,
             backgroundPosition: `center`,
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
@@ -64,6 +65,7 @@ export default function RootLayout({
 
           </TaskProvider>
           <Analytics />
+          <SpeedInsights />
         </Providers>
       </body>
     </html >

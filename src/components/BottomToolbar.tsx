@@ -98,13 +98,12 @@ export default function BottomToolbar() {
           <CalculatorWidget />
         </div>
         <TaskManager />
-
       </WorkPagePopup>
-      <div className={`fixed top-5 left-1/2 transform -translate-x-1/2 z-50`}>
+      <div className={`fixed top-5 left-1/2 transform -translate-x-1/2 z-50 ${pathname === '/mapView' ? 'hidden' : ''}`}>
         <AnimatePresence>
           <motion.div
             className={`w-fit backdrop-blur-sm items-center rounded-xl px-3 py-2 flex space-x-4 shadow-lg
-         ${gradientBorder} ${isPopupOpen ? 'hidden' : ''} hover:shadow-xl transition-shadow duration-300`}
+         ${gradientBorder} ${isPopupOpen ? 'hidden' : ''}  hover:shadow-xl transition-shadow duration-300`}
             variants={toolbarVariants}
             initial="initial"
             animate="animate"
