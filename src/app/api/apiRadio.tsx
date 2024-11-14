@@ -1,5 +1,20 @@
 import { RadioBrowserApi } from "radio-browser-api";
 
+const isValidIconUrl = async (url: any) => {
+    try {
+        const response = await fetch(url, { method: 'HEAD' });
+        return response.ok; // Retorna 'true' se o URL é válido
+    } catch (error) {
+        console.error(`Erro ao verificar o ícone: ${url}`, error);
+        return false; // URL inválido ou inacessível
+    }
+};
+
+const getStationIcon = async (iconUrl: any) => {
+    const isValid = await isValidIconUrl(iconUrl);
+    return isValid ? iconUrl : '/path/to/default-icon.png'; // Substitui por um ícone local
+};
+
 export const fetchStations = async () => {
     try {
         // Configurar a API para usar apenas HTTPS
@@ -17,7 +32,7 @@ export const fetchStations = async () => {
         });
 
         // Filtra e valida os dados
-        const validStations = fetchedStations.filter(station => {
+        const validStations = fetchedStations.filter((station) => {
             // Verifica se as URLs são HTTPS
             const hasHttpsUrl = station.url?.startsWith('https://') ||
                 station.urlResolved?.startsWith('https://');
@@ -27,6 +42,7 @@ export const fetchStations = async () => {
                 station.geoLong &&
                 !isNaN(station.geoLat) &&
                 !isNaN(station.geoLong);
+
 
             return hasHttpsUrl && hasValidCoords;
         });

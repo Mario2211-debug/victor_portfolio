@@ -1,7 +1,7 @@
 'use client'
 
-import { fetchStations } from '@/app/api/apiRadio';
-import React, { useEffect, useState, useRef } from "react";
+import { fetchStations, getSecureStationUrl } from '@/app/api/apiRadio';
+import React, { useEffect, useCallback, useState, useRef, useMemo } from "react";
 import MapboxMap from "@/components/MapBox";
 import debounce from 'lodash.debounce';
 import { motion } from 'framer-motion';
@@ -77,23 +77,24 @@ const RadioMapPage = () => {
         }
     }, [selectedRadio]);
 
-    // Definir o debounce fora do useCallback para evitar problemas de renderização
-    const debouncedSearch = debounce((value: string) => {
-        setCategorySearch(value);
-        setIsloading(false)
+    // Memorize o debounce para que ele não seja recriado em cada renderização
+    const debouncedSearch = useCallback(
+        debounce((value: string) => {
+            setCategorySearch(value);
+            setIsloading(false);
+        }, 150),
+        []
+    );
 
-    }, 150);
+    const handleCategorySearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setIsloading(true);
+        debouncedSearch(event?.target.value);
+    };
 
-    const
-        handleCategorySearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-            setIsloading(true)
-            debouncedSearch(event.target.value);
-        };
-
-    const filteredStations = stations.filter((station) =>
-        station.name.toLowerCase().includes(categorySearch.toLowerCase()) ||
-        station.country.toLowerCase().includes(categorySearch.toLowerCase()) ||
-        station.tags.some((tag: string) => tag.toLowerCase().includes(categorySearch.toLowerCase()))
+    const filteredStations = stations.filter((station) => (
+        station.name?.toLowerCase().includes(categorySearch.toLowerCase()) && station.votes >= 250 && station.lastCheckOk === true ||
+        station.country?.toLowerCase().includes(categorySearch.toLowerCase()) && station.votes >= 250 && station.lastCheckOk === true ||
+        station.tags?.some((tag: string) => tag.toLowerCase().includes(categorySearch.toLowerCase())) && station.votes >= 250 && station.lastCheckOk === true)
     );
 
     const handleRadioSelect = (station: any) => {
@@ -103,8 +104,11 @@ const RadioMapPage = () => {
 
     };
 
+
     const { theme } = useTheme();
 
+
+    console.log(filteredStations)
     return (
         <div className="relative min-h-screen items-center">
             <div className="flex-1 absolute inset-0 w-full h-full">
@@ -124,13 +128,14 @@ const RadioMapPage = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
             >
                 {isSearchOpen && <SearchBar
-                    key={""}
+                    id={''}
                     isLoading={isLoading}
                     handleCategorySearch={handleCategorySearch}
                     categorySearch={categorySearch}
                     filteredStations={filteredStations}
                     handleRadioSelect={handleRadioSelect}
-                    onClose={closeSearch} />}
+                    onClose={closeSearch}
+                />}
 
 
             </motion.div>
@@ -138,7 +143,7 @@ const RadioMapPage = () => {
             <div className="fixed w-[350px] mb-10  bottom-0 [position-area:bottom] left-0 right-0 justify-center items-center z-10 tablet:mb-5 sm:w-[420px] mx-4 rounded-lg p-2 blur-cover">
 
                 {selectedRadio && (
-                    <div key={selectedRadio.stationuuid} className="sm:p-2 flex pt-4 bg-transparent items-center rounded-sm h-10">
+                    <div key={selectedRadio.stationuuid} className="sm:p-2 flex p-4 bg-transparent items-center rounded-sm h-10">
                         <div className='grid gap-2 items-center w-[-webkit-fill-available]'>
                             {/* <div>
                                 {selectedRadio.favicon && (

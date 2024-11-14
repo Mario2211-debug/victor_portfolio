@@ -1,7 +1,8 @@
 'use client'
 import { SearchIcon, SunIcon, XIcon } from '@heroicons/react/outline';
-import React, { useEffect, useState, useRef } from "react";
+import React, { useCallback, useMemo, useEffect, useState, useRef } from "react";
 import debounce from 'lodash.debounce';
+
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import defaultFavicon from '@/app/icons/56.jpg'
@@ -40,6 +41,17 @@ type Station = {
     geoLong: number | null // Longitude on earth where the stream is located. Null if it doesn't exist.
 }
 
+interface SearchBarProps {
+    id: any,
+    handleCategorySearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    isLoading: boolean;
+    onClose: () => void;
+    categorySearch: any
+    filteredStations: any
+    handleRadioSelect: any
+}
+
+
 
 // interface Radio {
 //     name: string,
@@ -50,14 +62,13 @@ type Station = {
 
 // }
 
-export default function SearchBar({ onClose, handleCategorySearch, categorySearch, filteredStations, handleRadioSelect, isLoading }) {
+export default function SearchBar({ handleCategorySearch, isLoading, onClose, categorySearch, filteredStations, handleRadioSelect }: SearchBarProps) {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const openSearch = () => setIsSearchOpen(true);
     const closeSearch = () => setIsSearchOpen(false);
     const { theme, setTheme } = useTheme();
 
-
-    console.log(theme)
+    const [searchTerm, setSearchTerm] = useState("");
 
     return (
         <>
@@ -76,8 +87,12 @@ export default function SearchBar({ onClose, handleCategorySearch, categorySearc
                         {/* Barra de pesquisa */}
                         <SearchIcon className="h-5 w-5 text-gray-500" />
 
-                        <input type="text" onChange={handleCategorySearch}  // Usa a função handleCategorySearch
-                            placeholder="Type a command or search..." className="w-full bg-transparent text-gray-300 placeholder-gray-500 focus:outline-none" />
+                        <input
+                            type="text"
+                            onChange={handleCategorySearch}  // Usa a função handleCategorySearch
+                            //value={searchTerm}
+                            placeholder="Type a command or search..."
+                            className="w-full bg-transparent text-gray-300 placeholder-gray-500 focus:outline-none" />
 
                         <div className={`flex p-4 ${isLoading === true ? "flex items-center right-1/3" : "[display:none]"}`}
                             style={{
@@ -117,7 +132,7 @@ export default function SearchBar({ onClose, handleCategorySearch, categorySearc
                                                 className={`flex items-center w-[-webkit-fill-available] gap-4 p-2 cursor-pointer hover:bg-opacity-20 hover:rounded-md ${theme === 'light' ? 'hover:bg-gray-300' : 'hover:bg-gray-700'}`}>
                                                 <div className='flex gap-2 items-center'>
                                                     <span className='flex bg-slate-900 rounded w-10 h-10 '>
-                                                        <img src={station.favicon || `${defaultFavicon}`} alt={`${station.name} logo`}
+                                                        <img src={station.favicon} alt={`${station.name} logo`}
                                                             loading="lazy" className='p-2 object-cover rounded-sm' />
                                                     </span>
                                                 </div >
