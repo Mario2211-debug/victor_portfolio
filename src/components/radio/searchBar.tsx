@@ -118,10 +118,7 @@ export default function SearchBar({ handleCategorySearch, isLoading, onClose, ca
                     {/* Opções abaixo da barra de pesquisa */}
                     <div className="mt-8 text-sm text-gray-400">
                         {categorySearch && (
-                            <motion.div
-                                initial={{ opacity: 0, y: 50 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.2 }} >
+                            <motion.div>
                                 <div className="max-h-48 [scrollbar-width:thin] overflow-hidden transition-transform ease-in-out delay-700 overflow-y-auto rounded-lg mt-2">
                                     <div className="uppercase font-semibold text-xs text-gray-500 mb-2">
                                         Stations
