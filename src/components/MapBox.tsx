@@ -174,18 +174,24 @@ const MapboxMap: React.FC<MapboxMapProps> = React.memo(
       clearMarkers();
       const markersToAdd = radios.slice(0, maxMarkers);
 
-      markersToAdd.map((radio: any) => {
+      markersToAdd.forEach((radio: any) => {
         const { geoLat, geoLong, id } = radio;
         const coordinates = [geoLat, geoLong];
 
         if (Array.isArray(coordinates) && coordinates.length === 2) {
           const markerElement = document.createElement("div");
+
+
+          markerElement.addEventListener("click", (event) => {
+            event.stopPropagation();
+            onRadioSelect(radio);
+          });
+
           markerElement.className =
             selectedRadio && selectedRadio.id === id
               ? "w-6 h-6 bg-green-600 p-2 border-[1rem] border-opacity-95 border-neutral-600 rounded-full cursor-pointer"
               : "w-2 h-2 bg-black opacity-1 border-2 border-solid border-white rounded-full cursor-pointer";
 
-          markerElement.addEventListener("click", () => onRadioSelect(radio));
           const marker = new mapboxgl.Marker(markerElement)
             .setLngLat([geoLong, geoLat])
             .addTo(mapRef.current);
@@ -194,14 +200,16 @@ const MapboxMap: React.FC<MapboxMapProps> = React.memo(
         }
       });
       setVisibleMarkers(markersRef.current);
-    }, [clearMarkers, radios, selectedRadio,]);
+    }, [clearMarkers, radios, onRadioSelect, selectedRadio]);
 
 
-    // Efeito para atualizar os marcadores quando as estações ou categoria mudam
+    // Efeito para adicionar marcadores quando o tema muda
     useEffect(() => {
-      addMarkers();
-      
-    }, [(addMarkers)] );
+      if (mapRef.current) {
+        addMarkers(); // Adiciona marcadores sempre que o tema muda
+      }
+    }, [clearMarkers, radios, selectedRadio, theme]); // Apenas escuta mudanças no tema
+
 
     return (
 

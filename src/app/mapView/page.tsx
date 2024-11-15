@@ -10,6 +10,7 @@ import { HeartIcon, SearchIcon, PlayIcon, PauseIcon, SunIcon, MoonIcon, VolumeUp
 import SearchBar from '@/components/radio/searchBar';
 import spin from '@/components/radio/spin.gif'
 import { radio } from '@nextui-org/react';
+import { Play } from 'next/font/google';
 
 
 
@@ -94,14 +95,12 @@ const RadioMapPage = () => {
 
         // Chama a função para definir a hora logo após a montagem
         updateTime();
-
         // Atualiza o tempo a cada segundo
         const timer = setInterval(updateTime, 1000);
-
         // Limpa o intervalo ao desmontar o componente
         return () => clearInterval(timer);
+    }, []);
 
-    }, [time]);
 
     return (
         <div className="relative min-h-screen items-center">
@@ -210,6 +209,7 @@ const RadioMapPage = () => {
                             <PlayIcon className='w-6 h-6' onClick={() => setIsPlaying(true)} />
                         </button>
                         :
+
                         <button className='float-right inline-flex items-center'>
                             <PauseIcon className='w-6 h-6' onClick={() => setIsPlaying(false)} />
                         </button>
