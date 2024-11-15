@@ -55,15 +55,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${plus.className}`} suppressHydrationWarning>
       <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
-      <body className="overflow-x-hidden overscroll-none"
-        style={
-          {
-            backgroundImage: `url(${"myGif.src"})`,
-            backgroundPosition: `center`,
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            zIndex: -1
-          }}>
+      <body className="overflow-x-hidden overscroll-none">
         <Providers>
           <Particles className="absolute blur-sm inset-0 -z-10 animate-fade-in" quantity={150} />
           <TaskProvider>

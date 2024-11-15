@@ -1,3 +1,5 @@
+import next from "next";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { RadioBrowserApi } from "radio-browser-api";
 
 const isValidIconUrl = async (url: any) => {
@@ -21,7 +23,13 @@ export const fetchStations = async () => {
         const api = new RadioBrowserApi('RadioApp', true); // O segundo parâmetro 'true' força HTTPS
 
         // Configurar timeout e retry
-        api.setBaseUrl('https://de1.api.radio-browser.info' || 'https://de1.api.radio-browser.info' || 'https://at1.api.radio-browser.info' || 'https://nl1.api.radio-browser.info' || 'https://at1.api.radio-browser.info'); // Força um servidor HTTPS conhecido
+        api.setBaseUrl(
+
+            'https://de1.api.radio-browser.info'
+            // || 'https://at1.api.radio-browser.info'
+            // || 'https://nl1.api.radio-browser.info'
+
+        ); // Força um servidor HTTPS conhecido
 
         const fetchedStations = await api.searchStations({
             hasGeoInfo: true,
@@ -29,7 +37,7 @@ export const fetchStations = async () => {
             // Adicione filtros adicionais conforme necessário
             //limit: 1000, // Limita o número de resultados para melhor performance
             hideBroken: true, // Esconde estações quebradas
-        });
+        }, { next: { revalidate: 60 * 60 } });
 
         // Filtra e valida os dados
         const validStations = fetchedStations.filter((station) => {
@@ -54,7 +62,9 @@ export const fetchStations = async () => {
                 station.geoLong &&
                 Math.abs(station.geoLat) <= 90 &&
                 Math.abs(station.geoLong) <= 180
-            ) // Filtra as estações com coordenadas válidas para o mapa
+            ), // Filtra as estações com coordenadas válidas para o mapa
+
+            next: { revalidateTag: { all: ['stations'] } }
         };
     } catch (error) {
         console.error('Erro ao buscar estações:', error);

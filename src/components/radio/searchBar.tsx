@@ -120,7 +120,7 @@ export default function SearchBar({ handleCategorySearch, isLoading, onClose, ca
                     <div className="mt-8 text-sm text-gray-400">
                         {categorySearch && (
                             <motion.div>
-                                <div className="max-h-48 [scrollbar-width:thin] overflow-hidden transition-transform ease-in-out delay-700 overflow-y-auto rounded-lg mt-2">
+                                <div className="max-h-48 [scrollbar-width:thin] overflow-hidden overflow-y-auto rounded-lg mt-2">
                                     <div className="uppercase font-semibold text-xs text-gray-500 mb-2">
                                         Stations
                                     </div>

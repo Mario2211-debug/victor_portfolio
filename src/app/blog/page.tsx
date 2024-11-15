@@ -1,7 +1,7 @@
 "use client";
 
 import Post from "@/components/Blog/Post";
-import data from "@/app/api/data.json";
+import data from "@/app/radioService/data.json";
 import Photo from "@/app/icons/turned-gray-laptop-computer.jpg";
 import Image from "next/image";
 import axios from "axios";
