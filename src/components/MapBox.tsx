@@ -200,7 +200,8 @@ const MapboxMap: React.FC<MapboxMapProps> = React.memo(
     // Efeito para atualizar os marcadores quando as estações ou categoria mudam
     useEffect(() => {
       addMarkers();
-    }, [(addMarkers)]);
+      
+    }, [(addMarkers)] );
 
     return (
 

@@ -30,10 +30,9 @@ export default function AboutMe() {
       }
     },
     Profile: `
-      Desenvolvedor Full Stack com experiência em projetos web baseados em React e NodeJS,
-      automação de processos e integração de sistemas. Familiarizado com ferramentas e tecnologias
-      como Next.js, Node.js, MongoDB e MySQL, Tailwind CSS e React para desenvolver aplicações funcionais, escaláveis
-      e orientadas ao usuário. 
+     Full Stack Developer with experience in React and NodeJS-based web projects, process automation and 
+      systems integration. Familiar with tools and technologies such as Next.js, Node.js, MongoDB and MySQL, 
+      Tailwind CSS and React to develop functional, scalable and user-oriented applications.  
     `,
     WorkExperience: [
       {
