@@ -6,8 +6,8 @@ import Post from "@/components/Blog/Post";
 import { useEffect, useState } from "react";
 import { StaticImageData } from "next/image";
 import axios from "axios";
-import data from "@/app/radioService/data.json";
-import projectData from '@/app/radioService/projects.json'
+import data from "@/app/api/data.json";
+import projectData from '@/app/api/projects.json'
 import { InformationCircleIcon } from "@heroicons/react/solid";
 
 

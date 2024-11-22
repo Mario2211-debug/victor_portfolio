@@ -1,6 +1,6 @@
 import Item from "@/components/Item";
 import { title } from "process";
-import project from "@/app/radioService/projects.json";
+import project from "@/app/api/projects.json";
 
 export default function Projects() {
   const renderBrieflyText = () => {

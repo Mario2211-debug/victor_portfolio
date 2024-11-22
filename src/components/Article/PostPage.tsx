@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, usePathname } from "next/navigation";
 import axios from "axios";
 import type { StaticImageData } from "next/image";
-import offlineData from "@/app/radioService/data.json";
+import offlineData from "@/app/api/data.json";
 //import {offlineData} from "@/app/api/apiPosts";
 import { format } from "date-fns";
 import ReactMarkdown from 'react-markdown';

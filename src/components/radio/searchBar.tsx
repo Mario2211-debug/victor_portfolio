@@ -1,5 +1,5 @@
 'use client'
-import { SearchIcon, SunIcon, XIcon } from '@heroicons/react/outline';
+import { MoonIcon, SearchIcon, SunIcon, XIcon } from '@heroicons/react/outline';
 import React, { useCallback, useMemo, useEffect, useState, useRef } from "react";
 import debounce from 'lodash.debounce';
 import Image from 'next/image';
@@ -43,7 +43,7 @@ type Station = {
 interface SearchBarProps {
     id: any,
     handleCategorySearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    isLoading: boolean;
+    isLoading?: boolean;
     onClose: () => void;
     categorySearch: any
     filteredStations: any
@@ -61,7 +61,7 @@ interface SearchBarProps {
 
 // }
 
-export default function SearchBar({ handleCategorySearch, isLoading, onClose, categorySearch, filteredStations, handleRadioSelect }: SearchBarProps) {
+export default function SearchBar({ handleCategorySearch, onClose, categorySearch, isLoading, filteredStations, handleRadioSelect }: SearchBarProps) {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const openSearch = () => setIsSearchOpen(true);
     const closeSearch = () => setIsSearchOpen(false);
@@ -69,7 +69,11 @@ export default function SearchBar({ handleCategorySearch, isLoading, onClose, ca
 
     const [searchTerm, setSearchTerm] = useState("");
 
-    console.log(sample.src)
+    const gradientBorder = theme === "light"
+        ? "bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 border-neutral-300"
+        : "bg-gradient-to-r from-neutral-950 via-neutral-900 to-neutral-950 border-neutral-800";
+
+
 
     return (
         <>
@@ -83,7 +87,7 @@ export default function SearchBar({ handleCategorySearch, isLoading, onClose, ca
                 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}>
 
-                <div className={`p-8 rounded-2xl w-full max-w-lg border bg-black ${theme === 'light' ? 'bg-gray-100' : 'text-white border-slate-900'}`}>
+                <div className={`relative p-8 rounded-2xl w-full max-w-lg border backdrop-blur-lg bg-opacity-65 shadow-lg  ${gradientBorder}`}>
                     <div className="flex items-center gap-4">
                         {/* Barra de pesquisa */}
                         <SearchIcon className="h-5 w-5 text-gray-500" />
@@ -93,9 +97,9 @@ export default function SearchBar({ handleCategorySearch, isLoading, onClose, ca
                             onChange={handleCategorySearch}  // Usa a função handleCategorySearch
                             //value={searchTerm}
                             placeholder="Type a command or search..."
-                            className="w-full h-8 bg-transparent text-gray-300 placeholder-gray-500 focus:outline-none" />
+                            className={`w-full p-4 h-8 rounded-sm bg-transparent text-gray-300 placeholder-gray-500  focus:border-none focus:outline outline-none  ${theme === 'light' ? 'border-neutral-300 focus:outline-neutral-300 text-neutral-800 ' : 'border-neutral-800 focus:outline-neutral-700 '}`} />
 
-                        <div className={`flex p-4 ${isLoading === true ? "flex items-center right-1/3" : "[display:none]"}`}
+                        {/* <div className={`flex p-4 ${isLoading === true ? "flex items-center right-1/3" : "[display:none]"}`}
                             style={{
                                 backgroundImage: `url(${spin.src})`,
                                 backgroundPosition: `right`,
@@ -104,7 +108,8 @@ export default function SearchBar({ handleCategorySearch, isLoading, onClose, ca
                                 width: "0.5rem",
                                 height: "0.5rem"
                             }}>
-                        </div>
+
+                        </div> */}
 
 
                         {/* Botão de fechar */}
@@ -127,9 +132,9 @@ export default function SearchBar({ handleCategorySearch, isLoading, onClose, ca
                                     {filteredStations.map((station: any) => (
                                         <>
                                             <div key={station.id} onClick={() => handleRadioSelect(station)}
-                                                className={`flex items-center w-[-webkit-fill-available] gap-4 p-2 cursor-pointer hover:bg-opacity-20 hover:rounded-md ${theme === 'light' ? 'hover:bg-gray-300' : 'hover:bg-gray-700'}`}>
+                                                className={`flex items-center w-[-webkit-fill-available] gap-4 p-2 cursor-pointer hover:bg-opacity-20 hover:rounded-md ${theme === 'light' ? 'hover:bg-gray-300' : 'hover:bg-neutral-500'}`}>
                                                 <div className='flex gap-2 items-center'>
-                                                    <span className='flex bg-slate-900 rounded w-10 h-10 '>
+                                                    <span className='flex bg-neutral-900 rounded w-10 h-10 '>
                                                         <img src={station.favicon || `${sample.src}`} alt={`${station.name} logo`} placeholder="blur"
                                                             // blurDataURL="./app/icons/57.jpg" // Carrega um blur até a imagem estar pronta
                                                             onError={(e) => {
@@ -173,21 +178,23 @@ export default function SearchBar({ handleCategorySearch, isLoading, onClose, ca
                                 </div >
                             </motion.div >
                         )}
-                        <div className="uppercase  pt-2 font-semibold text-xs text-gray-500 mb-2">
+                        <div className="uppercase pt-2 font-semibold text-xs text-gray-500 mb-2">
                             Appearance
                         </div>
                         <div
-                            className={`grid items-center justify-between py-2 px-2 hover:cursor-pointer rounded-md ${theme === 'light' ? 'hover:bg-slate-300' : 'hover:bg-slate-800'}`}
+                            className={`grid items-center justify-between py-2 px-2 hover:bg-opacity-20 hover:cursor-pointer rounded-md ${theme === 'light' ? 'hover:bg-gray-300' : 'hover:bg-neutral-700'}`}
                             onClick={theme === 'light' ? () => setTheme('dark') : () => setTheme('light')}>
                             <div className='flex items-center gap-4 '>
                                 <div className='flex'>
-                                    <span className={`rounded-md p-2 ${theme === 'light' ? 'bg-gray-200' : 'bg-gray-900'}`}>
-                                        <SunIcon className='w-6 h-6' />
+                                    <span className={`rounded-md p-2 ${theme === 'light' ? 'bg-yellow-400  text-neutral-700' : 'bg-neutral-300 text-black'}`}>
+
+                                        {theme === 'light' ? <SunIcon className='w-6 h-6' /> : <MoonIcon className='w-6 h-6' />}
+
                                     </span>
                                 </div>
                                 <div className='grid'>
-                                    <span className={`font-semibold ${theme === 'light' ? 'text-neutral-600' : 'text-white'}`}>Switch to light mode</span>
-                                    <span className={`text-gray-500`}>Currently in dark mode</span>
+                                    <span className={`font-semibold ${theme === 'light' ? 'text-neutral-600' : 'text-white'}`}>Switch to {theme == 'light' ? 'dark' : 'light'} mode</span>
+                                    <span className={`text-gray-500`}>Currently in {theme} mode</span>
                                 </div>
 
                             </div>
