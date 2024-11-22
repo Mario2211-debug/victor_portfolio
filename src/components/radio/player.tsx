@@ -1,4 +1,4 @@
-
+'use client'
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -13,7 +13,6 @@ import {
 } from "@heroicons/react/solid";
 import { format } from 'date-fns'
 import spin from './spin.gif'
-import { useTheme } from "next-themes";
 
 
 const PlayerComponent = ({ selectedRadio, theme, toggleTheme, toggleSearch }) => {

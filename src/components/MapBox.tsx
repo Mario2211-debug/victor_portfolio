@@ -145,9 +145,7 @@ const MapComponent: React.FC<MapboxMapProps> = ({ radios, currentCategory, onRad
       };
 
       if (mapRef.current.getSource("selected-radio")) {
-        (mapRef.current.getSource("selected-radio") as mapboxgl.GeoJSONSource).setData(
-          selectedFeature
-        );
+        mapRef.current.getSource("selected-radio").setData(selectedFeature);
       } else {
         mapRef.current.addSource("selected-radio", {
           type: "geojson",
