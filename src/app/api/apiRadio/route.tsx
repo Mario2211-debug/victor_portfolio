@@ -1,8 +1,7 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from 'next/server';
 import { RadioBrowserApi } from 'radio-browser-api';
-import { setCache } from '../util/indexedDBHelper';
 
-export default async function fetchStations() {
+export async function GET(request: Request) {
     try {
         const api = new RadioBrowserApi('RadioApp', true); // Força HTTPS
         api.setBaseUrl('https://de1.api.radio-browser.info'); // Define o servidor base
@@ -25,8 +24,7 @@ export default async function fetchStations() {
             return hasHttpsUrl && hasValidCoords;
         });
 
-        setCache('stations', validStations)
-        return {
+        const responseData = {
             allStations: validStations,
             stationsWithGeo: validStations.filter((station: any) =>
                 station.geoLat &&
@@ -35,8 +33,9 @@ export default async function fetchStations() {
                 Math.abs(station.geoLong) <= 180
             ),
         };
+        return NextResponse.json(responseData);
     } catch (error) {
         console.error('Erro ao buscar estações:', error);
-
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 }
