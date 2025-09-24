@@ -30,7 +30,8 @@ const MapComponent: React.FC<MapboxMapProps> = ({ radios, currentCategory, onRad
       // Inicializa o mapa apenas uma vez
       mapRef.current = new mapboxgl.Map({
         container: 'map',
-        style: `mapbox://styles/mapbox/${theme}-v8`, // Mapbox style URL
+        style: `mapbox://styles/mapbox/${theme}-v8`,
+        // Mapbox style URL
         // theme === "light"
         //   ? "mapbox://styles/mapbox/light-v11"
         //   : "mapbox://styles/mapbox/dark-v11",
