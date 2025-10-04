@@ -114,7 +114,7 @@ export const isNotEmpty = (value: string): boolean => {
  * @returns Array sem duplicatas
  */
 export const removeDuplicates = <T>(array: T[]): T[] => {
-  return [...new Set(array)];
+  return Array.from(new Set(array));
 };
 
 /**

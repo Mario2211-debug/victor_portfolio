@@ -1,6 +1,6 @@
 // components/AdvancedCalculator.tsx
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   CalculatorIcon, 
@@ -20,13 +20,13 @@ const AdvancedCalculator = () => {
     const [toCurrency, setToCurrency] = useState('EUR');
 
     // Taxas de câmbio atualizadas
-    const exchangeRates = {
+    const exchangeRates = useMemo(() => ({
         USD: { EUR: 0.92, GBP: 0.79, BRL: 5.15, JPY: 149.5 },
         EUR: { USD: 1.09, GBP: 0.86, BRL: 5.61, JPY: 162.8 },
         GBP: { USD: 1.27, EUR: 1.16, BRL: 6.52, JPY: 189.2 },
         BRL: { USD: 0.19, EUR: 0.18, GBP: 0.15, JPY: 29.0 },
         JPY: { USD: 0.0067, EUR: 0.0061, GBP: 0.0053, BRL: 0.034 },
-    };
+    }), []);
 
     // Calculadora básica
     const inputNumber = (num) => {

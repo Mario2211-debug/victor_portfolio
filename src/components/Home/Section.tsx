@@ -1,6 +1,4 @@
 "use client";
-import Image from "next/image";
-import profile from "@/app/icons/profile.jpg";
 import Brands from "../../app/util/Brands";
 import { useTheme } from "next-themes";
 
@@ -11,11 +9,11 @@ export default function PreSection() {
       <div className="text-center  md:w-[400px] w-[350px]  py-4">
         <div className="mobile:px-2 gap-3 flex">
           <span className="relative content-center place-items-center">
-            <Image
-              src={profile}
-              alt="Mario Afonso"
-              className="rounded-full h-14 w-14 m-2 object-cover"
-            />
+            <div
+              className="rounded-full h-14 w-14 m-2 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg"
+            >
+              MA
+            </div>
           </span>
           <div className="flex tracking-wide text-center w-full">
 
