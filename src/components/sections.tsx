@@ -97,7 +97,7 @@ export const About = () => {
     const { theme } = useTheme();
 
     return (
-        <section className="flex flex-col items-center">
+        <section className="flex items-center">
             <div className={`grid gap-4 justify-center ${COMPONENT_WIDTHS.SMALL} mobile:${COMPONENT_WIDTHS.MEDIUM} ${SECTION_CONFIG.MAX_HEIGHT} ${SECTION_CONFIG.OVERFLOW} ${SECTION_CONFIG.TRANSITION} ${SECTION_CONFIG.SCROLLBAR}`}>
                 <motion.div
                     className={`${CARD_CONFIG.PADDING} place-self-center justify-between ${CARD_CONFIG.BLUR_COVER}`}
@@ -135,16 +135,16 @@ export const About = () => {
                             
                             {/* Tags de habilidades */}
                             <div className="flex flex-wrap gap-2 float-right">
-                                <span className={`py-1 px-2 home-element ${FONT_SIZES.EXTRA_SMALL} ${COLORS.SECONDARY.LIGHT}`}>
+                                <span className={`py-1 px-2 home-element ${FONT_SIZES.SMALL} ${COLORS.SECONDARY.LIGHT}`}>
                                     Developer
                                 </span>
-                                <span className={`py-1 px-2 home-element ${FONT_SIZES.EXTRA_SMALL} ${COLORS.SECONDARY.LIGHT}`}>
+                                <span className={`py-1 px-2 home-element ${FONT_SIZES.SMALL} ${COLORS.SECONDARY.LIGHT}`}>
                                     Database
                                 </span>
-                                <span className={`py-1 px-2 home-element ${FONT_SIZES.EXTRA_SMALL} ${COLORS.SECONDARY.LIGHT}`}>
+                                <span className={`py-1 px-2 home-element ${FONT_SIZES.SMALL} ${COLORS.SECONDARY.LIGHT}`}>
                                     UI/UX
                                 </span>
-                                <span className={`py-1 px-2 home-element ${FONT_SIZES.EXTRA_SMALL} ${COLORS.SECONDARY.LIGHT}`}>
+                                <span className={`py-1 px-2 home-element ${FONT_SIZES.SMALL} ${COLORS.SECONDARY.LIGHT}`}>
                                     APIs
                                 </span>
                             </div>
@@ -196,12 +196,12 @@ export const Projects = () => {
                             {/* Header do projeto com período e tipo */}
                             <div className="gap-2">
                                 <span className="flex justify-between">
-                                    <p className={`${COLORS.SECONDARY.LIGHT} ${FONT_SIZES.EXTRA_SMALL} tracking-wide`}>
+                                    <p className={`${COLORS.SECONDARY.LIGHT} ${FONT_SIZES.SMALL} tracking-wide`}>
                                         {project.timeframe}
                                     </p>
                                     {project.type && (
                                         <a href={project.link} aria-label={`Visitar ${project.type} do projeto ${project.name}`}>
-                                            <p className={`${FONT_SIZES.EXTRA_SMALL} tracking-wide flex ${COLORS.SECONDARY.LIGHT}`}>
+                                            <p className={`${FONT_SIZES.SMALL} tracking-wide flex ${COLORS.SECONDARY.LIGHT}`}>
                                                 {project.type}
                                                 <motion.button
                                                     whileHover={{ rotate: 0 }}
@@ -216,13 +216,13 @@ export const Projects = () => {
                                 </span>
                                 
                                 {/* Nome do projeto */}
-                                <h2 className={`pt-2 ${FONT_SIZES.LARGE} project-element ${FONT_WEIGHTS.SEMIBOLD}`}>
+                                <h2 className={`pt-2 ${FONT_SIZES.MEDIUM} project-element ${FONT_WEIGHTS.SEMIBOLD}`}>
                                     {project.name}
                                 </h2>
                             </div>
                             
                             {/* Informações da empresa e cargo */}
-                            <p className={`${FONT_SIZES.EXTRA_SMALL} w-fit flex ${COLORS.SECONDARY.LIGHT}`}>
+                            <p className={`${FONT_SIZES.MEDIUM} w-fit flex ${COLORS.SECONDARY.LIGHT}`}>
                                 {project.role} at {project.company}
                             </p>
                             
@@ -236,7 +236,7 @@ export const Projects = () => {
                                 {project.technologies.map((tech: string, techIndex: number) => (
                                     <span 
                                         key={techIndex} 
-                                        className={`p-1 home-element ${FONT_SIZES.EXTRA_SMALL}`}
+                                        className={`p-1 home-element ${FONT_SIZES.SMALL}`}
                                     >
                                         {tech}
                                     </span>
@@ -248,7 +248,7 @@ export const Projects = () => {
             </div>
             
             {/* Gradiente de desvanecimento para suavizar a rolagem */}
-            <div className="absolute bottom-0 left-0 w-full h-16 backdrop-blur-sm"></div>
+            <div className="absolute bottom-0 left-0 w-full h-16 blur-sm"></div>
         </div>
     );
 };

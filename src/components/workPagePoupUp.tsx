@@ -6,7 +6,7 @@ export default function WorkPagePopup({ isOpen, onClose, children }) {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 flex items-center justify-center backdrop-blur-sm z-50"
+          className="fixed inset-0 flex items-center justify-center blur-cover z-50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

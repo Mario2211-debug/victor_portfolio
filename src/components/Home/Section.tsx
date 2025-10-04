@@ -1,18 +1,20 @@
 "use client";
 import Brands from "../../app/util/Brands";
 import { useTheme } from "next-themes";
+import p from "../../app/icons/profile.jpg"
+import Image from "next/image";
 
 export default function PreSection() {
   const { theme } = useTheme();
   return (
     <>
-      <div className="text-center  md:w-[400px] w-[350px]  py-4">
+      <div className="text-center md:w-[400px] w-[350px]  py-4">
         <div className="mobile:px-2 gap-3 flex">
           <span className="relative content-center place-items-center">
             <div
               className="rounded-full h-14 w-14 m-2 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg"
             >
-              MA
+              <Image src={p} fill={true} alt="Mário Afonso" style={{objectFit: "cover", borderRadius: "100%"}}	></Image>
             </div>
           </span>
           <div className="flex tracking-wide text-center w-full">

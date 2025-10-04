@@ -226,7 +226,7 @@ export default function BottomToolbar() {
 
             {/* Exibição do tempo atual */}
             <div className={`flex items-center space-x-1 ${isExpanded ? "hidden" : ""}`}>
-              <span className={`${FONT_SIZES.EXTRA_SMALL} ${theme === "light" ? COLORS.PRIMARY.LIGHT : COLORS.PRIMARY.DARK}`}>
+              <span className={`${FONT_SIZES.SMALL} ${theme === "light" ? COLORS.PRIMARY.LIGHT : COLORS.PRIMARY.DARK}`}>
                 {time.toLocaleTimeString()}
               </span>
             </div>
@@ -257,7 +257,7 @@ export default function BottomToolbar() {
 
             {/* Informação de clima */}
             <div className={`flex ${isExpanded ? "hidden" : ""}`}>
-              <span className={`${FONT_SIZES.EXTRA_SMALL} ${theme === "light" ? COLORS.PRIMARY.LIGHT : COLORS.PRIMARY.DARK}`}>
+              <span className={`${FONT_SIZES.SMALL} ${theme === "light" ? COLORS.PRIMARY.LIGHT : COLORS.PRIMARY.DARK}`}>
                 22°C
               </span>
             </div>

@@ -233,7 +233,7 @@ export const FONT_WEIGHTS = {
  * Tamanhos padrão para ícones
  */
 export const ICON_SIZES = {
-  SMALL: 'h-3.5 w-3.5',
+  SMALL: 'h-3 w-3',
   MEDIUM: 'h-5 w-5',
   LARGE: 'h-6 w-6',
   EXTRA_LARGE: 'h-8 w-8',

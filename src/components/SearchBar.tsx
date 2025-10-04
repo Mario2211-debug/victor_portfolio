@@ -5,7 +5,7 @@ export default function SearchBar({ onClose }) {
     return (
         <>
             <motion.div
-                className="fixed inset-0 backdrop-blur-sm items-center justify-center z-50 flex"
+                className="fixed inset-0 blur-cover items-center justify-center z-50 flex"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}

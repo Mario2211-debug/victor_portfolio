@@ -3,12 +3,6 @@ import { useEffect, useState } from 'react';
 
 // Importações de componentes
 import PreSection from "../components/Home/Section";
-import BottomToolbar from "@/components/BottomToolbar";
-import SearchBar from '@/components/SearchBar';
-import Blob from "@/components/blob";
-import FullScreenNavBar from "@/components/Navbar";
-import Footer from "@/components/footer";
-import CalculatorWidget from '@/components/calc';
 import { About, Contacts, Projects } from '@/components/sections';
 
 // Importações de tipos e constantes
@@ -52,7 +46,7 @@ export default function Home() {
             {/* Grid de navegação e conteúdo */}
             <div className="grid">
               {/* Navegação por abas */}
-              <ul className='flex gap-4 home-element'>
+              <ul className='flex gap-4  text-md'>
                 <button 
                   onClick={() => handleSectionChange('about')} 
                   className={`${activeSection === 'about' ? 'border-b-2 border-solid border-[#ffffff] text-[#ffffff]' : ''}`}
