@@ -1,251 +1,395 @@
+/**
+ * Componentes de seção principais do portfólio
+ * 
+ * Este arquivo contém os componentes About, Projects e Contacts
+ * que são renderizados na página principal do portfólio.
+ */
+
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { ArrowSmRightIcon, BookOpenIcon, ArrowUpIcon } from "@heroicons/react/outline";
-import Post from "@/components/Blog/Post";
-import { useEffect, useState } from "react";
-import { StaticImageData } from "next/image";
-import axios from "axios";
-import data from "@/app/api/data.json";
-import projectData from '@/app/api/projects.json'
+import { ArrowSmRightIcon, BookOpenIcon } from "@heroicons/react/outline";
 import { InformationCircleIcon } from "@heroicons/react/solid";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
+// Importações de tipos e constantes centralizadas
+import { BlogPost, OfflineData, Project, AnimationVariants, HoverVariants } from "@/types";
+import { 
+  ANIMATION_DURATION, 
+  ANIMATION_EASING, 
+  ANIMATION_DELAY,
+  CONTAINER_PADDING,
+  COMPONENT_WIDTHS,
+  SECTION_CONFIG,
+  CARD_CONFIG,
+  FONT_SIZES,
+  FONT_WEIGHTS,
+  ICON_SIZES,
+  COLORS,
+  THEME_GRADIENTS,
+  API_BASE_URL,
+  API_ENDPOINTS
+} from "@/constants";
 
-interface Post {
-    _id: string;
-    title?: string;
-    content?: string;
-    description?: string;
-    imageUrl?: string;
-    category?: string;
-    date?: Date | string;
-    readers?: string;
-    className?: string;
-    imgclassName?: string;
-    src: StaticImageData | string;
-    alt: string;
-}
+// Importações de dados locais
+import data from "@/app/api/data.json";
+import projectData from '@/app/api/projects.json';
 
-interface OfflineData {
-    posts: Post[][];
-}
+// ============================================================================
+// CONFIGURAÇÕES DE ANIMAÇÃO
+// ============================================================================
 
-// Variantes de animação compartilhadas
-const sectionVariants = {
+/**
+ * Variantes de animação para seções principais
+ */
+const sectionVariants: AnimationVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
         opacity: 1,
         y: 0,
         transition: {
-            duration: 0.6,
-            staggerChildren: 0.2
+            duration: ANIMATION_DURATION.SLOW,
+            staggerChildren: ANIMATION_DELAY.MEDIUM
         }
     }
 };
 
-const itemVariants = {
+/**
+ * Variantes de animação para itens individuais
+ */
+const itemVariants: AnimationVariants = {
     hidden: { opacity: 0, x: -20 },
     visible: {
         opacity: 1,
         x: 0,
-        transition: { duration: 0.5 }
+        transition: { duration: ANIMATION_DURATION.NORMAL }
     }
 };
 
-const cardHoverVariants = {
+/**
+ * Variantes de hover para cards
+ */
+const cardHoverVariants: HoverVariants = {
     hover: {
         scale: 1.02,
         opacity: 0.95,
         filter: "brightness(1.1)",
         transition: {
-            duration: 0.3,
-            ease: "easeInOut"
+            duration: ANIMATION_DURATION.FAST,
+            ease: ANIMATION_EASING.EASE_IN_OUT
         }
     }
 };
 
+// ============================================================================
+// COMPONENTE ABOUT
+// ============================================================================
+
+/**
+ * Componente About - Exibe informações sobre o desenvolvedor
+ * 
+ * Este componente apresenta uma breve descrição profissional,
+ * habilidades e links para mais informações.
+ */
 export const About = () => {
-    const { theme } = useTheme()
+    const { theme } = useTheme();
 
     return (
-        <>
-            <>
-                <section className="flex flex-col items-center">
-                    <div className="grid gap-4 justify-center w-[350px] mobile:w-[400px] max-h-[425px]  overflow-y-auto transition-all duration-1000 ease-in-out hide-scrollbar">
-                        <motion.div
-                            className="p-4 place-self-center justify-between blur-cover"
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                            whileHover={{
-                                opacity: 0.9,
-                                filter: `${theme === 'light' ? 'brightness(-2.75)' : 'brightness(2.75)'}`,
-                                x: 1,
-                                //rotate: 0.5,
-                                boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)"
-                            }}
-                        >
-                            {/* About Me Content */}
-                            <div className="w-fit text-justify tracking-wide whitespace-normal track">
-                                <div className="gap-2">
-                                    <p className="text-sm tracking-wide leading-6 end pb-2 [text-align-last:end] ">
-                                        Desenvolvedor Full Stack com experiência em projetos web baseados em React e NodeJS, automação de processos e integração de sistemas.
-                                        Familiarizado com ferramentas e tecnologias como Next.js, Node.js, MongoDB e MySQL, Tailwind CSS e React.
-                                    </p>
-                                </div>
-                                <div className="flex justify-between items-center">
-                                    <div>
-                                        <span className="py-1 flex px-2 home-element items-center h-0 text-[0.65rem]">
-                                            <a href="/about">
-                                                <InformationCircleIcon className={`w-5 h-5 animate-pulse rounded-full ${theme === "light" ? 'text-neutral-600' : 'text-white'}`} />
-
-                                            </a>
-                                        </span>
-                                    </div>
-                                    <div className="flex flex-wrap gap-2 float-right">
-                                        <span className="py-1 px-2 home-element  text-[0.65rem] text-gray-500">Developer</span>
-                                        <span className="py-1 px-2 home-element  text-[0.65rem] text-gray-500">Database</span>
-                                        <span className="py-1 px-2 home-element  text-[0.65rem] text-gray-500">UI/UX</span>
-                                        <span className="py-1 px-2 home-element  text-[0.65rem] text-gray-500">APIs</span>
-
-                                    </div>
-                                </div>
+        <section className="flex flex-col items-center">
+            <div className={`grid gap-4 justify-center ${COMPONENT_WIDTHS.SMALL} mobile:${COMPONENT_WIDTHS.MEDIUM} ${SECTION_CONFIG.MAX_HEIGHT} ${SECTION_CONFIG.OVERFLOW} ${SECTION_CONFIG.TRANSITION} ${SECTION_CONFIG.SCROLLBAR}`}>
+                <motion.div
+                    className={`${CARD_CONFIG.PADDING} place-self-center justify-between ${CARD_CONFIG.BLUR_COVER}`}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: ANIMATION_DURATION.SLOW }}
+                    whileHover={{
+                        opacity: CARD_CONFIG.HOVER_OPACITY,
+                        filter: `${theme === 'light' ? 'brightness(-2.75)' : 'brightness(2.75)'}`,
+                        x: 1,
+                        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)"
+                    }}
+                >
+                    {/* Conteúdo principal sobre o desenvolvedor */}
+                    <div className="w-fit text-justify tracking-wide whitespace-normal track">
+                        <div className="gap-2">
+                            <p className={`${FONT_SIZES.SMALL} tracking-wide leading-6 end pb-2 [text-align-last:end]`}>
+                                Desenvolvedor Full Stack com experiência em projetos web baseados em React e NodeJS, 
+                                automação de processos e integração de sistemas. Familiarizado com ferramentas e 
+                                tecnologias como Next.js, Node.js, MongoDB e MySQL, Tailwind CSS e React.
+                            </p>
+                        </div>
+                        
+                        {/* Footer com informações adicionais */}
+                        <div className="flex justify-between items-center">
+                            <div>
+                                <span className={`py-1 flex px-2 home-element items-center h-0 ${FONT_SIZES.EXTRA_SMALL}`}>
+                                    <a href="/about" aria-label="Mais informações sobre o desenvolvedor">
+                                        <InformationCircleIcon 
+                                            className={`${ICON_SIZES.MEDIUM} animate-pulse rounded-full ${theme === "light" ? COLORS.PRIMARY.LIGHT : 'text-white'}`} 
+                                        />
+                                    </a>
+                                </span>
                             </div>
-                        </motion.div>
+                            
+                            {/* Tags de habilidades */}
+                            <div className="flex flex-wrap gap-2 float-right">
+                                <span className={`py-1 px-2 home-element ${FONT_SIZES.EXTRA_SMALL} ${COLORS.SECONDARY.LIGHT}`}>
+                                    Developer
+                                </span>
+                                <span className={`py-1 px-2 home-element ${FONT_SIZES.EXTRA_SMALL} ${COLORS.SECONDARY.LIGHT}`}>
+                                    Database
+                                </span>
+                                <span className={`py-1 px-2 home-element ${FONT_SIZES.EXTRA_SMALL} ${COLORS.SECONDARY.LIGHT}`}>
+                                    UI/UX
+                                </span>
+                                <span className={`py-1 px-2 home-element ${FONT_SIZES.EXTRA_SMALL} ${COLORS.SECONDARY.LIGHT}`}>
+                                    APIs
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                </section>
-            </>
+                </motion.div>
+            </div>
+        </section>
+    );
+};
 
-        </>
-    )
-}
+// ============================================================================
+// COMPONENTE PROJECTS
+// ============================================================================
 
+/**
+ * Componente Projects - Exibe lista de projetos do desenvolvedor
+ * 
+ * Este componente apresenta os projetos desenvolvidos com informações
+ * sobre tecnologias utilizadas, período de desenvolvimento e links.
+ */
 export const Projects = () => {
-    const { theme } = useTheme()
+    const { theme } = useTheme();
 
-    const gradientBorder = theme === "light"
-        ? "bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200"
-        : "bg-gradient-to-r from-neutral-950 via-neutral-900 to-neutral-950";
+    // Determina o gradiente baseado no tema atual
+    const gradientBorder = theme === "light" 
+        ? THEME_GRADIENTS.LIGHT 
+        : THEME_GRADIENTS.DARK;
 
     return (
-        <>
-            <div className="flex flex-col items-center">
-                <div className="grid gap-4 justify-center w-[350px] md:w-[400px] desktop:h-[400px] h-[55vh] overflow-y-auto transition-all duration-1000 ease-in-out hide-scrollbar pb-16 relative">
-                    {projectData.projects.map((project, index) => (
-                        <motion.div
-                            key={index}
-                            className="p-4 place-self-center justify-between blur-cover"
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: index * 0.2 }}
-                            whileHover={{
-                                opacity: 0.9,
-                                rotate: 0.5,
-                            }}
-                        >
-                            <div className="w-fit">
-                                <div className="gap-2">
-                                    <span className="flex justify-between">
-                                        <p className="text-gray-400 text-[0.65rem] tracking-wide">{project.timeframe}</p>
-                                        {project.type && (
-                                            <a href={project.link}>
-                                                <p className="text-[0.65rem] tracking-wide flex text-gray-400">
-                                                    {project.type}
-                                                    <motion.button
-                                                        whileHover={{ rotate: 0 }}
-                                                        initial={{ rotate: -45 }}
-                                                        className=""
-                                                    >
-                                                        <ArrowSmRightIcon className="h-3.5 w-3.5 transition-transform" />
-                                                    </motion.button>
-                                                </p>
-                                            </a>
-                                        )}
-                                    </span>
-                                    <h2 className="pt-2 text-md project-element font-semibold">{project.name}</h2>
-                                </div>
-                                <p className="text-xs w-fit flex text-gray-400">
-                                    {project.role} at {project.company}
-                                </p>
-                                <p className="project-element text-sm text-justify font-thin tracking-wide py-4">{project.description}</p>
-                                <div className="flex flex-wrap gap-2 float-right">
-                                    {project.technologies.map((tech, techIndex) => (
-                                        <span key={techIndex} className="p-1 home-element text-[0.65rem]">
-                                            {tech}
-                                        </span>
-                                    ))}
-                                </div>
+        <div className="flex flex-col items-center">
+            <div className={`grid gap-4 justify-center ${COMPONENT_WIDTHS.SMALL} md:${COMPONENT_WIDTHS.MEDIUM} desktop:h-[400px] h-[55vh] ${SECTION_CONFIG.OVERFLOW} ${SECTION_CONFIG.TRANSITION} ${SECTION_CONFIG.SCROLLBAR} pb-16 relative`}>
+                {projectData.projects.map((project: Project, index: number) => (
+                    <motion.div
+                        key={index}
+                        className={`${CARD_CONFIG.PADDING} place-self-center justify-between ${CARD_CONFIG.BLUR_COVER}`}
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ 
+                            duration: ANIMATION_DURATION.SLOW, 
+                            delay: index * ANIMATION_DELAY.MEDIUM 
+                        }}
+                        whileHover={{
+                            opacity: CARD_CONFIG.HOVER_OPACITY,
+                            rotate: CARD_CONFIG.HOVER_ROTATION,
+                        }}
+                    >
+                        <div className="w-fit">
+                            {/* Header do projeto com período e tipo */}
+                            <div className="gap-2">
+                                <span className="flex justify-between">
+                                    <p className={`${COLORS.SECONDARY.LIGHT} ${FONT_SIZES.EXTRA_SMALL} tracking-wide`}>
+                                        {project.timeframe}
+                                    </p>
+                                    {project.type && (
+                                        <a href={project.link} aria-label={`Visitar ${project.type} do projeto ${project.name}`}>
+                                            <p className={`${FONT_SIZES.EXTRA_SMALL} tracking-wide flex ${COLORS.SECONDARY.LIGHT}`}>
+                                                {project.type}
+                                                <motion.button
+                                                    whileHover={{ rotate: 0 }}
+                                                    initial={{ rotate: -45 }}
+                                                    className=""
+                                                >
+                                                    <ArrowSmRightIcon className={`${ICON_SIZES.SMALL} transition-transform`} />
+                                                </motion.button>
+                                            </p>
+                                        </a>
+                                    )}
+                                </span>
+                                
+                                {/* Nome do projeto */}
+                                <h2 className={`pt-2 ${FONT_SIZES.LARGE} project-element ${FONT_WEIGHTS.SEMIBOLD}`}>
+                                    {project.name}
+                                </h2>
                             </div>
-                        </motion.div>
-                    ))}
-                </div>
-                {/* Gradiente de desvanecimento no final para suavizar a rolagem */}
-                <div className="absolute bottom-0 left-0 w-full h-16 backdrop-blur-sm"></div>
-
+                            
+                            {/* Informações da empresa e cargo */}
+                            <p className={`${FONT_SIZES.EXTRA_SMALL} w-fit flex ${COLORS.SECONDARY.LIGHT}`}>
+                                {project.role} at {project.company}
+                            </p>
+                            
+                            {/* Descrição do projeto */}
+                            <p className={`project-element ${FONT_SIZES.SMALL} text-justify ${FONT_WEIGHTS.THIN} tracking-wide py-4`}>
+                                {project.description}
+                            </p>
+                            
+                            {/* Tags de tecnologias */}
+                            <div className="flex flex-wrap gap-2 float-right">
+                                {project.technologies.map((tech: string, techIndex: number) => (
+                                    <span 
+                                        key={techIndex} 
+                                        className={`p-1 home-element ${FONT_SIZES.EXTRA_SMALL}`}
+                                    >
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
+                ))}
             </div>
+            
+            {/* Gradiente de desvanecimento para suavizar a rolagem */}
+            <div className="absolute bottom-0 left-0 w-full h-16 backdrop-blur-sm"></div>
+        </div>
+    );
+};
 
-        </>
-    )
-}
+// ============================================================================
+// COMPONENTE CONTACTS (BLOG)
+// ============================================================================
 
+/**
+ * Componente Contacts - Exibe lista de posts do blog
+ * 
+ * Este componente apresenta os posts do blog com título e link
+ * para leitura completa. Inclui fallback para dados offline.
+ */
 export const Contacts = () => {
+    const [posts, setPosts] = useState<BlogPost[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-    const [posts, setPosts] = useState<Post[]>([]);
-
+    /**
+     * Busca posts do blog via API
+     * Implementa fallback para dados offline em caso de erro
+     */
     useEffect(() => {
         const fetchPosts = async () => {
             try {
+                setIsLoading(true);
+                setError(null);
+                
                 console.log("Fetching posts...");
-                const res = await axios.get<Post[]>(
-                    `${process.env.NEXT_PUBLIC_API_URL}/blog`
+                const res = await axios.get<BlogPost[]>(
+                    `${API_BASE_URL}${API_ENDPOINTS.BLOG}`,
+                    { timeout: REQUEST_TIMEOUT }
                 );
-                const sortedPosts = res.data.sort((a: Post, b: Post) => {
-                    return new Date(b.date).getTime() - new Date(a.date).getTime();
+                
+                // Ordena posts por data de publicação (mais recentes primeiro)
+                const sortedPosts = res.data.sort((a: BlogPost, b: BlogPost) => {
+                    return new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime();
                 });
+                
                 console.log("Posts fetched:", res.data);
                 setPosts(sortedPosts);
             } catch (error) {
                 console.error("Erro ao buscar posts: ", error);
-                // Fallback to offline data if API call fails
-                const offlinePostArray = (data as OfflineData).posts.flat();
-                setPosts(offlinePostArray);
+                setError("Erro ao carregar posts do blog");
+                
+                // Fallback para dados offline se a API falhar
+                try {
+                    console.log("Tentando carregar dados offline...");
+                    const offlineData = data as OfflineData;
+                    
+                    if (offlineData && offlineData.posts && Array.isArray(offlineData.posts)) {
+                        // A estrutura é posts: [[post1, post2], [post3, post4]]
+                        const offlinePostArray = offlineData.posts.flat();
+                        
+                        if (offlinePostArray.length > 0) {
+                            setPosts(offlinePostArray);
+                            setError(null); // Limpa o erro se conseguiu carregar offline
+                            console.log("Dados offline carregados com sucesso:", offlinePostArray.length, "posts");
+                        } else {
+                            throw new Error("Nenhum post encontrado nos dados offline");
+                        }
+                    } else {
+                        throw new Error("Estrutura de dados offline inválida");
+                    }
+                } catch (offlineError) {
+                    console.error("Erro ao carregar dados offline:", offlineError);
+                    setError("Erro ao carregar dados offline");
+                }
+            } finally {
+                setIsLoading(false);
             }
         };
+
         fetchPosts();
     }, []);
 
+    // Exibe estado de carregamento
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center h-32">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-400"></div>
+            </div>
+        );
+    }
+
+    // Exibe estado de erro apenas se não conseguiu carregar nem online nem offline
+    if (error && posts.length === 0) {
+        return (
+            <div className="flex flex-col items-center justify-center h-32 text-center">
+                <p className={`${COLORS.SECONDARY.LIGHT} ${FONT_SIZES.SMALL}`}>
+                    {error}
+                </p>
+                <p className={`${COLORS.SECONDARY.LIGHT} ${FONT_SIZES.EXTRA_SMALL} mt-2`}>
+                    Verifique sua conexão e tente novamente
+                </p>
+            </div>
+        );
+    }
+
     return (
         <div className="">
-            <div className="flex w-[350px] md:w-[400px] flex-col gap-4 ">
-                {posts.map((blog) => (
+            {/* Indicador discreto quando usando dados offline */}
+            {error && posts.length > 0 && (
+                <div className="mb-2 text-center">
+                    <p className={`${FONT_SIZES.EXTRA_SMALL} ${COLORS.SECONDARY.LIGHT} opacity-75`}>
+                        📡 Usando dados offline
+                    </p>
+                </div>
+            )}
+            
+            <div className={`flex ${COMPONENT_WIDTHS.SMALL} md:${COMPONENT_WIDTHS.MEDIUM} flex-col gap-4`}>
+                {posts.map((blog: BlogPost) => (
                     <motion.div
                         key={blog._id}
-                        className="flex items-center justify-between border blur-cover p-2 "
+                        className="flex items-center justify-between border blur-cover p-2"
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
+                        transition={{ 
+                            duration: ANIMATION_DURATION.SLOW, 
+                            delay: ANIMATION_DELAY.MEDIUM 
+                        }}
                         whileHover={{
-                            opacity: 0.9,
-                            //background: "linear-gradient(135deg, rgba(255, 92, 88, 0.8), rgba(88, 185, 255, 0.8), rgba(88, 255, 163, 0.8))",
-                            //filter: "blur(4px)",
-                            // x: 2, 
+                            opacity: CARD_CONFIG.HOVER_OPACITY,
                             filter: "brightness(2.75)",
-                            rotate: -0.5,
-                            //y: -2,
+                            rotate: -CARD_CONFIG.HOVER_ROTATION,
                             boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.15)"
-                        }}>
-
+                        }}
+                    >
+                        {/* Link para o post do blog */}
                         <Link legacyBehavior href={`blog/${blog._id}`} passHref>
-
-                            <a className="text-base font-medium flex items-center gap-3">
-                                <BookOpenIcon className="h-5 w-5  text-gray-400 group-hover:text-blue-400" />
-                                <span className="">  {blog.title}</span>
+                            <a className={`${FONT_SIZES.MEDIUM} ${FONT_WEIGHTS.MEDIUM} flex items-center gap-3`}>
+                                <BookOpenIcon className={`${ICON_SIZES.MEDIUM} ${COLORS.SECONDARY.LIGHT} group-hover:text-blue-400`} />
+                                <span className="">{blog.title}</span>
                             </a>
                         </Link>
-                        <ArrowSmRightIcon className="w-5 h-5 text-gray-500 hover:text-blue-500 hover:-rotate-1" />
+                        
+                        {/* Ícone de seta indicando link */}
+                        <ArrowSmRightIcon className={`${ICON_SIZES.MEDIUM} ${COLORS.SECONDARY.LIGHT} hover:text-blue-500 hover:-rotate-1`} />
                     </motion.div>
                 ))}
             </div>
         </div>
     );
-}
+};

@@ -1,162 +1,374 @@
+/**
+ * Página principal do blog
+ * 
+ * Esta página exibe a lista de posts do blog com design moderno
+ * e funcionalidade de fallback para dados offline.
+ */
+
 "use client";
 
-import Post from "@/components/Blog/Post";
-import data from "@/app/api/data.json";
-import Photo from "@/app/icons/turned-gray-laptop-computer.jpg";
-import Image from "next/image";
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { StaticImageData } from "next/image";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { CalendarIcon, ClockIcon, ArrowRightIcon } from "@heroicons/react/outline";
+import { useTheme } from "next-themes";
+
+// Importações de componentes e dados
+import data from "@/app/api/data.json";
 import { LeftArrow, RightArrow } from "../icons/IconsSvg";
 
-interface Post {
-  _id: string;
-  title?: string;
-  content?: string;
-  description?: string;
-  imageUrl?: string;
-  category?: string;
-  date?: Date | string;
-  readers?: string;
-  className?: string;
-  imgclassName?: string;
-  src: StaticImageData | string;
-  alt: string;
-}
+// Importações de tipos e constantes
+import { BlogPost, OfflineData } from "@/types";
+import { 
+  ANIMATION_DURATION, 
+  ANIMATION_EASING,
+  COLORS,
+  FONT_SIZES,
+  FONT_WEIGHTS,
+  CONTAINER_PADDING,
+  API_BASE_URL,
+  API_ENDPOINTS,
+  REQUEST_TIMEOUT
+} from "@/constants";
 
-interface OfflineData {
-  posts: Post[][];
-}
+// ============================================================================
+// COMPONENTE PRINCIPAL
+// ============================================================================
 
+/**
+ * Componente principal da página do blog
+ */
 export default function Blog() {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const { theme } = useTheme();
 
+  /**
+   * Busca posts do blog com fallback offline
+   */
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        console.log("Fetching posts...");
-        const res = await axios.get<Post[]>(
-          `${process.env.NEXT_PUBLIC_API_URL}/blog`
-        );
-        const sortedPosts = res.data.sort((a: Post, b: Post) => {
-          return new Date(b.date).getTime() - new Date(a.date).getTime();
+        setLoading(true);
+        setError(null);
+        
+        console.log("🌐 Buscando posts da API...");
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
+
+        let res;
+        try {
+          res = await fetch(`${API_BASE_URL}${API_ENDPOINTS.BLOG}`, {
+            signal: controller.signal
+          });
+        } finally {
+          clearTimeout(timeoutId);
+        }
+
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        const apiPosts = await res.json();
+        const sortedPosts = apiPosts.sort((a: BlogPost, b: BlogPost) => {
+          return new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime();
         });
-        console.log("Posts fetched:", res.data);
+        
+        console.log("✅ Posts da API carregados:", sortedPosts.length);
         setPosts(sortedPosts);
-      } catch (error) {
-        console.error("Erro ao buscar posts: ", error);
-        // Fallback to offline data if API call fails
-        const offlinePostArray = (data as OfflineData).posts.flat();
-        setPosts(offlinePostArray);
+        
+      } catch (apiError) {
+        console.warn("⚠️ Erro na API, usando dados offline:", apiError);
+        
+        try {
+          const offlineData = data as OfflineData;
+          const offlinePostArray = offlineData.posts.flat();
+          
+          if (offlinePostArray.length > 0) {
+            setPosts(offlinePostArray);
+            setError("API indisponível - usando dados offline");
+            console.log("✅ Dados offline carregados:", offlinePostArray.length);
+          } else {
+            throw new Error("Nenhum post encontrado nos dados offline");
+          }
+        } catch (offlineError) {
+          console.error("❌ Falha total:", offlineError);
+          setError("Erro ao carregar posts do blog");
+        }
+      } finally {
+        setLoading(false);
       }
     };
+
     fetchPosts();
   }, []);
 
-  const last = posts.at(-1);
+  /**
+   * Formata data para exibição
+   */
+  const formatDate = (dateString: string | Date | undefined): string => {
+    if (!dateString) return "Data não disponível";
+    
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('pt-BR', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    } catch {
+      return "Data inválida";
+    }
+  };
+
+  /**
+   * Calcula tempo de leitura estimado
+   */
+  const getReadingTime = (content: string | undefined): string => {
+    if (!content) return "2 min";
+    
+    const wordsPerMinute = 200;
+    const wordCount = content.split(/\s+/).length;
+    const minutes = Math.ceil(wordCount / wordsPerMinute);
+    
+    return `${minutes} min`;
+  };
+
+  // Estado de carregamento
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-400"></div>
+      </div>
+    );
+  }
+
+  // Estado de erro
+  if (error && posts.length === 0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <p className={`${FONT_SIZES.LARGE} ${COLORS.SECONDARY.LIGHT}`}>
+            {error}
+          </p>
+          <p className={`${FONT_SIZES.SMALL} ${COLORS.SECONDARY.LIGHT} mt-2`}>
+            Verifique sua conexão e tente novamente
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  const featuredPost = posts[0];
+  const otherPosts = posts.slice(1);
 
   return (
     <>
-      <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
-        <header className="py-6">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="text-4xl font-bold">Blog</h1>
-            <p className="mt-4 font-light text-sm tracking-wide leading-normal line-clamp-4 text-gray-400">
-              Bem vindo ao meu blog pessoal. Seja você um colega desenvolvedor
-              em busca de dicas, um recrutador interessado em conhecer meu
-              processo de trabalho, ou simplesmente alguém curioso sobre o mundo
-              da tecnologia, espero que este blog ofereça valor e inspiração.
-              Aqui você encontrará tutoriais, insights sobre desafios técnicos,
-              tutoriais práticos e novidades nas áreas em que trabalho.
-            </p>
-            <h1 className="text-2xl pt-4 text-right">
-              Filtro de buscas em construção...
-            </h1>
+      <div className="layout-content-container pt-32 justify-self-center flex flex-col max-w-[960px] flex-1">
+        {/* Header do Blog */}
+        <motion.header 
+          className="py-8 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: ANIMATION_DURATION.SLOW }}
+        >
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.h1 
+              className="text-5xl font-bold mb-6"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: ANIMATION_DURATION.SLOW, delay: 0.2 }}
+            >
+              Blog
+            </motion.h1>
+            
+            <motion.p 
+              className="text-lg text-gray-400 leading-relaxed max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: ANIMATION_DURATION.SLOW, delay: 0.4 }}
+            >
+              Bem-vindo ao meu blog pessoal. Aqui você encontrará tutoriais, insights sobre 
+              desafios técnicos, práticas de desenvolvimento e novidades nas tecnologias que trabalho. 
+              Seja você um colega desenvolvedor em busca de dicas ou alguém curioso sobre tecnologia, 
+              espero que este espaço ofereça valor e inspiração.
+            </motion.p>
+
+            {/* Indicador discreto quando usando dados offline */}
+            {error && posts.length > 0 && (
+              <motion.div 
+                className="mt-6"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+              >
+                <span className="text-xs text-gray-500 bg-yellow-100 dark:bg-yellow-900 px-3 py-1 rounded-full">
+                  📡 Usando dados offline
+                </span>
+              </motion.div>
+            )}
           </div>
-        </header>
+        </motion.header>
 
-        <h1 className=" text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 text-left pb-3 pt-5">
-          Ultimas publicações
-        </h1>
-
-        {last && (
-          <div className="p-4">
-            <div className="flex items-stretch justify-between gap-4 rounded-xl second-element p-4">
-              <div className="flex flex-[2_2_0px] flex-col gap-4">
-                <div className="flex flex-col gap-1">
-                  <p className=" text-base font-bold leading-tight">
-                    {last.title}
-                  </p>
-                  <p className="text-[#999999] text-sm font-normal leading-normal">
-                    {last.description}
-                  </p>
+        {/* Post em Destaque */}
+        {featuredPost && (
+          <motion.section 
+            className="px-4 py-8"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: ANIMATION_DURATION.SLOW, delay: 0.6 }}
+          >
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-2xl font-bold text-center mb-8">
+                Post em Destaque
+              </h2>
+              
+              <motion.div 
+                className="flex flex-col md:flex-row items-stretch justify-between gap-6 rounded-xl second-element p-6 blur-cover"
+                whileHover={{ 
+                  opacity: 0.9,
+                  scale: 1.02,
+                  transition: { duration: ANIMATION_DURATION.FAST }
+                }}
+              >
+                <div className="flex flex-col gap-4 flex-1">
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-center gap-4 mb-3 text-sm text-gray-500">
+                      <div className="flex items-center gap-2">
+                        <CalendarIcon className="w-4 h-4" />
+                        <span>{formatDate(featuredPost.date)}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <ClockIcon className="w-4 h-4" />
+                        <span>{getReadingTime(featuredPost.content)}</span>
+                      </div>
+                    </div>
+                    
+                    <h3 className="text-2xl font-bold leading-tight mb-3">
+                      {featuredPost.title}
+                    </h3>
+                    <p className="text-gray-400 text-base leading-relaxed">
+                      {featuredPost.description}
+                    </p>
+                  </div>
+                  
+                  <Link
+                    href={`/blog/${featuredPost._id}`}
+                    className="flex min-w-[120px] max-w-[200px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-6 flex-row-reverse text-sm font-medium leading-normal w-fit home-element"
+                  >
+                    <span className="truncate">Ler mais</span>
+                    <ArrowRightIcon className="w-4 h-4 ml-2" />
+                  </Link>
                 </div>
-                <a
-                  href={`blog/articles/${last._id}`}
-                  className="flex min-w-[84px] max-w-[480px]  cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 flex-row-reverse text-sm font-medium leading-normal w-fit"
-                >
-                  <span className="truncate ">Read More</span>
-                </a>
-              </div>
-              <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-1">
-                <Image
-                  src={last.imageUrl}
-                  alt="Post Image"
-                  className="w-screen rounded-xl desktop:w-auto h-[10rem] laptop:w-96 object-cover"
-                  width={1000000}
-                  height={1000000}
-                />
-              </div>
+                
+                <div className="w-full md:w-80 bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-shrink-0 relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded-xl flex items-center justify-center">
+                    <div className="text-center text-gray-500 dark:text-gray-400">
+                      <div className="w-16 h-16 mx-auto mb-3 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center">
+                        📝
+                      </div>
+                      <p className="text-sm">Imagem do post</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.section>
         )}
 
-        <div className="grid grid-cols-1 tablet:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 p-4">
-          {posts.map((post) => (
-            <div key={post._id}>
-              <a href={`blog/articles/${post._id}`}>
-                <Post
-                  _id={post._id}
-                  src={post.imageUrl}
-                  alt={post.title || "Post Image"}
-                  title={post.title}
-                  content={post.content}
-                  date={post.date}
-                />
-              </a>
+        {/* Grid de Posts */}
+        <motion.section 
+          className="px-4 pb-16"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: ANIMATION_DURATION.SLOW, delay: 0.8 }}
+        >
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-2xl font-bold text-center mb-8">
+              Todas as Publicações
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {otherPosts.map((post, index) => (
+                <motion.article
+                  key={post._id}
+                  className="blur-cover rounded-xl overflow-hidden"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: ANIMATION_DURATION.NORMAL, delay: index * 0.1 }}
+                  whileHover={{ 
+                    opacity: 0.9,
+                    scale: 1.02,
+                    transition: { duration: ANIMATION_DURATION.FAST }
+                  }}
+                >
+                  <Link href={`/blog/${post._id}`}>
+                    <div className="flex flex-col h-full">
+                      <div className="w-full bg-center bg-no-repeat bg-cover rounded-t-xl aspect-video object-cover relative">
+                        <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded-t-xl flex items-center justify-center">
+                          <div className="text-center text-gray-500 dark:text-gray-400">
+                            <div className="w-12 h-12 mx-auto mb-2 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center">
+                              📄
+                            </div>
+                            <p className="text-xs">Imagem</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="p-4 flex-1 flex flex-col">
+                        <div className="flex items-center gap-4 mb-3 text-sm text-gray-500">
+                          <div className="flex items-center gap-2">
+                            <CalendarIcon className="w-4 h-4" />
+                            <span>{formatDate(post.date)}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <ClockIcon className="w-4 h-4" />
+                            <span>{getReadingTime(post.content)}</span>
+                          </div>
+                        </div>
+                        
+                        <h3 className="text-lg font-semibold leading-tight mb-2 line-clamp-2">
+                          {post.title}
+                        </h3>
+                        
+                        <p className="text-gray-400 text-sm leading-relaxed line-clamp-3 flex-1">
+                          {post.description}
+                        </p>
+                        
+                        <div className="mt-4 pt-3 border-t border-gray-600">
+                          <span className="text-xs text-gray-500">
+                            {getReadingTime(post.content)} - Leia mais
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.article>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        </motion.section>
 
-        <div className="flex items-center justify-center p-4">
-          <a href="#" className="flex size-10 items-center justify-center">
-            <div
-              className=""
-              data-icon="CaretLeft"
-              data-size="18px"
-              data-weight="regular"
-            >
+        {/* Paginação */}
+        <motion.div 
+          className="flex items-center justify-center py-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: ANIMATION_DURATION.SLOW, delay: 1.0 }}
+        >
+          <div className="flex items-center gap-3">
+            <button className="flex size-12 items-center justify-center home-element rounded-full">
               <LeftArrow />
-            </div>
-          </a>
-          <a
-            className="text-sm second-element font-bold leading-normal tracking-[0.015em] flex size-10 items-center justify-center  rounded-full"
-            href="#"
-          >
-            1
-          </a>
-
-          <a href="#" className="flex size-10 items-center justify-center">
-            <div
-              className=""
-              data-icon="CaretRight"
-              data-size="18px"
-              data-weight="regular"
-            >
+            </button>
+            
+            <button className="text-sm second-element font-bold leading-normal tracking-[0.015em] flex size-12 items-center justify-center rounded-full">
+              1
+            </button>
+            
+            <button className="flex size-12 items-center justify-center home-element rounded-full">
               <RightArrow />
-            </div>
-          </a>
-        </div>
+            </button>
+          </div>
+        </motion.div>
       </div>
     </>
   );

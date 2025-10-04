@@ -2,10 +2,10 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 interface Task {
-    title?: string;
-    description?: string;
-    hour?: string;
-    date?: string;
+    title?: string | null;
+    description?: string | null;
+    hour?: string | null;
+    date?: string | null;
 }
 
 interface taskContext {
@@ -74,10 +74,10 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
 export const useTask = () => {
     const context = useContext(TaskContext);
     if (!context) {
-        throw new Error("useTask must bu used within an taskProvider")
+        throw new Error("useTask must be used within a TaskProvider")
     }
     return context;
 }
 
 
-export default taskContext;
+export default TaskContext;

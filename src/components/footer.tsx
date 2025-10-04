@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
   const handleLink = () => setOpen(!open);
 
   return (
-    <footer className={`fixed bottom-4 left-1/2 -translate-x-1/2 w-full max-w-3xl ${pathname === "/mapView" ? 'hidden' : ''}`}>
+    <footer className={`fixed bottom-4 left-1/2 -translate-x-1/2 w-full max-w-3xl z-40 ${pathname === "/mapView" ? 'hidden' : ''}`}>
       <div className="flex mx-auto w-full items-center gap-4 justify-between px-4">
         <div className="flex gap-4 items-center">
           <LinkIcon onClick={handleLink} className="w-4 h-4 text-gray-400 hover:text-white transition-colors cursor-pointer" />
