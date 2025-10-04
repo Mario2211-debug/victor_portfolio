@@ -5,7 +5,7 @@
  * com fallback automático para dados offline em caso de erro.
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { BlogPost, OfflineData } from '@/types';
 import { API_BASE_URL, API_ENDPOINTS, REQUEST_TIMEOUT } from '@/constants';
@@ -49,7 +49,7 @@ export const useBlogPosts = () => {
   /**
    * Busca posts da API
    */
-  const fetchPosts = async () => {
+  const fetchPosts = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -84,11 +84,11 @@ export const useBlogPosts = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [loadOfflineData]);
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [fetchPosts]);
 
   return [posts, loading, error, fetchPosts] as const;
 };

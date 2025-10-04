@@ -5,8 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   CalculatorIcon, 
   CurrencyDollarIcon, 
-  ChartBarIcon,
-  ArrowPathIcon 
+  ChartBarIcon
 } from '@heroicons/react/outline';
 
 const AdvancedCalculator = () => {
