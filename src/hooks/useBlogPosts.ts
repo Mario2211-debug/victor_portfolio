@@ -23,33 +23,32 @@ export const useBlogPosts = () => {
   const [error, setError] = useState<string | null>(null);
 
   /**
-   * Carrega dados offline como fallback
-   */
-  const loadOfflineData = (): BlogPost[] => {
-    try {
-      console.log("🔄 Carregando dados offline...");
-      const offlineData = data as OfflineData;
-      
-      if (offlineData && offlineData.posts && Array.isArray(offlineData.posts)) {
-        const offlinePostArray = offlineData.posts.flat();
-        
-        if (offlinePostArray.length > 0) {
-          console.log("✅ Dados offline carregados:", offlinePostArray.length, "posts");
-          return offlinePostArray;
-        }
-      }
-      
-      throw new Error("Estrutura de dados offline inválida");
-    } catch (offlineError) {
-      console.error("❌ Erro ao carregar dados offline:", offlineError);
-      throw offlineError;
-    }
-  };
-
-  /**
    * Busca posts da API
    */
   const fetchPosts = useCallback(async () => {
+    /**
+     * Carrega dados offline como fallback
+     */
+    const loadOfflineData = (): BlogPost[] => {
+      try {
+        console.log("🔄 Carregando dados offline...");
+        const offlineData = data as OfflineData;
+        
+        if (offlineData && offlineData.posts && Array.isArray(offlineData.posts)) {
+          const offlinePostArray = offlineData.posts.flat();
+          
+          if (offlinePostArray.length > 0) {
+            console.log("✅ Dados offline carregados:", offlinePostArray.length, "posts");
+            return offlinePostArray;
+          }
+        }
+        
+        throw new Error("Estrutura de dados offline inválida");
+      } catch (offlineError) {
+        console.error("❌ Erro ao carregar dados offline:", offlineError);
+        throw offlineError;
+      }
+    };
     try {
       setLoading(true);
       setError(null);
@@ -84,7 +83,7 @@ export const useBlogPosts = () => {
     } finally {
       setLoading(false);
     }
-  }, [loadOfflineData]);
+  }, []);
 
   useEffect(() => {
     fetchPosts();

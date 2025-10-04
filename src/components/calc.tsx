@@ -92,7 +92,7 @@ const AdvancedCalculator = () => {
                 setCurrencyResult('Taxa não disponível');
             }
         }
-    }, [currencyInput, fromCurrency, toCurrency]);
+    }, [currencyInput, fromCurrency, toCurrency, exchangeRates]);
 
     const calculatePercentage = (value, percentage) => {
         return (value * percentage) / 100;

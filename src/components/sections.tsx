@@ -29,7 +29,8 @@ import {
   COLORS,
   THEME_GRADIENTS,
   API_BASE_URL,
-  API_ENDPOINTS
+  API_ENDPOINTS,
+  REQUEST_TIMEOUT
 } from "@/constants";
 
 // Importações de dados locais
