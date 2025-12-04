@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%; /* #FAFAFA */
+    --foreground: 0 0% 10%; /* #1A1A1A */
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%; /* Melhorado contraste: 40% ao invés de 45% */
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+
+    --border: 0 0% 92%;
+    --input: 0 0% 92%;
+
+    --primary: 217 91% 60%; /* Azul moderno como cor de destaque */
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+
+    --accent: 217 91% 60%; /* Mesma cor de destaque para acentos */
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --ring: 217 91% 60%; /* Ring com cor de destaque */
+    --radius: 0.5rem;
+    --radius-sm: calc(var(--radius) - 2px);
+    --radius-md: var(--radius);
+    --radius-lg: calc(var(--radius) + 2px);
+    --radius-xl: calc(var(--radius) + 4px);
+
+    --font-inter: "Inter", sans-serif;
+  }
+
+  .dark {
+    --background: 0 0% 7%; /* #111111 */
+    --foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%; /* Melhorado contraste: 70% ao invés de 65% */
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 98%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 98%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+
+    --primary: 217 91% 65%; /* Azul mais claro no dark mode */
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    --accent: 217 91% 65%; /* Mesma cor de destaque */
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --ring: 217 91% 65%; /* Ring com cor de destaque */
+  }
+}
+
+@layer utilities {
+  .rounded-sm {
+    border-radius: var(--radius-sm);
+  }
+  .rounded-md {
+    border-radius: var(--radius-md);
+  }
+  .rounded-lg {
+    border-radius: var(--radius-lg);
+  }
+  .rounded-xl {
+    border-radius: var(--radius-xl);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
