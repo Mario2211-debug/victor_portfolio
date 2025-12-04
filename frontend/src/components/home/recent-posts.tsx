@@ -19,8 +19,8 @@ export async function RecentPosts() {
     const response = await blogAPIPublic.getAll({ limit: 3 });
     if (Array.isArray(response)) {
       posts = response;
-    } else if (response.data && Array.isArray(response.data)) {
-      posts = response.data;
+    } else {
+      posts = response;
     }
   } catch (error) {
     console.error("Error fetching recent posts:", error);

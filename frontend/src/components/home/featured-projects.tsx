@@ -19,8 +19,8 @@ export async function FeaturedProjects() {
     const response = await projectsAPIPublic.getAll({ limit: 3 });
     if (Array.isArray(response)) {
       projects = response;
-    } else if (response.data && Array.isArray(response.data)) {
-      projects = response.data;
+    } else{
+      projects = []
     }
   } catch (error) {
     console.error("Error fetching featured projects:", error);
