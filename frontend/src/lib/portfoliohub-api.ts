@@ -134,10 +134,10 @@ export interface PortfolioHubResponse {
 // Cache para evitar múltiplas requisições
 let cachedData: PortfolioHubResponse | null = null;
 let cacheTimestamp: number = 0;
-// Reduzir cache para 30 segundos em desenvolvimento, 5 minutos em produção
+// Cache reduzido: 30 segundos em desenvolvimento, 2 minutos em produção
 const CACHE_DURATION = process.env.NODE_ENV === 'development' 
   ? 30 * 1000 // 30 segundos em desenvolvimento
-  : 5 * 60 * 1000; // 5 minutos em produção
+  : 2 * 60 * 1000; // 2 minutos em produção (reduzido de 5 minutos)
 
 /**
  * Busca todos os dados do portfólio da API externa
@@ -151,10 +151,16 @@ export async function fetchPortfolioHubData(forceRefresh: boolean = false): Prom
   }
 
   try {
-    const response = await fetch(PORTFOLIOHUB_API_URL, {
+    // Adicionar timestamp como query parameter para evitar cache do navegador quando necessário
+    const url = forceRefresh 
+      ? `${PORTFOLIOHUB_API_URL}?t=${Date.now()}`
+      : PORTFOLIOHUB_API_URL;
+    
+    const response = await fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+        'Cache-Control': forceRefresh ? 'no-cache' : 'max-age=120', // 2 minutos
       },
       // Forçar busca fresca quando forceRefresh for true
       cache: forceRefresh ? 'no-store' : 'default',

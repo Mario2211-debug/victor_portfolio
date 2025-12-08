@@ -34,12 +34,12 @@ export const fetcher = async (url: string) => {
 // Configuração global do SWR
 export const swrConfig: SWRConfiguration = {
   fetcher,
-  revalidateOnFocus: process.env.NODE_ENV === 'development', // Revalidar ao focar em desenvolvimento
+  revalidateOnFocus: true, // Revalidar ao focar em todas as ambientes
   revalidateOnReconnect: true,
   dedupingInterval: 2000, // Deduplica requisições dentro de 2 segundos
   errorRetryCount: 3,
   errorRetryInterval: 5000,
-  // Revalidar automaticamente a cada 30 segundos em desenvolvimento
-  refreshInterval: process.env.NODE_ENV === 'development' ? 30000 : 0,
+  // Revalidar automaticamente: 30 segundos em dev, 2 minutos em produção
+  refreshInterval: process.env.NODE_ENV === 'development' ? 30000 : 60000,
 };
 
