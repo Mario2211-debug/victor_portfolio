@@ -3,12 +3,14 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useProfile } from "@/hooks/use-portfolio-data";
+import { useTheme } from "next-themes";
 
 export function Hero() {
   const { profile, user, isLoading } = useProfile();
+  const {theme} = useTheme();
 
   return (
-    <section className="max-w-7xl mx-auto grid items-center gap-6 pb-12 pt-12 md:py-16 px-4 md:px-6 lg:px-8">
+    <section className="max-w-7xl mx-auto grid items-center gap-6 pb-8 pt-12 md:py-10 px-4 md:px-6 lg:px-8">
       <div className="flex max-w-[900px] flex-col items-start gap-3">
         <div className="flex flex-col gap-2">
           <h1 className="text-3xl font-extrabold leading-tight tracking-tight md:text-5xl lg:text-6xl lg:leading-[1.1]">
@@ -16,38 +18,36 @@ export function Hero() {
               <span className="animate-pulse">Loading...</span>
             ) : (
               <>
-                Designing digital experiences <br className="hidden sm:inline" />
-                that leave a mark.
-              </>
+              Hi, 
+              <br className="hidden sm:inline" /> 
+              i'm Mário Afonso
+                </>
             )}
           </h1>
-          <p className="text-base text-muted-foreground sm:text-lg max-w-[600px] leading-relaxed">
+          {/* <p className="text-base text-muted-foreground sm:text-lg max-w-[600px] leading-relaxed">
             {isLoading ? (
               <span className="animate-pulse">Loading...</span>
             ) : (
               profile?.title || 'Product Designer & Developer crafting minimal, purposeful experiences.'
             )}
-          </p>
+          </p> */}
         </div>
         <p className="max-w-[650px] text-base text-muted-foreground leading-relaxed sm:text-lg">
           {isLoading ? (
             <span className="animate-pulse">Loading...</span>
           ) : (
             <>
-              I&apos;m {user?.name || 'Victor'}, a {profile?.title || 'Product Designer and Developer'} based in {profile?.location || 'Brazil'}. I
-              build accessible, pixel-perfect, and performant web experiences.
+              a {profile?.title || 'Product Designer and Developer'} based in {profile?.location || 'Portugal'}.
+              Read more <Link href="/about" className={`px-1 ${theme === "dark" ? "bg-white text-black" : "bg-black text-white"}`}> about Me </Link>
             </>
           )}
         </p>
       </div>
-      <div className="flex gap-4">
-        <Button asChild>
+      {/* <div className="flex gap-4">
+        <Button variant="outline" asChild>
           <Link href="/projects">View Work</Link>
         </Button>
-        <Button variant="outline" asChild>
-          <Link href="/about">About Me</Link>
-        </Button>
-      </div>
+      </div> */}
     </section>
   );
 }

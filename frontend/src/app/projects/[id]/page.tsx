@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardItems, CardTitle } from "@/components/ui/card";
 import { projectsAPIPublic } from "@/lib/api-public";
 import { Project } from "@/types";
 
@@ -64,7 +64,7 @@ export default async function ProjectDetailPage({
             </h1>
             <div className="flex flex-wrap items-center gap-3 mb-4">
               {project.employmentType && (
-                <Badge variant="outline" className="text-sm">
+                <Badge variant="default" className={`text-sm ${project.employmentType === "PERSONAL PROJECT" ? "hidden" : ""}`}>
                   {employmentTypeLabels[project.employmentType] ||
                     project.employmentType}
                 </Badge>
@@ -90,18 +90,24 @@ export default async function ProjectDetailPage({
         </p>
       </div>
 
-      <Separator className="mb-12" />
+      <Separator className="h-0 mb-12" />
 
       {/* Project Details Grid */}
-      <div className="grid gap-8 md:grid-cols-3 mb-12 items-end">
+      <div className="grid gap-8 md:grid-cols-3 mb-12">
         {/* Main Content */}
         <div className="md:col-span-2 space-y-8">
-          {project.context && (
+          {project.items && (
             <section>
-              <h2 className="text-2xl font-bold mb-4">Context</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                {project.context}
-              </p>
+              <h2 className="text-2xl font-bold mb-4">Details</h2>
+              <ul className="m-8">
+                {
+                 project.items.map((item, i) => 
+                  <li className="mb-2 list-disc">
+                        {item}
+                    </li>
+                )}
+
+                </ul>
             </section>
           )}
 

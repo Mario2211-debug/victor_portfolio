@@ -29,7 +29,7 @@ export default function BlogPage() {
   const debouncedSearch = useDebounce(searchQuery, 500);
 
   // Buscar posts usando SWR
-  const { posts, totalPages, isLoading, isError, error } = useBlogPosts({
+  const { posts, totalPages, isLoading, isError, error, refresh } = useBlogPosts({
     category: selectedCategory || undefined,
     search: debouncedSearch || undefined,
     page: currentPage,
@@ -193,7 +193,7 @@ export default function BlogPage() {
                     </CardContent>
                     <CardContent>
                       <Button variant="ghost" size="sm" className="w-full" asChild>
-                        <Link href={`/blog/${post._id}`}>
+                        <Link href={`/blog/${post.slug || post._id}`}>
                           Read Article <span className="ml-1">→</span>
                         </Link>
                       </Button>

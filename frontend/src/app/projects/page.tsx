@@ -9,6 +9,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
+  CardItems,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -18,6 +19,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useProjects } from "@/hooks/use-projects";
 import { useDebounce } from "@/hooks/use-debounce";
 import { Project } from "@/types";
+import { useTheme } from "next-themes";
 
 const employmentTypeLabels: Record<string, string> = {
   "PERSONAL PROJECT": "Personal",
@@ -47,6 +49,7 @@ export default function ProjectsPage() {
     page: currentPage,
     limit: ITEMS_PER_PAGE,
   });
+  const {theme} = useTheme();
 
   // Extrair tipos únicos dos projetos
   const uniqueTypes = useMemo(
@@ -223,7 +226,7 @@ export default function ProjectsPage() {
                       <div className="flex items-start justify-between gap-2 mb-2">
                         <CardTitle className="text-xl">{project.name}</CardTitle>
                         {project.employmentType && (
-                          <Badge variant="outline" className="shrink-0">
+                          <Badge variant="default" className="shrink-0 text-neutral-500">
                             {employmentTypeLabels[project.employmentType] ||
                               project.employmentType}
                           </Badge>
@@ -236,7 +239,7 @@ export default function ProjectsPage() {
                     <CardContent className="flex-1 space-y-4">
                       <div className="space-y-2">
                         <div className="text-xs text-muted-foreground">
-                          <span className="font-medium">Role:</span> {project.role}
+                          <span className={`font-medium p-0.5 ${theme === "dark" ? "bg-white text-black" : "bg-black text-white"}`}>Role:</span> {project.role}
                         </div>
                         {project.company && (
                           <div className="text-xs text-muted-foreground">

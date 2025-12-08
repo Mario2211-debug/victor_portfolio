@@ -50,6 +50,9 @@ export function Navbar() {
             <Button variant="ghost" size="sm" asChild>
               <Link href="/contact">Contact</Link>
             </Button>
+            <Button variant="outline" size="sm" asChild>
+              <Link href="/Curriculum.pdf">Get my CV</Link>
+            </Button>
           </nav>
         </div>
       </div>

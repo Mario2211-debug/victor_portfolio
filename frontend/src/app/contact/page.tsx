@@ -12,26 +12,27 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useTheme } from "next-themes";
 
 const socialLinks = [
   {
     name: "GitHub",
-    url: "https://github.com/victor",
+    url: "https://github.com/Mario2211-debug",
     icon: "→",
   },
   {
     name: "LinkedIn",
-    url: "https://linkedin.com/in/victor",
+    url: "https://linkedin.com/in/mario-afonso-018107141",
     icon: "→",
   },
   {
     name: "Twitter",
-    url: "https://twitter.com/victor",
+    url: "https://twitter.com/mario",
     icon: "→",
   },
   {
     name: "Email",
-    url: "mailto:victor@example.com",
+    url: "mailto:marioafonso1997@gmail.com",
     icon: "→",
   },
 ];
@@ -44,6 +45,7 @@ export default function ContactPage() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const {theme} = useTheme()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -86,7 +88,7 @@ export default function ContactPage() {
       <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
         {/* Contact Form */}
         <div className="md:col-span-2">
-          <Card>
+          <Card className="border-0">
             <CardHeader>
               <CardTitle>Send a Message</CardTitle>
               <CardDescription>
@@ -173,7 +175,7 @@ export default function ContactPage() {
 
         {/* Contact Info */}
         <div className="space-y-6">
-          <Card>
+          <Card className="border-0">
             <CardHeader>
               <CardTitle>Contact Information</CardTitle>
               <CardDescription>
@@ -184,10 +186,10 @@ export default function ContactPage() {
               <div>
                 <p className="text-sm font-medium mb-1">Email</p>
                 <a
-                  href="mailto:victor@example.com"
+                  href="mailto:mario@example.com"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  victor@example.com
+                  mario@example.com
                 </a>
               </div>
               <Separator />
@@ -211,7 +213,7 @@ export default function ContactPage() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className={`border-0 rounded-none ${theme === "dark" ? "bg-white text-black" : "bg-black text-white"}`}>
             <CardHeader>
               <CardTitle>Response Time</CardTitle>
             </CardHeader>

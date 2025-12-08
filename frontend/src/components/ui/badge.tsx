@@ -1,4 +1,8 @@
+"use client";
+
 import * as React from "react";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
@@ -25,8 +29,26 @@ export interface BadgeProps
     VariantProps<typeof badgeVariants> {}
 
 function Badge({ className, variant, ...props }: BadgeProps) {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Aplicar borda baseada no tema apenas para variant outline
+  const borderClass = 
+    variant === "outline" 
+      ? mounted && theme === "dark" 
+        ? "border-neutral-300" 
+        : "border-neutral-300"
+      : "";
+
   return (
-    <div className={cn(badgeVariants({ variant }), className)} {...props} />
+    <div 
+      className={cn(badgeVariants({ variant }), borderClass, className)} 
+      {...props} 
+    />
   );
 }
 

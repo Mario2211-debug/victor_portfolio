@@ -6,21 +6,29 @@ import { Separator } from "@/components/ui/separator";
 import { blogAPIPublic } from "@/lib/api-public";
 import { BlogPost } from "@/types";
 import { format } from "date-fns";
+import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 
 export default async function BlogPostPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }> | { id: string };
 }) {
+  // Next.js 15+ pode passar params como Promise
+  const resolvedParams = await Promise.resolve(params);
+  const postId = resolvedParams.id;
+
+  if (!postId) {
+    notFound();
+  }
+
   let post: BlogPost | null = null;
 
   try {
-    // Tentar buscar da API
-    post = await blogAPIPublic.getById(params.id);
+    // Tentar buscar da API (busca por _id ou slug)
+    post = await blogAPIPublic.getById(postId);
   } catch (error) {
-    // Se falhar, usar dados mock para desenvolvimento
+    // Se falhar, mostrar 404
     console.error("Error fetching post:", error);
-    // Em produção, você pode querer mostrar notFound() aqui
   }
 
   // Se não encontrar post, mostrar 404
@@ -65,7 +73,7 @@ export default async function BlogPostPage({
         )}
       </header>
 
-      <Separator className="mb-12 max-w-3xl mx-auto" />
+      <Separator className="mb-8 max-w-3xl mx-auto" />
 
       {/* Featured Image */}
       {post.imageUrl && (
@@ -78,21 +86,13 @@ export default async function BlogPostPage({
       )}
 
       {/* Content */}
-      <div className="max-w-3xl mx-auto prose prose-neutral dark:prose-invert prose-lg">
+      <div className={`max-w-3xl mx-auto prose-neutral dark:prose-invert prose-lg`}>
         {post.content ? (
-          <div
-            className="blog-content"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+          <MarkdownRenderer content={post.content} />
         ) : (
           <div className="space-y-4">
             <p className="text-muted-foreground leading-relaxed">
               {post.description}
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              This is a placeholder for the full blog post content. In a real
-              implementation, this would be fetched from the API and rendered
-              using a markdown or rich text renderer.
             </p>
           </div>
         )}

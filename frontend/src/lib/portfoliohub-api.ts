@@ -70,6 +70,7 @@ export interface PortfolioHubProject {
   user: string;
   name: string;
   description: string;
+  items: string[]
   category: string;
   employmentType: string;
   role: string;
@@ -104,11 +105,13 @@ export interface PortfolioHubPost {
   _id: string;
   user: string;
   title: string;
+  slug?: string;
   content: string;
   description: string;
   imageUrl: string;
   category: string;
   date: string;
+  published?: boolean;
   createdAt: string;
   updatedAt: string;
   __v: number;
@@ -131,15 +134,19 @@ export interface PortfolioHubResponse {
 // Cache para evitar múltiplas requisições
 let cachedData: PortfolioHubResponse | null = null;
 let cacheTimestamp: number = 0;
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutos
+// Reduzir cache para 30 segundos em desenvolvimento, 5 minutos em produção
+const CACHE_DURATION = process.env.NODE_ENV === 'development' 
+  ? 30 * 1000 // 30 segundos em desenvolvimento
+  : 5 * 60 * 1000; // 5 minutos em produção
 
 /**
  * Busca todos os dados do portfólio da API externa
+ * @param forceRefresh - Se true, ignora o cache e busca dados frescos
  */
-export async function fetchPortfolioHubData(): Promise<PortfolioHubResponse> {
-  // Verificar cache
+export async function fetchPortfolioHubData(forceRefresh: boolean = false): Promise<PortfolioHubResponse> {
+  // Verificar cache (a menos que forceRefresh seja true)
   const now = Date.now();
-  if (cachedData && (now - cacheTimestamp) < CACHE_DURATION) {
+  if (!forceRefresh && cachedData && (now - cacheTimestamp) < CACHE_DURATION) {
     return cachedData;
   }
 
@@ -149,6 +156,8 @@ export async function fetchPortfolioHubData(): Promise<PortfolioHubResponse> {
       headers: {
         'Content-Type': 'application/json',
       },
+      // Forçar busca fresca quando forceRefresh for true
+      cache: forceRefresh ? 'no-store' : 'default',
     });
 
     if (!response.ok) {
@@ -208,6 +217,7 @@ export function mapPortfolioHubProjectToProject(project: PortfolioHubProject) {
     company: project.company,
     employmentType: project.employmentType,
     technologies: project.technologies || [],
+    items: project.items || [],
     type: project.type || project.category || '',
     link: project.link || '',
     context: project.context || '',
@@ -305,6 +315,7 @@ export function mapPortfolioHubEducationToEducation(edu: PortfolioHubEducation) 
 export function mapPortfolioHubPostToBlogPost(post: PortfolioHubPost) {
   return {
     _id: post._id,
+    slug: post.slug,
     title: post.title,
     content: post.content,
     description: post.description,

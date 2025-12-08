@@ -4,7 +4,8 @@ import useSWR from "swr";
 import { BlogPost } from "@/types";
 import { 
   fetchPortfolioHubData, 
-  mapPortfolioHubPostToBlogPost 
+  mapPortfolioHubPostToBlogPost,
+  clearPortfolioHubCache
 } from "@/lib/portfoliohub-api";
 
 interface UseBlogPostsParams {
@@ -17,8 +18,14 @@ interface UseBlogPostsParams {
 export function useBlogPosts(params?: UseBlogPostsParams) {
   const { data, error, isLoading, mutate } = useSWR(
     'portfoliohub-data',
-    fetchPortfolioHubData
+    () => fetchPortfolioHubData(false) // Não forçar refresh por padrão
   );
+
+  // Função para forçar atualização
+  const refresh = async () => {
+    clearPortfolioHubCache();
+    await mutate(() => fetchPortfolioHubData(true), { revalidate: true });
+  };
 
   // Mapear e filtrar posts
   let posts: BlogPost[] = [];
@@ -67,6 +74,7 @@ export function useBlogPosts(params?: UseBlogPostsParams) {
     isError: !!error,
     error,
     mutate,
+    refresh, // Função para forçar atualização
   };
 }
 

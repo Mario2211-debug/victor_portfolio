@@ -73,7 +73,7 @@ export async function RecentPosts() {
             </CardContent>
             <CardContent>
               <Button variant="ghost" size="sm" className="w-full" asChild>
-                <Link href={`/blog/${post._id}`}>
+                <Link href={`/blog/${post.slug || post._id}`}>
                   Read Article <span className="ml-1">→</span>
                 </Link>
               </Button>

@@ -12,12 +12,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useProfile, useSkills, useExperience, useEducation } from "@/hooks/use-portfolio-data";
-
+import { useTheme } from "next-themes";
 export default function AboutPage() {
   const { profile, user, isLoading: profileLoading } = useProfile();
   const { skills, isLoading: skillsLoading } = useSkills();
   const { experience, isLoading: experienceLoading } = useExperience();
   const { education, isLoading: educationLoading } = useEducation();
+  const {theme} = useTheme()
 
   const isLoading = profileLoading || skillsLoading || experienceLoading || educationLoading;
 
@@ -94,96 +95,99 @@ export default function AboutPage() {
       </section>
 
       <Separator className="mb-8" />
-
-      {/* Experience */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-6">Experience</h2>
-        {experienceLoading ? (
-          <div className="space-y-6">
-            {[...Array(2)].map((_, i) => (
-              <Card key={i}>
-                <CardHeader>
-                  <div className="h-6 bg-muted animate-pulse rounded w-1/2"></div>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
-        ) : experience.length > 0 ? (
-          <div className="space-y-6">
-            {experience.map((exp) => (
-              <Card key={exp._id}>
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <CardTitle className="text-xl">{exp.position}</CardTitle>
-                      <CardDescription className="text-base mt-1">
-                        {exp.company}
-                      </CardDescription>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+        {/* Experience */}
+        <section className="md:col-span-2">
+          <h2 className="text-2xl font-bold mb-6">Experience</h2>
+          {experienceLoading ? (
+            <div className="space-y-6">
+              {[...Array(2)].map((_, i) => (
+                <Card key={i} className="border-0">
+                  <CardHeader>
+                    <div className="h-6 bg-muted animate-pulse rounded w-1/2"></div>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+          ) : experience.length > 0 ? (
+            <div className="space-y-6">
+              {experience.map((exp) => (
+                <Card key={exp._id} className="border-0">
+                  <CardHeader>
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <CardTitle className="text-xl">{exp.position}</CardTitle>
+                        <CardDescription className="text-base mt-1">
+                          {exp.company}
+                        </CardDescription>
+                      </div>
+                      <span className={`${theme === "dark" ? "bg-white text-black" : "bg-black text-white"} px-1 text-sm`}>{exp.period}</span>
                     </div>
-                    <Badge variant="outline">{exp.period}</Badge>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  {exp.context && (
-                    <p className="text-muted-foreground mb-2">{exp.context}</p>
-                  )}
-                  {exp.responsibilities && exp.responsibilities.length > 0 && (
-                    <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-                      {exp.responsibilities.map((resp, idx) => (
-                        <li key={idx}>{resp}</li>
-                      ))}
-                    </ul>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        ) : (
-          <p className="text-muted-foreground">No experience data available.</p>
-        )}
-      </section>
+                  </CardHeader>
+                  <CardContent>
+                    {exp.context && (
+                      <p className="text-muted-foreground mb-2">{exp.context}</p>
+                    )}
+                    {exp.responsibilities && exp.responsibilities.length > 0 && (
+                      <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                        {exp.responsibilities.map((resp, idx) => (
+                          <li key={idx}>{resp}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <p className="text-muted-foreground">No experience data available.</p>
+          )}
+        </section>
 
-      <Separator className="mb-8" />
+        {/* Education */}
+        <section className="md:col-span-1">
+          <h2 className="text-2xl font-bold mb-6">Education</h2>
+          {educationLoading ? (
+            <div className="space-y-6">
+              {[...Array(2)].map((_, i) => (
+                <Card key={i} className="border-0">
+                  <CardHeader>
+                    <div className="h-6 bg-muted animate-pulse rounded w-1/2"></div>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+          ) : education.length > 0 ? (
+            <div className="space-y-6">
+              {education.map((edu) => (
+                <Card key={edu._id} className="border-0">
+                  <CardHeader>
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <CardTitle className="text-xl">{edu.degree}</CardTitle>
+                        <CardDescription className="text-base mt-1">
+                          {edu.institution}
+                        </CardDescription>
+                        {edu.description && (
+                          <p className="text-sm text-muted-foreground mt-2">{edu.description}</p>
+                        )}
+                      </div>
+                      {/* <span className={`${theme === "dark" ? "bg-white text-black" : "bg-black text-white"} text-xs`}>
+                        </span> */}
+                        <span className="text-xs">
+                        {edu.period}
+                        </span>
 
-      {/* Education */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-6">Education</h2>
-        {educationLoading ? (
-          <div className="space-y-6">
-            {[...Array(2)].map((_, i) => (
-              <Card key={i}>
-                <CardHeader>
-                  <div className="h-6 bg-muted animate-pulse rounded w-1/2"></div>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
-        ) : education.length > 0 ? (
-          <div className="space-y-6">
-            {education.map((edu) => (
-              <Card key={edu._id}>
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <CardTitle className="text-xl">{edu.degree}</CardTitle>
-                      <CardDescription className="text-base mt-1">
-                        {edu.institution}
-                      </CardDescription>
-                      {edu.description && (
-                        <p className="text-sm text-muted-foreground mt-2">{edu.description}</p>
-                      )}
                     </div>
-                    <Badge variant="outline">{edu.period}</Badge>
-                  </div>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
-        ) : (
-          <p className="text-muted-foreground">No education data available.</p>
-        )}
-      </section>
-
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <p className="text-muted-foreground">No education data available.</p>
+          )}
+        </section>
+      </div>
       <Separator className="mb-8" />
 
       {/* CTA */}

@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { useTheme } from "next-themes";
 
 interface Product {
   id: string;
@@ -98,7 +99,7 @@ const categories = Array.from(
 
 export default function MarketplacePage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
+  const {theme} = useTheme()
   const filteredProducts = products.filter((product) => {
     if (selectedCategory && product.category !== selectedCategory) return false;
     return true;
@@ -115,7 +116,7 @@ export default function MarketplacePage() {
           Marketplace
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl">
-          Digital products, templates, courses, and resources I&apos;ve created
+          Soon, digital products, templates, courses, and resources I&apos;ve created
           to help you build better things.
         </p>
       </div>
@@ -143,7 +144,7 @@ export default function MarketplacePage() {
 
       <Separator className="mb-6" />
 
-      {/* Featured Products */}
+      {/* Featured Products
       {featuredProducts.length > 0 && (
         <section className="mb-8">
           <h2 className="text-2xl font-bold mb-4">Featured Products</h2>
@@ -195,9 +196,9 @@ export default function MarketplacePage() {
             ))}
           </div>
         </section>
-      )}
+      )} */}
 
-      {/* Regular Products */}
+      {/* Regular Products
       {regularProducts.length > 0 && (
         <section>
           {featuredProducts.length > 0 && (
@@ -216,9 +217,9 @@ export default function MarketplacePage() {
                 )}
                 <CardHeader>
                   <div className="flex items-start justify-between mb-2">
-                    <Badge variant="outline" className="text-xs">
+                    <span className={`${theme === "dark" ? "bg-white text-black" : "bg-black text-white"} text-xs p-1`}>
                       {product.category}
-                    </Badge>
+                    </span>
                   </div>
                   <CardTitle className="text-xl">{product.title}</CardTitle>
                   <CardDescription className="line-clamp-2">
@@ -250,7 +251,7 @@ export default function MarketplacePage() {
             ))}
           </div>
         </section>
-      )}
+      )} */}
 
       {/* Empty State */}
       {filteredProducts.length === 0 && (

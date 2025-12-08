@@ -1,3 +1,6 @@
+"use client";
+
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import {
   Card,
@@ -9,24 +12,29 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { projectsAPIPublic } from "@/lib/api-public";
 import { Project } from "@/types";
 
-export async function FeaturedProjects() {
-  let projects: Project[] = [];
+interface TechnologyBadgeProps {
+  tech: string;
+}
 
-  try {
-    const response = await projectsAPIPublic.getAll({ limit: 3 });
-    if (Array.isArray(response)) {
-      projects = response;
-    } else{
-      projects = []
-    }
-  } catch (error) {
-    console.error("Error fetching featured projects:", error);
-    // Em caso de erro, projects permanece vazio
-  }
+function TechnologyBadge({ tech }: TechnologyBadgeProps) {
+  const { theme } = useTheme();
+  
+  return (
+    <Badge variant="secondary" className="text-xs">
+      <span className={`${theme === "dark" ? "bg-white text-black" : "bg-black text-white"} px-1`}>
+        {tech}
+      </span>
+    </Badge>
+  );
+}
 
+interface FeaturedProjectsProps {
+  projects: Project[];
+}
+
+export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
   if (projects.length === 0) {
     return null;
   }
@@ -43,7 +51,7 @@ export async function FeaturedProjects() {
       </div>
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {projects.slice(0, 3).map((project, index) => (
-          <Card key={project._id || index} className="flex flex-col">
+          <Card key={project._id || index} className="flex border-0 flex-col">
             <CardHeader>
               <CardTitle>{project.name}</CardTitle>
               <CardDescription className="line-clamp-2">
@@ -53,9 +61,7 @@ export async function FeaturedProjects() {
             <CardContent className="flex-1">
               <div className="flex flex-wrap gap-2">
                 {project.technologies?.slice(0, 3).map((tech) => (
-                  <Badge key={tech} variant="secondary" className="text-xs">
-                    {tech}
-                  </Badge>
+                  <TechnologyBadge key={tech} tech={tech} />
                 ))}
               </div>
             </CardContent>

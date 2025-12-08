@@ -14,6 +14,7 @@
  */
 export interface BlogPost {
   _id: string;
+  slug?: string;
   title?: string;
   content?: string;
   description?: string;
@@ -46,6 +47,7 @@ export interface Project {
   company: string | null;
   employmentType?: string;
   technologies: string[];
+  items: string[],
   type?: string;
   link?: string;
 }

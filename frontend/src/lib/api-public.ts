@@ -115,7 +115,9 @@ export const blogAPIPublic = {
       return null;
     }
 
-    const post = data.data.posts.find(p => p._id === id);
+    // Buscar por _id ou slug
+    const post = data.data.posts.find(p => p._id === id || p.slug === id);
+    
     return post ? mapPortfolioHubPostToBlogPost(post) : null;
   },
 };
