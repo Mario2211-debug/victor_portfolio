@@ -20,7 +20,7 @@ export function Hero() {
               <>
               Hi, 
               <br className="hidden sm:inline" /> 
-              i'm Mário Afonso
+              i&apos;m Mário Afonso
                 </>
             )}
           </h1>

@@ -102,7 +102,7 @@ export default async function ProjectDetailPage({
               <ul className="m-8">
                 {
                  project.items.map((item, i) => 
-                  <li className="mb-2 list-disc">
+                  <li key={i} className="mb-2 list-disc">
                         {item}
                     </li>
                 )}

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -24,10 +25,11 @@ interface MarkdownRendererProps {
  * Elementos disponíveis: h1-h6, p, ul, ol, li, blockquote, hr, table, thead, tbody, tr, th, td, strong, em, del, etc.
  */
 export function MarkdownRenderer({ content, className = "" }: MarkdownRendererProps) {
+  const { theme } = useTheme();
+  
   if (!content) {
     return null;
   }
-  const {theme} = useTheme();
 
   return (
     <div className={className}>
@@ -115,13 +117,32 @@ export function MarkdownRenderer({ content, className = "" }: MarkdownRendererPr
           // IMAGENS
           // ============================================
           img({ node, src, alt, ...props }) {
+            if (!src) return null;
+            
+            // Se for URL externa, usar img normal
+            if (src.startsWith('http://') || src.startsWith('https://')) {
+              return (
+                <img
+                  src={src}
+                  alt={alt || ''}
+                  className="rounded-lg my-4 w-full"
+                  {...props}
+                />
+              );
+            }
+            
+            // Se for caminho relativo, usar Image do Next.js
             return (
-              <img
-                src={src}
-                alt={alt}
-                className="rounded-lg my-4 w-full"
-                {...props}
-              />
+              <div className="relative w-full my-4 rounded-lg overflow-hidden">
+                <Image
+                  src={src}
+                  alt={alt || ''}
+                  width={800}
+                  height={400}
+                  className="rounded-lg w-full h-auto object-contain"
+                  unoptimized
+                />
+              </div>
             );
           },
 
