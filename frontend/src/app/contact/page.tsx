@@ -189,7 +189,7 @@ export default function ContactPage() {
                   href="mailto:mailto:marioafonso1997@gmail.com"
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  mailto:marioafonso1997@gmail.com
+                  marioafonso1997@gmail.com
                 </a>
               </div>
               <Separator />
