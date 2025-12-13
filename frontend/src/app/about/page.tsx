@@ -29,7 +29,9 @@ export default function AboutPage() {
         <h1 className="text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl mb-6">
           About Me
         </h1>
-        <div className="prose prose-neutral dark:prose-invert max-w-none">
+        <div className="max-w-none">
+        {/* </div><div className="prose prose-neutral dark:prose-invert max-w-none"> */}
+
           {isLoading ? (
             <div className="space-y-4">
               <div className="h-4 bg-muted animate-pulse rounded w-3/4"></div>
@@ -39,7 +41,7 @@ export default function AboutPage() {
           ) : (
             <>
               {profile?.summary ? (
-                <p className="text-base text-muted-foreground leading-relaxed mb-4 sm:text-lg whitespace-pre-line">
+                <p className="text-base leading-relaxed mb-4 sm:text-lg whitespace-pre-line">
                   {profile.summary}
                 </p>
               ) : (
