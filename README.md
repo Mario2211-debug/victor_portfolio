@@ -14,9 +14,6 @@
   <a href="https://nextjs.org/" target="_blank" rel="noreferrer">
     <img src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg" alt="nextjs" width="40" height="40"/>
   </a>
-  <a href="https://nodejs.org" target="_blank" rel="noreferrer">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/>
-  </a>
   <a href="https://reactjs.org/" target="_blank" rel="noreferrer">
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/>
   </a>
@@ -51,8 +48,6 @@ Página de detalhes para cada artigo com o conteúdo completo.
 <li><strong>Sobre:</strong>
 Informações sobre experiência profissional, habilidades e interesses obtidas via API.
 Links para redes sociais e contato.
-<li><strong>Admin Dashboard:</strong>
-Interface administrativa para gerenciar conteúdo via API interna (projetos, posts, perfil, etc.).
 </ul>
 
 <h1>Tecnologias Utilizadas (Frontend):</h1>
@@ -73,8 +68,6 @@ API externa (https://portfoliohub-y8ds.onrender.com) para obter dados públicos 
 API própria para operações administrativas autenticadas (CRUD de projetos, posts, etc.).
 <li><strong>Next Themes:</strong>
 Biblioteca para implementar o modo claro/escuro (dark mode).
-<li><strong>React Quill:</strong>
-Biblioteca para implementar editor de texto rico nos posts do blog.
 <li><strong>Vercel:</strong>
 Plataforma de hospedagem e deploy para aplicações Next.js.
 </ul>
@@ -82,34 +75,9 @@ Plataforma de hospedagem e deploy para aplicações Next.js.
 <h1>Integração com APIs:</h1>
 <ul>
 <li><strong>PortfolioHub API (Externa):</strong>
-<p>API pública para dados do portfólio: https://portfoliohub-y8ds.onrender.com/api/public/marioafonso1997</p>
+<p>API pública disponibilizada pelo serviço PortfolioHub para dados do portfólio: https://portfoliohub-y8ds.onrender.com/api/public/marioafonso1997</p>
 <p>Fornece dados para: perfil, projetos, posts do blog, experiências, educação, habilidades, idiomas.</p>
 <p>Utiliza cache inteligente com SWR para otimização de performance.</p>
-<li><strong>API Interna (Administrativa):</strong>
-<p>API própria hospedada no Railway para operações CRUD autenticadas.</p>
-<p>Endpoints para gerenciamento de: projetos, posts, perfil, experiências, educação, habilidades.</p>
-<p>Requer autenticação JWT para operações de escrita.</p>
-</ul>
-
-<h1>Arquitetura da API Interna:</h1>
-<ul>
-<li><strong>Endpoints de Autenticação:</strong>
-<p><code>POST /auth/login</code>: Login de usuário</p>
-<p><code>POST /auth/register</code>: Registro de usuário</p>
-<p><code>GET /auth/profile</code>: Perfil do usuário autenticado</p>
-<li><strong>Endpoints de Projetos:</strong>
-<p><code>GET /projects</code>: Lista todos os projetos</p>
-<p><code>GET /projects/:id</code>: Projeto específico</p>
-<p><code>POST /projects</code>: Criar novo projeto</p>
-<p><code>PUT /projects/:id</code>: Atualizar projeto</p>
-<p><code>DELETE /projects/:id</code>: Excluir projeto</p>
-<li><strong>Endpoints do Blog:</strong>
-<p><code>GET /blog</code>: Lista todos os posts</p>
-<p><code>GET /blog/post/:id</code>: Post específico</p>
-<p><code>POST /blog/new</code>: Criar novo post (com upload de imagem)</p>
-<p><code>PUT /blog/post/:id</code>: Atualizar post</p>
-<p><code>DELETE /blog/post/:id</code>: Excluir post</p>
-</ul>
 
 <h1>Deploy:</h1>
 <ul>
@@ -194,7 +162,6 @@ Você vai precisar dos seguintes softwares instalados:
 ### Funcionalidades da API
 
 - **Dados Públicos:** Consumidos automaticamente da API PortfolioHub externa
-- **Operações Admin:** Requerem configuração da API interna (opcional para visualização básica)
 - **Cache:** Implementado com SWR para otimização de performance
 
 ## Contributing
@@ -213,7 +180,6 @@ Contribuições são bem vindas!
 - [Tailwind CSS](https://tailwindcss.com/) - Framework CSS
 - [SWR](https://swr.vercel.app/) - Data fetching para React
 - [Axios](https://axios-http.com/) - Cliente HTTP
-- [React Quill](https://www.npmjs.com/package/react-quill) - Editor de texto rico
 - [Next Themes](https://nextui.org/docs/customization/dark-mode) - Gerenciamento de temas
 - [PortfolioHub](https://portfoliohub-y8ds.onrender.com) - API externa para dados do portfólio
 - [Vercel](https://vercel.com/) - Plataforma de deploy
