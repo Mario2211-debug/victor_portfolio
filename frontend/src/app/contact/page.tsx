@@ -26,11 +26,6 @@ const socialLinks = [
     icon: "→",
   },
   {
-    name: "Twitter",
-    url: "https://twitter.com/mario",
-    icon: "→",
-  },
-  {
     name: "Email",
     url: "mailto:marioafonso1997@gmail.com",
     icon: "→",
@@ -83,6 +78,7 @@ export default function ContactPage() {
           I&apos;d love to hear from you. Send me a message and I&apos;ll respond
           as soon as possible.
         </p>
+        <p className={`border-0 rounded-none w-fit ${theme === "dark" ? "bg-white text-black" : "bg-black text-white"}`}>The form is offline, please use the links.</p>
       </div>
 
       <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
