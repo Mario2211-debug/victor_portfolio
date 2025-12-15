@@ -52,13 +52,28 @@ export const projectsAPIPublic = {
     return projects;
   },
   getById: async (id: string) => {
-    const data = await fetchPortfolioHubData();
-    
+    // Busca normal
+    let data = await fetchPortfolioHubData();
+
     if (!data.success || !data.data.projects) {
       return null;
     }
 
-    const project = data.data.projects.find(p => p._id === id);
+    let project = data.data.projects.find(p => p._id === id);
+
+    // Se não encontrar, tentar forçar um refresh no upstream (caso de cache/stale data)
+    if (!project) {
+      try {
+        const refreshed = await fetchPortfolioHubData(true);
+        if (refreshed && refreshed.success && refreshed.data.projects) {
+          project = refreshed.data.projects.find(p => p._id === id) || null;
+        }
+      } catch (e) {
+        // Não interromper a execução por causa do refresh
+        console.warn("Failed to force-refresh PortfolioHub data:", e);
+      }
+    }
+
     return project ? mapPortfolioHubProjectToProject(project) : null;
   },
 };
