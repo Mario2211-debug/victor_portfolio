@@ -220,7 +220,7 @@ export default function ProjectsPage() {
                 {projects.map((project, index) => (
                   <Card
                     key={project._id || index}
-                    className="flex flex-col transition-all hover:shadow-md"
+                    className="flex flex-col transition-all"
                   >
                     <CardHeader>
                       <div className="flex items-start justify-between gap-2 mb-2">

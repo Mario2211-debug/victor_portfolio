@@ -54,7 +54,7 @@ export default function Projects() {
       <main className="py-12">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
           {projects.map((project, index) => (
-            <div key={index} className="bg-gray-800 rounded-lg shadow-lg">
+            <div key={index} className="bg-gray-800 rounded-lg">
               <button
                 onClick={() => toggleAccordion(index)}
                 className="w-full text-left px-6 py-4 font-semibold text-xl bg-gray-700 hover:bg-gray-600 rounded-t-lg focus:outline-none"

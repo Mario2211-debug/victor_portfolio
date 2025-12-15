@@ -162,7 +162,7 @@ export default function BlogPage() {
                 {posts.map((post) => (
                   <Card
                     key={post._id}
-                    className="flex flex-col transition-all hover:shadow-md group"
+                    className="flex flex-col transition-all group"
                   >
                     {post.imageUrl && (
                       <div className="relative h-48 w-full overflow-hidden rounded-t-lg bg-muted">

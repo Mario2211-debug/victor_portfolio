@@ -51,7 +51,7 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
       </div>
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {projects.slice(0, 3).map((project, index) => (
-          <Card key={project._id || index} className="flex border-0 flex-col">
+          <Card key={project._id || index} className="flex flex-col">
             <CardHeader>
               <CardTitle>{project.name}</CardTitle>
               <CardDescription className="line-clamp-2">
