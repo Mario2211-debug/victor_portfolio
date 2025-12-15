@@ -63,7 +63,7 @@ Biblioteca para fazer requisições HTTP às APIs externas e internas.
 <li><strong>SWR:</strong>
 Biblioteca React para data fetching e cache inteligente, utilizada para consumir APIs com revalidação automática.
 <li><strong>PortfolioHub API:</strong>
-API externa (https://portfoliohub-y8ds.onrender.com) para obter dados públicos do portfólio (projetos, posts, perfil, etc.).
+API externa disponiblizada por <a href="https://portfolio-hub-neon.vercel.app/dashboard/profile">PortfolioHub</a> para obter dados públicos do portfólio (projetos, posts, perfil, etc.).
 <li><strong>API Interna:</strong>
 API própria para operações administrativas autenticadas (CRUD de projetos, posts, etc.).
 <li><strong>Next Themes:</strong>
@@ -81,7 +81,7 @@ Plataforma de hospedagem e deploy para aplicações Next.js.
 
 <h1>Deploy:</h1>
 <ul>
-<li><strong>Frontend:</strong>
+<li><strong>Frontend:</strostate=60f88e9f539d44478f4d926b4a1d7f55&session_state=7dd9d7a6-fddd-454b-9672-60efaa51b40a&iss=https%3A%2F%2Fauth.42.fr%2Fauth%2Frealms%2Fstudents-42&code=0c531d73-83cd-4c93-bc59-cba67ffc57b9.7dd9d7a6-fddd-454b-9672-60efaa51b40a.c159612d-6772-408e-8674-875de56524e4ng>
 <p>Implantado no Vercel, com integração contínua com o repositório do GitHub.</p>
 <p>Variáveis de ambiente configuradas para URLs das APIs.</p>
 <li><strong>API Interna:</strong>

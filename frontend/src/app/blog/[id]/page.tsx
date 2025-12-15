@@ -86,7 +86,7 @@ export default async function BlogPostPage({
       )}
 
       {/* Content */}
-      <div className={`max-w-3xl mx-auto prose-neutral dark:prose-invert prose-lg`}>
+      <div className={`max-w-3xl mx-auto prose-neutral dark:prose-invert prose-lg not-prose`}>
         {post.content ? (
           <MarkdownRenderer content={post.content} />
         ) : (
