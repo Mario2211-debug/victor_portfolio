@@ -3,7 +3,7 @@
  * https://portfoliohub-y8ds.onrender.com/api/public/marioafonso1997
  */
 
-const PORTFOLIOHUB_API_URL = 'https://portfoliohub-y8ds.onrender.com/api/public/marioafonso1997';
+const API = process.env.NEXT_PUBLIC_PORTFOLIOHUB_API_URL;
 
 export interface PortfolioHubUser {
   name: string;
@@ -153,8 +153,8 @@ export async function fetchPortfolioHubData(forceRefresh: boolean = false): Prom
   try {
     // Adicionar timestamp como query parameter para evitar cache do navegador quando necessário
     const url = forceRefresh 
-      ? `${PORTFOLIOHUB_API_URL}?t=${Date.now()}`
-      : PORTFOLIOHUB_API_URL;
+      ? `${API}?t=${Date.now()}`
+      : API;
     
     const response = await fetch(url, {
       method: 'GET',
