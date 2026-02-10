@@ -148,7 +148,8 @@ export async function fetchPortfolioHubData(): Promise<PortfolioHubResponse> {
   }
   const response = await fetch(API, {
     cache: 'no-store',
-  });
+    next: { revalidate: 0 },
+  },);
 
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
