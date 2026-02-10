@@ -10,6 +10,7 @@ const fetchWithAuth = async (url: string, options: RequestInit = {}) => {
     
     const headers: HeadersInit = {
         'Content-Type': 'application/json',
+        'Cache-control': 'no-cache',
         ...options.headers,
     };
 

@@ -48,7 +48,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@types/dompurify": "^3.0.5",
     "@types/jest": "^29.5.14",
-    "@types/node": "^20",
+    "@types/node": "^20.19.33",
     "@types/react": "^18",
     "@types/react-curved-text": "^2.0.1",
     "@types/react-dom": "^18",

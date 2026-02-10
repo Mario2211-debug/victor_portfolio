@@ -64,7 +64,7 @@ export const projectsAPIPublic = {
     // Se não encontrar, tentar forçar um refresh no upstream (caso de cache/stale data)
     if (!project) {
       try {
-        const refreshed = await fetchPortfolioHubData(true);
+        const refreshed = await fetchPortfolioHubData();
         if (refreshed && refreshed.success && refreshed.data.projects) {
           project = refreshed.data.projects.find(p => p._id === id) || null;
         }

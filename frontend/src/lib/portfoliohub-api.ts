@@ -134,54 +134,29 @@ export interface PortfolioHubResponse {
 // Cache para evitar múltiplas requisições
 let cachedData: PortfolioHubResponse | null = null;
 let cacheTimestamp: number = 0;
-// Cache reduzido: 30 segundos em desenvolvimento, 2 minutos em produção
-const CACHE_DURATION = process.env.NODE_ENV === 'development' 
-  ? 30 * 1000 // 30 segundos em desenvolvimento
-  : 2 * 60 * 1000; // 2 minutos em produção (reduzido de 5 minutos)
+
 
 /**
  * Busca todos os dados do portfólio da API externa
  * @param forceRefresh - Se true, ignora o cache e busca dados frescos
  */
-export async function fetchPortfolioHubData(forceRefresh: boolean = false): Promise<PortfolioHubResponse> {
-  // Verificar cache (a menos que forceRefresh seja true)
-  const now = Date.now();
-  if (!forceRefresh && cachedData && (now - cacheTimestamp) < CACHE_DURATION) {
-    return cachedData;
+export async function fetchPortfolioHubData(): Promise<PortfolioHubResponse> {
+  if (!API) {
+    throw new Error(
+      'NEXT_PUBLIC_PORTFOLIOHUB_API_URL não está definida. Defina-a no .env.local (ex: NEXT_PUBLIC_PORTFOLIOHUB_API_URL=https://portfoliohub-y8ds.onrender.com/api/public/marioafonso1997)'
+    );
+  }
+  const response = await fetch(API, {
+    cache: 'no-store',
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
   }
 
-  try {
-    // Adicionar timestamp como query parameter para evitar cache do navegador quando necessário
-    const url = forceRefresh 
-      ? `${API}?t=${Date.now()}`
-      : API;
-    
-    const response = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Cache-Control': forceRefresh ? 'no-cache' : 'max-age=120', // 2 minutos
-      },
-      // Forçar busca fresca quando forceRefresh for true
-      cache: forceRefresh ? 'no-store' : 'default',
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data: PortfolioHubResponse = await response.json();
-    
-    // Atualizar cache
-    cachedData = data;
-    cacheTimestamp = now;
-    
-    return data;
-  } catch (error) {
-    console.error('Erro ao buscar dados do PortfolioHub:', error);
-    throw error;
-  }
+  return response.json();
 }
+
 
 /**
  * Limpa o cache (útil para forçar atualização)
