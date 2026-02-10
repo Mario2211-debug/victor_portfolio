@@ -138,18 +138,18 @@ let cacheTimestamp: number = 0;
 
 /**
  * Busca todos os dados do portfólio da API externa
- * @param forceRefresh - Se true, ignora o cache e busca dados frescos
+ * @param _forceRefresh - Se true, ignora o cache e busca dados frescos (respeitado pelo hook; cache é feito via SWR)
  */
-export async function fetchPortfolioHubData(): Promise<PortfolioHubResponse> {
+export async function fetchPortfolioHubData(_forceRefresh?: boolean): Promise<PortfolioHubResponse> {
   if (!API) {
     throw new Error(
       'NEXT_PUBLIC_PORTFOLIOHUB_API_URL não está definida. Defina-a no .env.local (ex: NEXT_PUBLIC_PORTFOLIOHUB_API_URL=https://portfoliohub-y8ds.onrender.com/api/public/marioafonso1997)'
     );
   }
+  // Revalidação por tempo (ISR): permite SSG no build e atualiza a cada 2 min
   const response = await fetch(API, {
-    cache: 'no-store',
-    next: { revalidate: 0 },
-  },);
+    next: { revalidate: 120 },
+  } as RequestInit);
 
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
