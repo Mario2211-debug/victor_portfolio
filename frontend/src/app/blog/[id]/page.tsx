@@ -104,7 +104,7 @@ export default async function BlogPostPage({
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
             <p className="text-sm font-medium mb-1">Written by</p>
-            <p className="text-sm text-muted-foreground">Victor</p>
+            <p className="text-sm text-muted-foreground">Mário Afonso</p>
           </div>
           <div className="flex gap-4">
             <Button variant="outline" asChild>
