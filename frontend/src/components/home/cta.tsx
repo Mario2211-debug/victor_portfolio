@@ -11,7 +11,7 @@ export function CTA() {
           <h2 className="text-3xl font-bold leading-tight tracking-tight md:text-4xl">
             Let&apos;s Work Together
           </h2>
-          <p className="text-base text-muted-foreground leading-relaxed sm:text-lg">
+          <p className="text-base text-muted-foreground leading-relaxed sm:text-lgz">
             I&apos;m always open to discussing new projects, creative ideas, or
             opportunities to be part of your visions.
           </p>
