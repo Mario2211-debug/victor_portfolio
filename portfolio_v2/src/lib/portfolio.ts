@@ -1,5 +1,5 @@
 export const PORTFOLIO_API =
-  "https://portfoliohub-y8ds.onrender.com/api/public/marioafonso1997";
+  "https://portfoliohub-uzjb.onrender.com/api/public/marioafonso1997";
 
 export interface PortfolioUser {
   name: string;
