@@ -26,13 +26,14 @@ interface ProjectDetail extends Project {
 export default async function ProjectDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   let project: ProjectDetail | null = null;
 
   try {
     // Tentar buscar da API
-    project = await projectsAPIPublic.getById(params.id);
+    project = await projectsAPIPublic.getById(id);
   } catch (error) {
     // Se falhar, usar dados mock para desenvolvimento
     console.error("Error fetching project:", error);

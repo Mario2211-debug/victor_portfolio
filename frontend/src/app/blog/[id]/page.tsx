@@ -11,10 +11,9 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 export default async function BlogPostPage({
   params,
 }: {
-  params: Promise<{ id: string }> | { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  // Next.js 15+ pode passar params como Promise
-  const resolvedParams = await Promise.resolve(params);
+  const resolvedParams = await params;
   const postId = resolvedParams.id;
 
   if (!postId) {
