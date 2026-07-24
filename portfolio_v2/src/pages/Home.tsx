@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
-import { portfolioQueryOptions, sanitizeUrl, formatRange } from "@/lib/portfolio";
+import { portfolioQueryOptions, sanitizeUrl, slugify, formatRange } from "@/lib/portfolio";
 import { LoadingState, ErrorState } from "@/components/site/States";
 import { useTitle } from "@/lib/useTitle";
 
@@ -16,6 +17,8 @@ export default function Home() {
 
   const { user, profile, experiences, projects } = data;
   const linkedin = sanitizeUrl(profile.contact?.linkedin);
+  const email = profile.contact?.email;
+  const contactHref = linkedin ?? (email ? `mailto:${email}` : undefined);
   const current = experiences.find((e) => e.isCurrent) ?? experiences[0];
   const previous = experiences.filter((e) => e._id !== current?._id);
   const recent = projects.slice(0, 7);
@@ -29,30 +32,30 @@ export default function Home() {
     <main className="bg-background text-foreground flex justify-center px-5 pt-30 pb-10">
       <div className="w-full max-w-[500px]">
         {/* Intro */}
-        <section className="flex items-start gap-4">
-          {user.avatarUrl ? (
-            <img
-              src={user.avatarUrl}
-              alt={user.name}
-              className="size-12 rounded-full object-cover shrink-0"
-            />
-          ) : (
-            <div className="size-12 rounded-full bg-secondary flex items-center justify-center text-sm font-medium shrink-0">
-              {initials}
-            </div>
-          )}
-          <p className="text-[15px] leading-relaxed text-justify text-foreground/90">
-            <span className="font-semibold text-foreground">
+        <section>
+          <div className="flex items-center gap-3">
+            {user.avatarUrl ? (
+              <img
+                src={user.avatarUrl}
+                alt={user.name}
+                className="size-10 rounded-full object-cover shrink-0"
+              />
+            ) : (
+              <div className="size-10 rounded-full bg-secondary flex items-center justify-center text-xs font-medium shrink-0">
+                {initials}
+              </div>
+            )}
+            <span className="text-[15px] font-semibold text-foreground">
               Hey, I'm {user.name.split(" ")[0]}.
-            </span>{" "}
-            <span className="text-muted-foreground">
-              {profile.summary} Based in {profile.location}.
-            </span>{" "}
-            {linkedin && (
+            </span>
+          </div>
+          <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
+            {profile.summary} Based in {profile.location}.{" "}
+            {contactHref && (
               <a
-                href={linkedin}
-                target="_blank"
-                rel="noreferrer"
+                href={contactHref}
+                target={linkedin ? "_blank" : undefined}
+                rel={linkedin ? "noreferrer" : undefined}
                 className="text-foreground underline underline-offset-4 decoration-foreground/30 hover:decoration-foreground"
               >
                 Say hello
@@ -65,16 +68,14 @@ export default function Home() {
         <section className="mt-5">
           <SectionLabel>Work</SectionLabel>
           {current && (
-            <div className="rounded-lg border border-border bg-secondary/40 px-4 py-3 flex items-start justify-between gap-3">
-              <div className="min-w-0 flex-1">
-                <p className="text-sm font-medium truncate">{current.position}</p>
+            <div className="rounded-lg border border-border bg-secondary/40 px-4 py-3 flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
+              <div className="min-w-0">
+                <p className="text-sm font-medium">{current.position}</p>
                 <p className="text-xs text-muted-foreground mt-0.5">{current.company}</p>
               </div>
-              <div className="text-right shrink-0 min-w-0 max-w-[45%]">
-                <p className="text-xs text-muted-foreground mt-0.5">
-                  {formatRange(current.startDate, current.endDate, current.isCurrent)}
-                </p>
-              </div>
+              <p className="text-xs text-muted-foreground shrink-0">
+                {formatRange(current.startDate, current.endDate, current.isCurrent)}
+              </p>
             </div>
           )}
           {previous.length > 0 && (
@@ -92,16 +93,14 @@ export default function Home() {
                 </span>
               </button>
               {showPrev && (
-                <ul className="mt-2 space-y-1.5">
+                <ul className="mt-4 space-y-6">
                   {previous.map((e) => (
-                    <li
-                      key={e._id}
-                      className="flex items-center justify-between gap-3 text-xs text-muted-foreground px-2"
-                    >
-                      <span className="truncate">
-                        <span className="text-foreground/80">{e.position}</span> · {e.company}
-                      </span>
-                      <span className="shrink-0">
+                    <li key={e._id} className="flex items-start justify-between gap-3 px-2">
+                      <div className="min-w-0">
+                        <p className="text-xs text-foreground/80">{e.position}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">{e.company}</p>
+                      </div>
+                      <span className="shrink-0 text-xs text-muted-foreground">
                         {formatRange(e.startDate, e.endDate, e.isCurrent)}
                       </span>
                     </li>
@@ -118,20 +117,27 @@ export default function Home() {
           <ul className="divide-y divide-border/60">
             {recent.map((p) => {
               const href = sanitizeUrl(p.link);
-              const Cmp = (href ? "a" : "div") as React.ElementType;
+              const itemClass =
+                "group flex items-center justify-between gap-4 py-2 px-1 hover:border-b transition-colors min-w-0";
+              const label = (
+                <>
+                  <span className="text-[14px] text-foreground/90 group-hover:text-foreground truncate min-w-0">
+                    {p.name}
+                  </span>
+                  <ArrowUpRight className="size-4 text-muted-foreground shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </>
+              );
               return (
                 <li key={p._id} className="border-0">
-                  <Cmp
-                    {...(href ? { href, target: "_blank", rel: "noreferrer" } : {})}
-                    className="group flex items-center justify-between gap-4 py-2 px-1 hover:border-b transition-colors min-w-0"
-                  >
-                    <span className="text-[14px] text-foreground/90 group-hover:text-foreground truncate min-w-0">
-                      {p.name}
-                    </span>
-                    {href && (
-                      <ArrowUpRight className="size-4 text-muted-foreground shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    )}
-                  </Cmp>
+                  {href ? (
+                    <a href={href} target="_blank" rel="noreferrer" className={itemClass}>
+                      {label}
+                    </a>
+                  ) : (
+                    <Link to={`/projects/${slugify(p.name)}`} className={itemClass}>
+                      {label}
+                    </Link>
+                  )}
                 </li>
               );
             })}

@@ -11,7 +11,7 @@ export interface PortfolioProfile {
   title: string;
   summary: string;
   location: string;
-  contact: { linkedin?: string; github?: string; website?: string };
+  contact: { linkedin?: string; github?: string; website?: string; email?: string };
   theme?: string;
 }
 export interface Experience {
@@ -43,18 +43,28 @@ export interface Skill {
   category: string;
   type?: string;
 }
+export interface ProjectItem {
+  name: string;
+  description: string;
+}
 export interface Project {
   _id: string;
   name: string;
   description: string;
   category?: string;
   employmentType?: string;
+  role?: string;
+  course?: string;
+  type?: string;
   technologies: string[];
+  tools?: string[];
+  context?: string;
   link?: string;
-  items?: string[];
+  items?: ProjectItem[];
   readme?: string;
   isCurrent?: boolean;
   startDate?: string;
+  endDate?: string | null;
   source?: string;
 }
 export interface Post {
@@ -124,4 +134,19 @@ export function formatRange(start?: string, end?: string | null, current?: boole
 export function sanitizeUrl(url?: string) {
   if (!url) return undefined;
   return url.replace("https://https//", "https://");
+}
+
+/** URL-friendly slug derived from a project name, e.g. for /projects/:slug routes. */
+export function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export function findProjectBySlug(portfolio?: Portfolio | null, slug?: string) {
+  if (!portfolio || !slug) return undefined;
+  return portfolio.projects.find((p) => slugify(p.name) === slug);
 }

@@ -73,7 +73,7 @@ export default function BlogPost() {
         {post.imageUrl?.trim() && (
           <img
             src={post.imageUrl}
-            alt=""
+            alt={post.title}
             className="mt-8 w-full rounded-lg border border-border/60 object-cover"
           />
         )}
