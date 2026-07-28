@@ -150,6 +150,35 @@ corrido sem browser disponível. O `design-diff.md` marca o que ficou por medir.
 - Tema resolvido por script inline antes da primeira pintura: sem flash.
 - 404 reescrito: o código passou a eyebrow e deixou de ser o maior texto do site.
 
+### `vercel.json` — o rewrite de SPA
+
+Isto faltava e partia o site em produção: recarregar `/about` ou `/blog` dava a
+404 **da Vercel**, não a da app. O pedido nunca chegava ao React — `/about` não
+existe como ficheiro no `dist`, e sem instruções a Vercel não tem como saber que
+deve servir o `index.html` e deixar o router resolver o caminho.
+
+```json
+"rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+```
+
+Parece perigoso apanhar tudo, e não é: os `rewrites` da Vercel só correm
+**depois** de o sistema de ficheiros falhar. `/og.png`, `/robots.txt` e
+`/assets/*` continuam a servir os ficheiros reais — confirmado, davam 200 mesmo
+enquanto `/about` dava 404. (O campo antigo `routes` não tem esta garantia; é
+outra razão para não o usar.)
+
+### Cache dos assets
+
+Apanhado ao inspecionar os headers de produção: os ficheiros com hash saíam com
+`max-age=0, must-revalidate`. Revalidar a cada visita um ficheiro cujo nome
+contém o hash do conteúdo é trabalho a zero — se o conteúdo mudar, o nome muda.
+Passaram a `immutable` por um ano.
+
+A regra aponta só a `/assets/*` de propósito. É onde o Vite põe tudo o que tem
+hash, e mais nada: o `index.html`, o `robots.txt`, o `sitemap.xml` e a imagem OG
+ficam de fora e continuam a revalidar — que é o que têm de fazer, porque os
+nomes não mudam quando o conteúdo muda.
+
 **Por fazer, precisa de browser:** Lighthouse, e a auditoria de teclado nos seis
 ecrãs.
 
