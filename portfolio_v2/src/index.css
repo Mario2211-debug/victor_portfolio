@@ -1,91 +1,372 @@
 @import "tailwindcss" source(none);
 @source "./";
-@import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant light (&:where(.light, .light *));
+
+/* ==========================================================================
+   FASE 1 — TOKENS
+   Fonte única de cor, tipo, espaço, elevação, raio e movimento.
+   Nenhum destes valores se repete fora deste ficheiro.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Cor — modelo de 12 passos (Radix Colors), com papel fixo por passo.
+   Não se escolhe "o cinzento 500"; escolhe-se "o passo que serve para bordas".
+
+     1–2   fundos da app e de superfícies subtis
+     3–5   fundo de componente: normal, hover, active
+     6–8   bordas: subtil, normal, hover
+     9–10  sólidos de alto contraste (botão primário e o seu hover)
+     11    texto de baixo contraste (secundário)
+     12    texto de alto contraste
+
+   Cinzento frio (hue 250), escolhido pela temperatura do accent ciano (215).
+   Dark é o defeito. Light troca a escala — os papéis mantêm-se, e é por isso
+   que alterna sem tocar em nenhum componente.
+   -------------------------------------------------------------------------- */
+
+:root {
+  color-scheme: dark;
+
+  --gray-1: oklch(0 0 0); /* preto puro — a assinatura do site */
+  --gray-2: oklch(0.145 0.004 250);
+  --gray-3: oklch(0.19 0.005 250);
+  --gray-4: oklch(0.225 0.006 250);
+  --gray-5: oklch(0.26 0.007 250);
+  --gray-6: oklch(0.3 0.008 250);
+  --gray-7: oklch(0.35 0.009 250);
+  --gray-8: oklch(0.52 0.01 250);
+  --gray-9: oklch(0.97 0.003 250);
+  --gray-10: oklch(0.88 0.003 250);
+  --gray-11: oklch(0.63 0.01 250);
+  --gray-12: oklch(0.97 0.003 250);
+  --gray-on-solid: oklch(0.13 0.005 250);
+
+  --accent-3: oklch(0.24 0.04 215);
+  --accent-6: oklch(0.42 0.07 215);
+  --accent-9: oklch(0.78 0.13 215);
+  --accent-10: oklch(0.85 0.12 215);
+  --accent-11: oklch(0.78 0.13 215);
+  --accent-on-solid: oklch(0.15 0.02 215);
+
+  --danger-9: oklch(0.62 0.19 27);
+  --danger-11: oklch(0.75 0.15 27);
+
+  --selection: oklch(0.78 0.13 215 / 0.3);
+
+  /* Elevação — lacuna assumida do kit (ver pipeline.md). Sombras em camadas:
+     uma de contacto, curta e opaca, e uma de difusão, longa e ténue. */
+  --elevation-1: 0 1px 2px oklch(0 0 0 / 0.5);
+  --elevation-2: 0 1px 2px oklch(0 0 0 / 0.5), 0 4px 12px oklch(0 0 0 / 0.45);
+  --elevation-3: 0 2px 4px oklch(0 0 0 / 0.5), 0 12px 32px oklch(0 0 0 / 0.55);
+
+  /* Movimento */
+  --dur-micro: 120ms; /* hover, toggle, mudança de cor */
+  --dur-enter: 180ms; /* elemento a entrar em cena */
+  --dur-overlay: 240ms; /* diálogo, drawer, popover */
+  --ease-out-curve: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-curve: cubic-bezier(0.4, 0, 1, 1);
+
+  /* Foco — um único mecanismo em toda a app. */
+  --ring: 0 0 0 2px var(--gray-1), 0 0 0 4px var(--accent-9);
+
+  /* Escala global da UI. Um só multiplicador aplicado ao root: como a escala de
+     tipo, o espaçamento, os raios e a medida da coluna estão todos em `rem`,
+     tudo encolhe exatamente o mesmo, e as proporções do sistema mantêm-se.
+     Reduzir os 6 tamanhos de tipo à mão teria deixado as alturas e o espaço
+     a 100%, o que muda o desenho em vez de o encolher.
+     O que *não* encolhe está em px de propósito: os 44px de alvo de toque e a
+     espessura das linhas são mínimos absolutos, não medidas de composição. */
+  --ui-scale: 0.9;
+
+  /* Espessura das réguas. Sub-pixel: em ecrãs densos lê-se como um fio, e em
+     ecrãs a 1x o browser resolve para o traço mais leve que consegue. */
+  --hairline: 0.5px;
+}
+
+.light {
+  color-scheme: light;
+
+  /* O passo 1 do dark é preto puro, o que dá ao passo 3 um salto de 0.19 de
+     lightness — enorme. A primeira versão desta escala tinha o passo 1 em
+     branco puro e o 3 a 0.955: um salto de 0.045, quatro vezes menor. Era por
+     isso que o cartão de trabalho, as etiquetas do About e o item ativo da
+     barra desapareciam no tema claro — não era um problema dos componentes,
+     era o passo 3 estar demasiado perto do passo 1.
+     Agora o 1 sai do branco puro e os passos 3–5 descem: o salto passa a 0.07,
+     e é a mesma correção a chegar aos catorze sítios que usam `bg-surface`. */
+  --gray-1: oklch(0.995 0.001 250);
+  --gray-2: oklch(0.968 0.003 250);
+  --gray-3: oklch(0.925 0.006 250);
+  --gray-4: oklch(0.895 0.007 250);
+  --gray-5: oklch(0.865 0.008 250);
+  --gray-6: oklch(0.838 0.009 250);
+  --gray-7: oklch(0.795 0.011 250);
+  --gray-8: oklch(0.7 0.014 250);
+  --gray-9: oklch(0.24 0.008 250);
+  --gray-10: oklch(0.32 0.009 250);
+  --gray-11: oklch(0.48 0.014 250);
+  --gray-12: oklch(0.19 0.01 250);
+  --gray-on-solid: oklch(0.99 0.001 250);
+
+  --accent-3: oklch(0.955 0.025 215);
+  --accent-6: oklch(0.86 0.06 215);
+  --accent-9: oklch(0.62 0.13 215);
+  --accent-10: oklch(0.55 0.13 215);
+  --accent-11: oklch(0.5 0.12 215);
+  --accent-on-solid: oklch(0.99 0.005 215);
+
+  --danger-9: oklch(0.55 0.21 27);
+  --danger-11: oklch(0.5 0.2 27);
+
+  --selection: oklch(0.62 0.13 215 / 0.22);
+
+  --elevation-1: 0 1px 2px oklch(0.2 0.01 250 / 0.06);
+  --elevation-2: 0 1px 2px oklch(0.2 0.01 250 / 0.06),
+    0 4px 12px oklch(0.2 0.01 250 / 0.08);
+  --elevation-3: 0 2px 4px oklch(0.2 0.01 250 / 0.07),
+    0 12px 32px oklch(0.2 0.01 250 / 0.1);
+}
+
+@theme inline {
+  /* ---- Cor: só aliases semânticos. Os passos crus nunca aparecem no JSX. */
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-inherit: inherit;
+
+  --color-bg: var(--gray-1);
+  --color-bg-subtle: var(--gray-2);
+  --color-surface: var(--gray-3);
+  --color-surface-hover: var(--gray-4);
+  --color-surface-active: var(--gray-5);
+  --color-border-subtle: var(--gray-6);
+  --color-border: var(--gray-7);
+  --color-border-hover: var(--gray-8);
+  --color-solid: var(--gray-9);
+  --color-solid-hover: var(--gray-10);
+  --color-on-solid: var(--gray-on-solid);
+  --color-fg-muted: var(--gray-11);
+  --color-fg: var(--gray-12);
+
+  --color-accent-surface: var(--accent-3);
+  --color-accent-border: var(--accent-6);
+  --color-accent: var(--accent-9);
+  --color-accent-hover: var(--accent-10);
+  --color-accent-fg: var(--accent-11);
+  --color-on-accent: var(--accent-on-solid);
+
+  --color-danger: var(--danger-9);
+  --color-danger-fg: var(--danger-11);
+
+  /* ---- Tipo: 6 tamanhos, 3 pesos. O namespace é limpo primeiro, por isso um
+     sétimo tamanho ou um quarto peso deixa simplesmente de compilar.
+     Os passos são `12 · 14 · 16 · 20 · 24 · 32` na escala; a `--ui-scale`
+     resolve-os para `10.8 · 12.6 · 14.4 · 18 · 21.6 · 28.8`. A razão entre
+     passos é a mesma — só o ponto de partida é que mudou. */
+  --text-*: initial;
+  --text-xs: 0.75rem; /* eyebrows, meta, contadores */
+  --text-xs--line-height: 1.5;
+  --text-sm: 0.875rem; /* corpo secundário, linhas de lista */
+  --text-sm--line-height: 1.55;
+  --text-base: 1rem; /* corpo e prosa */
+  --text-base--line-height: 1.65;
+  --text-lg: 1.25rem; /* h3, subtítulos */
+  --text-lg--line-height: 1.4;
+  --text-xl: 1.5rem; /* h2 */
+  --text-xl--line-height: 1.25;
+  --text-2xl: 2rem; /* h1 */
+  --text-2xl--line-height: 1.1;
+
+  --font-weight-*: initial;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  --tracking-*: initial;
+  --tracking-tight: -0.02em; /* títulos grandes */
+  --tracking-normal: 0em; /* corpo — não mexer */
+  --tracking-wide: 0.18em; /* maiúsculas pequenas */
+
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-script: "Caveat", "Brush Script MT", cursive;
+
+  /* ---- Raios: 2. */
+  --radius-*: initial;
+  --radius-md: 0.5rem;
+  --radius-full: 9999px;
+
+  /* ---- Elevação: 3. */
+  --shadow-*: initial;
+  --shadow-1: var(--elevation-1);
+  --shadow-2: var(--elevation-2);
+  --shadow-3: var(--elevation-3);
+
+  /* ---- Movimento: 3 durações, 2 easings. */
+  --ease-*: initial;
+  --ease-out: var(--ease-out-curve);
+  --ease-in: var(--ease-in-curve);
+
+  --animate-*: initial;
+  --animate-enter: enter var(--dur-enter) var(--ease-out-curve) both;
+  --animate-skeleton: skeleton 1.6s var(--ease-out-curve) infinite;
+
+  /* ---- Medida: uma só largura de coluna em todo o produto (Fase 3). */
+  --container-*: initial;
+  --container-measure: 37.5rem; /* 540px a 90% ≈ 68 caracteres — dentro dos 45–75 */
+
+  /* ---- Espaço: a escala fechada é `1 2 3 4 6 8 12 16` (o `1` é o desvio
+     assumido em design.md). O offset de topo da página não cabe nela — é a
+     altura do header fixo mais uma respiração — por isso é um token nomeado,
+     e não um número mágico à solta no JSX. */
+  --spacing-header: 3.5rem; /* topo + altura do nav */
+  --spacing-page-top: 9rem; /* header + ~80px de respiração */
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes skeleton {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
 
 @layer base {
   html {
-    font-family: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    /* Percentagem, não px: parte da preferência de tamanho de letra da pessoa
+       em vez de a substituir. 100% → 90%. */
+    font-size: calc(100% * var(--ui-scale));
+    font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    /* Reserva permanente da scrollbar: mudar de página ou abrir um overlay
+       nunca produz salto horizontal (07 — estabilidade visual). */
+    scrollbar-gutter: stable;
   }
+
   body {
-    background-color: var(--background);
-    color: var(--foreground);
+    background-color: var(--gray-1);
+    color: var(--gray-12);
     font-feature-settings: "ss01", "cv11";
   }
+
   ::selection {
-    background: oklch(0.7 0.13 215 / 0.35);
-    color: var(--foreground);
+    background: var(--selection);
+    color: var(--gray-12);
+  }
+
+  /* Foco visível apenas em navegação por teclado, igual em toda a app.
+     Sem border-radius forçado: a box-shadow segue o raio do próprio elemento. */
+  :focus-visible {
+    outline: none;
+    box-shadow: var(--ring);
+  }
+
+  svg {
+    flex-shrink: 0;
+    -webkit-user-drag: none;
+  }
+  img {
+    -webkit-user-drag: none;
+  }
+
+  /* prefers-reduced-motion: substituído por transição curta, nunca por
+     ausência de feedback (06). */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 1ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 80ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
-@theme inline {
-  --font-display: "Instrument Serif", "Times New Roman", serif;
-  --font-script: "Caveat", "Brush Script MT", cursive;
-  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, monospace;
+/* ==========================================================================
+   UTILITÁRIOS
+   Nomeados pelo papel, não pelo valor — quem escreve JSX não escolhe ms.
+   ========================================================================== */
+
+@utility motion-micro {
+  transition-property: color, background-color, border-color, box-shadow,
+    opacity, transform, text-decoration-color;
+  transition-duration: var(--dur-micro);
+  transition-timing-function: var(--ease-out-curve);
 }
 
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 8px);
-  --radius-3xl: calc(var(--radius) + 12px);
-  --radius-4xl: calc(var(--radius) + 16px);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-ring-offset-background: var(--background);
+@utility motion-enter {
+  transition-property: opacity, transform;
+  transition-duration: var(--dur-enter);
+  transition-timing-function: var(--ease-out-curve);
 }
 
-:root {
-  --radius: 0.5rem;
-  --background: oklch(0% 0 0);
-  --foreground: oklch(0.97 0.003 240);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.97 0.003 240);
-  --primary-foreground: oklch(0.13 0.005 240);
-  --secondary: oklch(0.18 0.006 240);
-  --secondary-foreground: oklch(0.95 0.003 240);
-  --muted: oklch(0.2 0.006 240);
-  --muted-foreground: oklch(0.62 0.01 240);
-  --accent: oklch(0.78 0.13 215);
-  --accent-foreground: oklch(0.13 0.005 240);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 0.08);
-  --input: oklch(1 0 0 / 0.1);
-  --ring: oklch(0.78 0.13 215 / 0.5);
+@utility motion-overlay {
+  transition-property: opacity, transform;
+  transition-duration: var(--dur-overlay);
+  transition-timing-function: var(--ease-out-curve);
 }
 
-@layer base {
-  * {
-    border-color: var(--color-border);
+/* Alvo interativo: cursor, seleção e realce de toque tratados de uma vez (07).
+   Tailwind v4 já não põe cursor:pointer em <button>, por isso é explícito. */
+@utility interactive {
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    cursor: not-allowed;
   }
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+}
+
+/* Expande o alvo de toque para 44px sem alterar o layout visual (07 — Fitts).
+   Aplicado só onde é preciso, para não injetar ::after em links de prosa. */
+@utility touch-target {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: 100%;
+    height: 100%;
+    min-width: 44px;
+    min-height: 44px;
   }
+}
+
+/* Números que se atualizam ou se alinham em coluna não fazem o layout saltar. */
+@utility numeric {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Régua horizontal. As linhas *dentro* dos componentes foram removidas — o
+   separador passou a ser o espaço (01: "retira a borda; ainda se percebe?").
+   Ficou só a régua que separa blocos de prosa, e essa é um fio. */
+@utility rule {
+  border: 0;
+  border-top: var(--hairline) solid var(--color-border-subtle);
 }

@@ -1,23 +1,26 @@
 import { Link } from "react-router-dom";
+import { Page } from "@/components/site/Page";
+import { buttonVariants } from "@/components/ui/buttonVariants";
 import { useTitle } from "@/lib/useTitle";
+import { copy } from "@/lib/copy";
 
 export default function NotFound() {
-  useTitle("Page not found");
+  useTitle(`${copy.notFound.title} — Mário Afonso`);
   return (
-    <main className="flex min-h-[60vh] items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
-        <Link
-          to="/"
-          className="mt-6 inline-flex items-center justify-center rounded-full bg-foreground px-5 py-2 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
-        >
-          Go home
+    <Page>
+      {/* O "404" é o eyebrow, não o título: o código não é a mensagem (10).
+          E deixa de ser o maior texto do produto, o que fechava a escala de
+          tipo num tamanho que mais nada usava (03). */}
+      <p className="numeric text-xs tracking-wide text-fg-muted uppercase">
+        {copy.notFound.eyebrow}
+      </p>
+      <h1 className="mt-4 text-2xl font-medium tracking-tight text-fg">{copy.notFound.title}</h1>
+      <p className="mt-4 text-base text-fg-muted">{copy.notFound.body}</p>
+      <div className="mt-8">
+        <Link to="/" className={buttonVariants()}>
+          {copy.notFound.action}
         </Link>
       </div>
-    </main>
+    </Page>
   );
 }

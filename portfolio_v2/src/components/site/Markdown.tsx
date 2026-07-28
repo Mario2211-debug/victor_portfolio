@@ -19,13 +19,13 @@ function renderInline(text: string, keyPrefix: string): React.ReactNode[] {
     const key = `${keyPrefix}-${i++}`;
     if (token.startsWith("`")) {
       nodes.push(
-        <code key={key} className="rounded bg-secondary/70 px-1.5 py-0.5 text-[0.85em] font-mono">
+        <code key={key} className="rounded-md bg-surface px-1 py-1 font-mono text-sm">
           {token.slice(1, -1)}
         </code>,
       );
     } else if (token.startsWith("**")) {
       nodes.push(
-        <strong key={key} className="font-semibold text-foreground">
+        <strong key={key} className="font-semibold text-fg">
           {token.slice(2, -2)}
         </strong>,
       );
@@ -37,7 +37,7 @@ function renderInline(text: string, keyPrefix: string): React.ReactNode[] {
           href={m[2]}
           target="_blank"
           rel="noreferrer"
-          className="text-foreground underline underline-offset-4 decoration-foreground/30 hover:decoration-foreground"
+          className="motion-micro rounded-md text-fg underline decoration-fg-muted underline-offset-4 hover:decoration-fg"
         >
           {m[1]}
         </a>,
@@ -77,7 +77,7 @@ export function Markdown({ content }: { content: string }) {
       blocks.push(
         <pre
           key={key++}
-          className="my-4 overflow-x-auto rounded-lg border border-border/60 bg-secondary/40 p-4 text-[13px] leading-relaxed"
+          className="my-6 overflow-x-auto overscroll-x-contain rounded-md bg-surface p-4 text-sm"
         >
           <code className="font-mono">{code.join("\n")}</code>
         </pre>,
@@ -93,7 +93,7 @@ export function Markdown({ content }: { content: string }) {
 
     // Horizontal rule
     if (/^(-{3,}|\*{3,}|_{3,})\s*$/.test(line)) {
-      blocks.push(<hr key={key++} className="my-8 border-border/60" />);
+      blocks.push(<hr key={key++} className="rule my-12" />);
       i++;
       continue;
     }
@@ -105,11 +105,13 @@ export function Markdown({ content }: { content: string }) {
       const text = heading[2].trim();
       const cls =
         level <= 1
-          ? "mt-10 mb-3 text-2xl font-semibold tracking-tight"
+          ? "mt-12 mb-4 text-xl font-semibold tracking-tight text-fg"
           : level === 2
-            ? "mt-9 mb-3 text-xl font-semibold tracking-tight"
-            : "mt-7 mb-2 text-base font-semibold tracking-tight";
-      const Tag = `h${Math.min(level, 6)}` as keyof React.JSX.IntrinsicElements;
+            ? "mt-12 mb-3 text-lg font-semibold tracking-tight text-fg"
+            : "mt-8 mb-2 text-base font-semibold text-fg";
+      // O <h1> da página é o título do post. Um "#" no markdown é, por isso,
+      // um h2 — níveis de heading sem saltos (09).
+      const Tag = `h${Math.min(level + 1, 6)}` as keyof React.JSX.IntrinsicElements;
       blocks.push(
         <Tag key={key++} className={cls}>
           {renderInline(text, `h${key}`)}
@@ -129,7 +131,7 @@ export function Markdown({ content }: { content: string }) {
       blocks.push(
         <blockquote
           key={key++}
-          className="my-4 border-l-2 border-border pl-4 text-muted-foreground italic"
+          className="my-6 border-l border-border-subtle pl-4 text-base text-fg-muted italic"
         >
           {renderInline(quote.join(" "), `q${key}`)}
         </blockquote>,
@@ -147,7 +149,7 @@ export function Markdown({ content }: { content: string }) {
       blocks.push(
         <ul
           key={key++}
-          className="my-4 list-disc space-y-1.5 pl-5 text-[15px] leading-relaxed text-muted-foreground"
+          className="my-6 list-disc space-y-2 pl-6 text-base text-fg"
         >
           {items.map((it, idx) => (
             <li key={idx}>{renderInline(it, `ul${key}-${idx}`)}</li>
@@ -167,7 +169,7 @@ export function Markdown({ content }: { content: string }) {
       blocks.push(
         <ol
           key={key++}
-          className="my-4 list-decimal space-y-1.5 pl-5 text-[15px] leading-relaxed text-muted-foreground"
+          className="my-6 list-decimal space-y-2 pl-6 text-base text-fg"
         >
           {items.map((it, idx) => (
             <li key={idx}>{renderInline(it, `ol${key}-${idx}`)}</li>
@@ -193,7 +195,7 @@ export function Markdown({ content }: { content: string }) {
       i++;
     }
     blocks.push(
-      <p key={key++} className="my-4 text-[15px] leading-relaxed text-foreground/85">
+      <p key={key++} className="my-6 text-base text-fg">
         {renderInline(para.join(" "), `p${key}`)}
       </p>,
     );

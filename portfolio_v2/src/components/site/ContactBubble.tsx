@@ -1,6 +1,8 @@
 import { Mail } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { portfolioQueryOptions } from "@/lib/portfolio";
+import { buttonVariants } from "@/components/ui/buttonVariants";
+import { copy } from "@/lib/copy";
 
 export function ContactBubble() {
   const { data } = useQuery(portfolioQueryOptions());
@@ -11,11 +13,11 @@ export function ContactBubble() {
   return (
     <a
       href={`mailto:${email}`}
-      aria-label="Contact me by email"
-      title="Contact me"
-      className="flex size-10 shrink-0 items-center justify-center rounded-full border border-border/80 bg-background/70 backdrop-blur-md text-muted-foreground hover:text-foreground transition-colors"
+      aria-label={copy.nav.email}
+      title={copy.nav.email}
+      className={buttonVariants({ variant: "ghost", size: "icon" })}
     >
-      <Mail className="size-4" />
+      <Mail aria-hidden className="size-4" />
     </a>
   );
 }

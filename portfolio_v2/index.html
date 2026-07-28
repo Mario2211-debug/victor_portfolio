@@ -3,32 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Resolve o tema antes da primeira pintura: sem flash de tema (07).
+         Dark é o defeito; `.light` é o desvio. -->
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("theme") === "light") {
+            document.documentElement.classList.add("light");
+          }
+        } catch (e) {
+          /* storage bloqueado: fica o tema por defeito */
+        }
+      })();
+    </script>
+
+    <title>Mário Afonso — Software Engineer</title>
     <meta
       name="description"
       content="Fullstack engineer crafting intelligent, scalable systems across web, automation and IoT."
     />
     <meta name="author" content="Mário Afonso" />
     <meta name="theme-color" content="#000000" />
+    <link rel="canonical" href="https://victor-portfolio-sepia.vercel.app/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Mário Afonso" />
+    <meta property="og:url" content="https://victor-portfolio-sepia.vercel.app/" />
     <meta property="og:title" content="Mário Afonso — Software Engineer" />
     <meta
       property="og:description"
       content="Fullstack engineer crafting intelligent, scalable systems across web, automation and IoT."
     />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="https://victor-portfolio-sepia.vercel.app/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mário Afonso — Software Engineer" />
+
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Mário Afonso — Software Engineer" />
     <meta
       name="twitter:description"
       content="Fullstack engineer crafting intelligent, scalable systems across web, automation and IoT."
     />
+    <meta name="twitter:image" content="https://victor-portfolio-sepia.vercel.app/og.png" />
+
+    <!-- Fontes: preconnect + preload da folha, e `display=swap` na query.
+         O fallback está declarado em `--font-sans`, por isso a troca é de
+         família, não de layout. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&display=swap"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Caveat:wght@500&display=swap"
     />
-    <title>Mário Afonso — Software Engineer</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Caveat:wght@500&display=swap"
+    />
   </head>
   <body>
     <div id="root"></div>

@@ -2,86 +2,91 @@ import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft } from "lucide-react";
 import { portfolioQueryOptions, publishedPosts, formatPostDate } from "@/lib/portfolio";
-import { LoadingState, ErrorState } from "@/components/site/States";
+import { LoadingState, ErrorState, EmptyState } from "@/components/site/States";
+import { Page } from "@/components/site/Page";
 import { Markdown } from "@/components/site/Markdown";
+import { Tag } from "@/components/ui/Tag";
+import { buttonVariants } from "@/components/ui/buttonVariants";
 import { useTitle } from "@/lib/useTitle";
+import { copy } from "@/lib/copy";
+
+function BackToBlog() {
+  return (
+    <Link
+      to="/blog"
+      className="interactive motion-micro -mx-2 inline-flex items-center gap-2 rounded-md px-2 py-2 text-sm text-fg-muted hover:bg-surface hover:text-fg"
+    >
+      <ArrowLeft aria-hidden className="size-4" />
+      {copy.blog.backToBlog}
+    </Link>
+  );
+}
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const { data, isLoading, error, refetch } = useQuery(portfolioQueryOptions());
 
   const post = data ? publishedPosts(data).find((p) => p.slug === slug) : undefined;
-  useTitle(post ? `${post.title} — Mário Afonso` : "Post — Mário Afonso");
+  useTitle(post ? `${post.title} — Mário Afonso` : `${copy.blog.eyebrow} — Mário Afonso`);
 
-  if (isLoading) return <LoadingState />;
+  if (isLoading) return <LoadingState shape="article" />;
   if (error || !data)
-    return <ErrorState error={(error as Error) ?? new Error("No data")} onRetry={() => refetch()} />;
+    return (
+      <ErrorState error={(error as Error) ?? new Error("No data")} onRetry={() => refetch()} />
+    );
 
   if (!post) {
     return (
-      <main className="bg-background text-foreground flex justify-center px-5 pt-24 pb-16">
-        <div className="w-full max-w-[640px]">
-          <Link
-            to="/blog"
-            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <ArrowLeft className="size-4" />
-            Back to blog
-          </Link>
-          <h1 className="mt-8 text-2xl font-semibold tracking-tight">Post not found</h1>
-          <p className="mt-2 text-sm text-muted-foreground">
-            This post doesn't exist or hasn't been published.
-          </p>
-        </div>
-      </main>
+      <Page>
+        <h1 className="sr-only">{copy.blog.notFoundTitle}</h1>
+        <EmptyState
+          title={copy.blog.notFoundTitle}
+          body={copy.blog.notFoundBody}
+          action={
+            <Link to="/blog" className={buttonVariants({ size: "sm" })}>
+              {copy.blog.backToBlog}
+            </Link>
+          }
+        />
+      </Page>
     );
   }
 
   return (
-    <main className="bg-background text-foreground flex justify-center px-5 pt-24 pb-20">
-      <article className="w-full max-w-[640px]">
-        <Link
-          to="/blog"
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
-        >
-          <ArrowLeft className="size-4" />
-          Back to blog
-        </Link>
+    <Page>
+      <article>
+        <BackToBlog />
 
         <header className="mt-8">
-          <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-            {post.createdAt && <span>{formatPostDate(post.createdAt)}</span>}
-            {post.category && (
-              <>
-                <span className="opacity-40">·</span>
-                <span className="inline-flex items-center rounded-md border border-border/60 bg-secondary/30 px-2 py-0.5">
-                  {post.category}
-                </span>
-              </>
+          <div className="flex flex-wrap items-center gap-2 text-xs text-fg-muted">
+            {post.createdAt && (
+              <time dateTime={post.createdAt} className="numeric">
+                {formatPostDate(post.createdAt)}
+              </time>
             )}
+            {post.category && <Tag>{post.category}</Tag>}
           </div>
-          <h1 className="mt-3 text-[clamp(1.9rem,4.5vw,2.6rem)] leading-[1.08] tracking-[-0.02em] font-medium">
-            {post.title}
-          </h1>
+          <h1 className="mt-3 text-2xl font-medium tracking-tight text-fg">{post.title}</h1>
           {post.description?.trim() && (
-            <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
-              {post.description.trim()}
-            </p>
+            <p className="mt-4 text-base text-fg-muted">{post.description.trim()}</p>
           )}
         </header>
 
         {post.imageUrl?.trim() && (
+          /* Proporção reservada antes de a imagem chegar: zero layout shift (07). */
           <img
             src={post.imageUrl}
-            alt={post.title}
-            className="mt-8 w-full rounded-lg border border-border/60 object-cover"
+            alt=""
+            loading="lazy"
+            draggable={false}
+            className="mt-8 aspect-[16/9] w-full rounded-md bg-surface object-cover"
           />
         )}
 
-        <div className="mt-6 border-t border-border/60 pt-2">
+        <div className="mt-8">
           <Markdown content={post.content ?? ""} />
         </div>
       </article>
-    </main>
+    </Page>
   );
 }

@@ -2,57 +2,68 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowUpRight } from "lucide-react";
 import { portfolioQueryOptions, publishedPosts, formatPostDate } from "@/lib/portfolio";
-import { LoadingState, ErrorState } from "@/components/site/States";
+import { LoadingState, ErrorState, EmptyState } from "@/components/site/States";
+import { Page } from "@/components/site/Page";
+import { buttonVariants } from "@/components/ui/buttonVariants";
 import { useTitle } from "@/lib/useTitle";
+import { copy } from "@/lib/copy";
 
 export default function Blog() {
-  useTitle("Blog — Mário Afonso");
+  useTitle(`${copy.blog.title} — Mário Afonso`);
   const { data, isLoading, error, refetch } = useQuery(portfolioQueryOptions());
 
-  if (isLoading) return <LoadingState />;
+  if (isLoading) return <LoadingState shape="list" />;
   if (error || !data)
-    return <ErrorState error={(error as Error) ?? new Error("No data")} onRetry={() => refetch()} />;
+    return (
+      <ErrorState error={(error as Error) ?? new Error("No data")} onRetry={() => refetch()} />
+    );
 
   const posts = publishedPosts(data);
 
   return (
-    <main className="bg-background text-foreground flex justify-center px-5 pt-24 pb-16">
-      <div className="w-full max-w-[600px]">
-        <p className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground mb-3">Blog</p>
-        <h1 className="text-[clamp(2rem,5vw,2.75rem)] leading-[1.05] tracking-[-0.02em]">
-          Notes &amp; essays.
-        </h1>
-        <p className="mt-3 text-[15px] text-muted-foreground">
-          Occasional writing on engineering, design and the craft of shipping.
-        </p>
+    <Page>
+      <p className="text-xs tracking-wide text-fg-muted uppercase">{copy.blog.eyebrow}</p>
+      <h1 className="mt-4 text-2xl font-medium tracking-tight text-fg">{copy.blog.title}</h1>
+      <p className="mt-4 text-base text-fg-muted">{copy.blog.intro}</p>
 
-        {posts.length === 0 ? (
-          <p className="mt-10 text-sm text-muted-foreground">No posts published yet.</p>
-        ) : (
-          <ul className="mt-8 divide-y divide-border/60">
-            {posts.map((p) => (
-              <li key={p._id} className="border-0">
-                <Link
-                  to={`/blog/${p.slug}`}
-                  className="group block py-4 px-1 hover:border-b transition-colors"
-                >
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="text-[15px] text-foreground/90 group-hover:text-foreground truncate">
-                      {p.title}
-                    </span>
-                    <ArrowUpRight className="size-4 text-muted-foreground shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </div>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    {[formatPostDate(p.createdAt), p.category, p.description?.trim()]
-                      .filter(Boolean)
-                      .join(" · ")}
-                  </p>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </main>
+      {posts.length === 0 ? (
+        <EmptyState
+          className="mt-12"
+          title={copy.blog.emptyTitle}
+          body={copy.blog.emptyBody}
+          action={
+            <Link to="/" className={buttonVariants({ size: "sm" })}>
+              {copy.blog.emptyAction}
+            </Link>
+          }
+        />
+      ) : (
+        <ul className="mt-12">
+          {posts.map((p) => (
+            <li key={p._id}>
+              <Link
+                to={`/blog/${p.slug}`}
+                className="interactive motion-micro group -mx-2 block rounded-md px-2 py-3 hover:bg-surface"
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <span className="min-w-0 truncate text-base text-fg-muted group-hover:text-fg">
+                    {p.title}
+                  </span>
+                  <ArrowUpRight
+                    aria-hidden
+                    className="motion-micro size-4 text-fg-muted group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-fg"
+                  />
+                </div>
+                <p className="mt-1 text-xs text-fg-muted">
+                  {[formatPostDate(p.createdAt), p.category, p.description?.trim()]
+                    .filter(Boolean)
+                    .join(" · ")}
+                </p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </Page>
   );
 }

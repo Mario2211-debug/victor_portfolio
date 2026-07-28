@@ -1,6 +1,14 @@
 export const PORTFOLIO_API =
   "https://portfoliohub-uzjb.onrender.com/api/public/marioafonso1997";
 
+/**
+ * Canal de contacto que não depende da API.
+ * Todo o contacto do site vem do perfil — exceto no único caso em que o perfil
+ * não chega: quando a API está em baixo. É precisamente aí que o estado de erro
+ * precisa de ter algo para oferecer, por isso este valor é estático.
+ */
+export const FALLBACK_CONTACT_URL = "https://www.linkedin.com/in/mario-afonso-018107141";
+
 export interface PortfolioUser {
   name: string;
   email: string;
