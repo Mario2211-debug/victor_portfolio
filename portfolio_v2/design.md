@@ -279,6 +279,70 @@ resolve-se pela raiz: o efeito depende agora do `key` da rota, por isso volta a
 ler a posição de partida **depois** do salto programático. A ordem no `Shell`
 importa e está garantida: `useScrollRestoration` antes de `useHideOnScroll`.
 
+**10. A cor de marca passou a laranja.**
+`#db6930` → `oklch(0.649 0.159 44.5)`. **Substituiu** o ciano, não se somou a
+ele: o `02` fecha em um cinzento mais *uma* cor de marca, e o ciano não estava
+a aparecer em lado nenhum — vivia só no anel de foco e na seleção de texto,
+porque nenhum componente chegou a usar `accent-*`. A troca não teve custo.
+
+O cinzento fica em hue 250. Frio contra um accent quente é um par melhor do que
+era contra o ciano, que competia com ele na mesma metade do círculo.
+
+Onde o laranja se vê, e mais nada:
+- **Um ponto de 6px no cargo atual.** É o único laranja de toda a página. Tem
+  significado — *isto é o presente* — em vez de ser decoração, e reutiliza o
+  `isCurrent` que os dados já traziam. É `aria-hidden`: o intervalo de datas já
+  diz "Present", por isso o ponto reforça, não informa. Um estado nunca pode
+  depender só de cor (09).
+- **O anel de foco** e **a seleção de texto**.
+
+Contraste: o `#db6930` tal e qual dá **6.07:1** sobre o preto — passa até como
+texto. Sobre o branco dá só **3.41:1**, que chega para um ponto ou um anel
+(3:1) mas não para texto; por isso o passo 11 do tema claro desce a `0.52`
+(5.79:1). É a mesma lógica que corrigiu a escala cinzenta: os papéis mantêm-se,
+os valores é que mudam de tema para tema.
+
+*Clarificação da escala de espaço, que este ponto obrigou a escrever:* o `size-1.5`
+do ponto está fora da escala fechada, tal como o `size-10` do avatar e o `h-10`
+do nav sempre estiveram. A escala `1 2 3 4 6 8 12 16` governa **ritmo** —
+margens, padding, gaps. Dimensões de componente (um avatar, uma altura de barra,
+o diâmetro de um ponto) são decisões ópticas e vivem fora dela. O `gap-2` entre
+o ponto e o texto, esse, está na escala.
+
+---
+
+## Validação no browser
+
+Corrida em Chromium (Playwright), contra o dev server e contra a build de
+produção. Os números estão em `design-diff.md`. O que interessa reter:
+
+**Confirmado.** Anel de foco em todas as paragens de `Tab`, nos quatro ecrãs
+percorridos. `Esc` fecha o disclosure e devolve o foco. As tabs respondem a
+setas, `Home`/`End` e dão a volta. O scroll restaura-se ao voltar. O header
+esconde-se ao descer e volta ao subir — incluindo no About, que era onde
+falhava. As transições saem a 120ms, e a 80ms com `prefers-reduced-motion`.
+Lighthouse: acessibilidade **100**, boas práticas **100**.
+
+**Duas coisas que só a medição apanhou.**
+
+1. **As linhas do trabalho recente estavam em 34px em ecrã de toque.** Ao
+   remover os separadores apertei o `py`, e com a escala global a −10% caíram
+   abaixo do mínimo de 44px do `07`. Nada no código o denunciava. Corrigido com
+   `pointer-coarse:py-4`: 48px no dedo, 34px no rato — a densidade que a Fase 0
+   pediu mantém-se onde faz sentido.
+
+   *A lição:* uma regra em px dentro de um sistema em `rem` não se move com o
+   sistema. Sempre que a escala global mudar, os mínimos absolutos têm de ser
+   remedidos — não há gate que os proteja.
+
+2. **SEO em 92, por falta de `robots.txt`.** Faltava mesmo, e não estava na
+   checklist da Fase 8 do kit. Adicionados `robots.txt` e `sitemap.xml`;
+   SEO passou a **100**.
+
+**O que continua por fazer:** os screenshots lado a lado com o Linear — a
+referência está atrás de autenticação — e o percurso de teclado no post de blog
+e no 404.
+
 ---
 
 ## Regras que ficam

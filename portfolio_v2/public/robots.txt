@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://victor-portfolio-sepia.vercel.app/sitemap.xml

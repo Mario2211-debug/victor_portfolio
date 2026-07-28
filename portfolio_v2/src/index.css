@@ -20,7 +20,8 @@
      11    texto de baixo contraste (secundário)
      12    texto de alto contraste
 
-   Cinzento frio (hue 250), escolhido pela temperatura do accent ciano (215).
+   Cinzento frio (hue 250) contra um accent quente (laranja, hue 44.5): um par
+   complementar, e mais forte do que era contra o ciano que aqui esteve antes.
    Dark é o defeito. Light troca a escala — os papéis mantêm-se, e é por isso
    que alterna sem tocar em nenhum componente.
    -------------------------------------------------------------------------- */
@@ -42,17 +43,19 @@
   --gray-12: oklch(0.97 0.003 250);
   --gray-on-solid: oklch(0.13 0.005 250);
 
-  --accent-3: oklch(0.24 0.04 215);
-  --accent-6: oklch(0.42 0.07 215);
-  --accent-9: oklch(0.78 0.13 215);
-  --accent-10: oklch(0.85 0.12 215);
-  --accent-11: oklch(0.78 0.13 215);
-  --accent-on-solid: oklch(0.15 0.02 215);
+  /* Laranja. O passo 9 é exatamente o #db6930 pedido, convertido: sobre o
+     passo 1 do dark dá 6.07:1, o que o deixa passar até como texto. */
+  --accent-3: oklch(0.25 0.05 44.5);
+  --accent-6: oklch(0.44 0.09 44.5);
+  --accent-9: oklch(0.649 0.159 44.5);
+  --accent-10: oklch(0.71 0.15 44.5);
+  --accent-11: oklch(0.72 0.14 44.5);
+  --accent-on-solid: oklch(0.15 0.02 44.5);
 
   --danger-9: oklch(0.62 0.19 27);
   --danger-11: oklch(0.75 0.15 27);
 
-  --selection: oklch(0.78 0.13 215 / 0.3);
+  --selection: oklch(0.649 0.159 44.5 / 0.3);
 
   /* Elevação — lacuna assumida do kit (ver pipeline.md). Sombras em camadas:
      uma de contacto, curta e opaca, e uma de difusão, longa e ténue. */
@@ -109,17 +112,19 @@
   --gray-12: oklch(0.19 0.01 250);
   --gray-on-solid: oklch(0.99 0.001 250);
 
-  --accent-3: oklch(0.955 0.025 215);
-  --accent-6: oklch(0.86 0.06 215);
-  --accent-9: oklch(0.62 0.13 215);
-  --accent-10: oklch(0.55 0.13 215);
-  --accent-11: oklch(0.5 0.12 215);
-  --accent-on-solid: oklch(0.99 0.005 215);
+  /* O #db6930 tal e qual só dá 3.41:1 sobre branco — chega para um ponto ou um
+     anel de foco (3:1), não para texto. Daí o passo 11 descer a 0.52 (5.79:1). */
+  --accent-3: oklch(0.955 0.03 44.5);
+  --accent-6: oklch(0.86 0.07 44.5);
+  --accent-9: oklch(0.6 0.16 44.5);
+  --accent-10: oklch(0.54 0.15 44.5);
+  --accent-11: oklch(0.52 0.15 44.5);
+  --accent-on-solid: oklch(0.99 0.005 44.5);
 
   --danger-9: oklch(0.55 0.21 27);
   --danger-11: oklch(0.5 0.2 27);
 
-  --selection: oklch(0.62 0.13 215 / 0.22);
+  --selection: oklch(0.6 0.16 44.5 / 0.22);
 
   --elevation-1: 0 1px 2px oklch(0.2 0.01 250 / 0.06);
   --elevation-2: 0 1px 2px oklch(0.2 0.01 250 / 0.06),

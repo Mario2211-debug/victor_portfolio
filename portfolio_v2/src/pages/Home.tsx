@@ -94,7 +94,16 @@ export default function Home() {
           /* Um só mecanismo de separação: fundo. Sem borda por cima (01). */
           <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1 rounded-md bg-surface px-4 py-3">
             <div className="min-w-0">
-              <p className="text-sm font-medium text-fg">{current.position}</p>
+              <p className="flex items-center gap-2 text-sm font-medium text-fg">
+                {/* O único laranja visível do produto: isto é o presente.
+                    `aria-hidden` porque não acrescenta informação — o intervalo
+                    de datas já diz "Present", e um estado nunca deve depender só
+                    de cor (09). O ponto reforça, não informa. */}
+                {current.isCurrent && (
+                  <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-accent" />
+                )}
+                {current.position}
+              </p>
               <p className="mt-1 text-xs text-fg-muted">{current.company}</p>
             </div>
             <p className="numeric shrink-0 text-xs text-fg-muted">
@@ -147,7 +156,13 @@ export default function Home() {
             {recent.map((p, index) => {
               const href = sanitizeUrl(p.link);
               const rowClass =
-                "interactive motion-micro group -mx-2 flex min-w-0 items-center justify-between gap-4 rounded-md px-2 py-2 hover:bg-surface";
+                // Denso no rato, confortável no dedo. As linhas ficaram em 34px depois de
+                // lhes tirar os separadores e apertar o `py`, e 34px é abaixo do mínimo de
+                // alvo de toque do `07`. Crescer o alvo com o `::after` do `touch-target`
+                // não serve aqui: as linhas são adjacentes, e alvos de 44px sobre linhas de
+                // 34px sobrepunham-se 5px de cada lado — tocar na margem acertaria na linha
+                // errada. Em ponteiro grosseiro cresce a própria linha.
+                "interactive motion-micro group -mx-2 flex min-w-0 items-center justify-between gap-4 rounded-md px-2 py-2 pointer-coarse:py-4 hover:bg-surface";
               const inner = (
                 <>
                   <span className="min-w-0 truncate text-sm text-fg-muted group-hover:text-fg">
