@@ -25,8 +25,9 @@ export const copy = {
   },
 
   home: {
-    greeting: (firstName: string) => `Hey, I'm ${firstName}.`,
+    greeting: (firstName: string) => `${firstName} Afonso`,
     basedIn: (location: string) => `Based in ${location}.`,
+    role: "Software Engineer",
     sayHello: "Say hello",
     work: "Work",
     previousRoles: "Previous roles",

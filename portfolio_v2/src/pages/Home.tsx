@@ -9,7 +9,6 @@ import { Disclosure } from "@/components/ui/Disclosure";
 import { buttonVariants } from "@/components/ui/buttonVariants";
 import { useTitle } from "@/lib/useTitle";
 import { copy } from "@/lib/copy";
-
 /** Stagger só na primeira montagem da sessão: à décima visita é espera (06). */
 let staggerSpent = false;
 const STAGGER_MS = 30;
@@ -47,32 +46,35 @@ export default function Home() {
     <Page>
       {/* Intro */}
       <section>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-1 items-center gap-3">
           {user.avatarUrl ? (
             <img
               src={user.avatarUrl}
               alt=""
-              width={40}
-              height={40}
+              width={60}
+              height={60}
               draggable={false}
               /* Dimensões reservadas: zero layout shift quando a imagem chega.
                  A borda interior impede o avatar de flutuar sobre o fundo (01). */
-              className="size-10 shrink-0 rounded-full bg-surface object-cover inset-ring inset-ring-border-subtle"
+              className="size-15 shrink-0 rounded-full bg-surface object-cover inset-ring inset-ring-border-subtle"
             />
           ) : (
             <div
               aria-hidden
-              className="flex size-10 shrink-0 items-center justify-center rounded-full bg-surface text-xs font-medium"
+              className="flex size-15 shrink-0 items-center justify-center rounded-full bg-surface text-xs font-medium"
             >
               {initials}
             </div>
           )}
-          <h1 className="text-base font-semibold text-fg">
+          <div className="flex flex-col">
+            <h1 className="text-base font-semibold text-fg">
             {copy.home.greeting(user.name.split(" ")[0])}
           </h1>
+          <p className="text-fg-muted">{copy.home.role}</p>            
+          </div>
         </div>
 
-        <p className="mt-4 text-base text-fg-muted">
+        <p className="mt-8 text-base text-fg-muted">
           {profile.summary} {copy.home.basedIn(profile.location)}{" "}
           {contactHref && (
             <a
@@ -116,7 +118,7 @@ export default function Home() {
           <Disclosure
             label={copy.home.previousRoles}
             count={previous.length}
-            className="mt-2 -ml-2"
+            className="mt-2"
           >
             <ul className="mt-3 space-y-4 px-2">
               {previous.map((e) => (
