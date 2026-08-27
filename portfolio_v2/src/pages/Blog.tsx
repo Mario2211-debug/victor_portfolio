@@ -22,7 +22,6 @@ export default function Blog() {
 
   return (
     <Page>
-      <p className="text-xs tracking-wide text-fg-muted uppercase">{copy.blog.eyebrow}</p>
       <h1 className="mt-4 text-2xl font-medium tracking-tight text-fg">{copy.blog.title}</h1>
       <p className="mt-4 text-base text-fg-muted">{copy.blog.intro}</p>
 
