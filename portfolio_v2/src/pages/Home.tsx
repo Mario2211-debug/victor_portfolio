@@ -75,7 +75,7 @@ export default function Home() {
         </div>
 
         <p className="mt-8 text-base text-fg-muted">
-          {profile.summary} {copy.home.basedIn(profile.location)}{" "}
+          {profile.summary}{" "}
           {contactHref && (
             <a
               href={contactHref}
