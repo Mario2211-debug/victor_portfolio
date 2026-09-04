@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "snapshot": "node scripts/snapshot.mjs",
+    "build": "npm run snapshot && tsc -b && vite build && node scripts/postbuild.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },

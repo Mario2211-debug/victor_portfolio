@@ -1,3 +1,6 @@
+import { PORTFOLIO_SNAPSHOT } from "@/data/snapshot";
+import { copy } from "@/lib/copy";
+
 export const PORTFOLIO_API =
   "https://portfoliohub-uzjb.onrender.com/api/public/marioafonso1997";
 
@@ -129,13 +132,24 @@ export const portfolioQueryOptions = () => ({
   queryKey: ["portfolio"] as const,
   queryFn: fetchPortfolio,
   staleTime: 5 * 60 * 1000,
+  /**
+   * O instantâneo do build entra como dados iniciais: a primeira frame já tem
+   * conteúdo real, mesmo que a API esteja a arrancar a frio ou em baixo.
+   *
+   * `initialDataUpdatedAt: 0` marca-o como vencido à nascença — sem isto o
+   * react-query dá-lo-ia por fresco durante o `staleTime` e o site ficaria cinco
+   * minutos a mostrar o build em vez do que a API tem agora. Assim pinta do
+   * instantâneo e revalida em segundo plano na mesma montagem.
+   */
+  initialData: PORTFOLIO_SNAPSHOT,
+  initialDataUpdatedAt: 0,
 });
 
 export function formatRange(start?: string, end?: string | null, current?: boolean) {
   const f = (d: string) =>
     new Date(d).toLocaleDateString("en-US", { month: "short", year: "numeric" });
   const s = start ? f(start) : "";
-  const e = current ? "Present" : end ? f(end) : "";
+  const e = current ? copy.present : end ? f(end) : "";
   return [s, e].filter(Boolean).join(" — ");
 }
 

@@ -1,0 +1,600 @@
+{
+  "user": {
+    "name": "Mário Afonso",
+    "avatarUrl": "",
+    "username": "marioafonso1997",
+    "email": "marioafonso1997@gmail.com"
+  },
+  "profile": {
+    "title": "CTO",
+    "summary": "Software Engineer with foundation in systems programming, Linux and software development. Previous professional experience includes critical datacenter operations and infrastructure monitoring in high-availability environments, as well as freelance development of web applications.",
+    "location": "Porto",
+    "theme": "minimal",
+    "contact": {
+      "email": "marioafonso1997@gmail.com"
+    }
+  },
+  "experiences": [
+    {
+      "_id": "6a29a1f5ed7022c38f7e0242",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "company": "Ardumaker",
+      "position": "Fullstack Developer (Freelancer)",
+      "context": "• Designed and developed operational dashboards for chatbot analytics and vendor management used across multiple\nlocations.\n• Built internal agricultural management platform for monitoring field operations and workflow coordination.\n• Delivered production systems used by internal teams for operational monitoring and decision-making.",
+      "responsibilities": [],
+      "technologies": [],
+      "startDate": "2025-01-01T00:00:00.000Z",
+      "isCurrent": true,
+      "createdAt": "2026-06-10T17:42:13.718Z",
+      "updatedAt": "2026-06-10T18:04:49.044Z",
+      "__v": 0,
+      "endDate": null
+    },
+    {
+      "_id": "6a29a1f5ed7022c38f7e023e",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "company": "CISP (Centro Integrado de Segurança Pública)",
+      "position": "Data center technician",
+      "context": "• Managed and monitored critical IT infrastructure using Linux, Zabbix, and proprietary datacenter platforms.",
+      "responsibilities": [],
+      "technologies": [],
+      "startDate": "2020-04-01T00:00:00.000Z",
+      "endDate": "2023-08-01T00:00:00.000Z",
+      "isCurrent": false,
+      "createdAt": "2026-06-10T17:42:13.715Z",
+      "updatedAt": "2026-06-10T17:55:50.630Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a1f5ed7022c38f7e023c",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "company": "Angola Telecom",
+      "position": "Internship",
+      "context": "• Assisted in network operations, equipment configuration and incident resolution for telecommunications infrastructure.",
+      "responsibilities": [],
+      "technologies": [],
+      "startDate": "2019-02-01T00:00:00.000Z",
+      "endDate": "2019-08-01T00:00:00.000Z",
+      "isCurrent": false,
+      "createdAt": "2026-06-10T17:42:13.712Z",
+      "updatedAt": "2026-06-10T17:54:48.239Z",
+      "__v": 0
+    }
+  ],
+  "education": [
+    {
+      "_id": "6a29a69eed7022c38f7e046b",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "institution": "42 Porto",
+      "degree": "Software Engeneer",
+      "startDate": "2027-10-01T00:00:00.000Z",
+      "isCurrent": false,
+      "type": "Degree",
+      "coursework": [
+        "Software Engineering Program — Algorithms",
+        "Data Structures",
+        "SystemAlgorithms",
+        "Data Structures",
+        "Computer Networks",
+        "Databases & Systems Programming",
+        "Collaborative Projects B"
+      ],
+      "description": "",
+      "createdAt": "2026-06-10T18:02:06.547Z",
+      "updatedAt": "2026-06-10T18:02:06.547Z",
+      "__v": 0,
+      "endDate": null
+    },
+    {
+      "_id": "6a29a55ced7022c38f7e0386",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "institution": "University Portucalense, Porto",
+      "degree": "MSc Computer Engineering and Computing",
+      "startDate": "2024-01-01T00:00:00.000Z",
+      "endDate": null,
+      "isCurrent": false,
+      "type": "Master",
+      "coursework": [
+        "Cloud Infrastructure",
+        "Computer Networks",
+        "Databases",
+        "IoT Integration",
+        "Data Science",
+        "and AI-Driven Collaborative Projects"
+      ],
+      "description": "",
+      "createdAt": "2026-06-10T17:56:44.518Z",
+      "updatedAt": "2026-06-10T18:08:04.831Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a55ced7022c38f7e039c",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "institution": "Instituto Superior Politecnico Kalandula de Angola, Luanda, Angola",
+      "degree": "Bachelor’s Degree in Computer Engineering",
+      "startDate": "2016-01-01T00:00:00.000Z",
+      "endDate": "2021-01-01T00:00:00.000Z",
+      "isCurrent": false,
+      "type": "Course",
+      "coursework": [
+        "Software Engineering",
+        "Distributed Systems",
+        "Databases",
+        "Computer Networks",
+        "Artificial Intelligence",
+        "Cloud & IoT",
+        "Information Security",
+        "Project Management",
+        "Business Management"
+      ],
+      "description": "",
+      "createdAt": "2026-06-10T17:56:44.816Z",
+      "updatedAt": "2026-06-10T18:07:54.315Z",
+      "__v": 0
+    }
+  ],
+  "skills": [
+    {
+      "_id": "6a2df61b7ebd502b3caa1f62",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "C Language",
+      "technology": "C Language",
+      "level": 4,
+      "category": "Other",
+      "skillType": "Technical",
+      "type": "Professional",
+      "description": "",
+      "createdAt": "2026-06-14T00:30:19.169Z",
+      "updatedAt": "2026-06-14T00:30:19.169Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a1f5ed7022c38f7e0234",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "TypeScript",
+      "technology": "TypeScript",
+      "level": 3,
+      "category": "Frontend",
+      "skillType": "Technical",
+      "type": "Professional",
+      "description": "",
+      "createdAt": "2026-06-10T17:42:13.615Z",
+      "updatedAt": "2026-06-10T17:42:13.615Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a1f5ed7022c38f7e0246",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "Bash",
+      "technology": "Bash",
+      "level": 3,
+      "category": "DevOps",
+      "skillType": "Technical",
+      "type": "Professional",
+      "description": "",
+      "createdAt": "2026-06-10T17:42:13.812Z",
+      "updatedAt": "2026-06-10T17:42:13.812Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a55ded7022c38f7e03ba",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "Tailwind",
+      "technology": "Tailwind",
+      "level": 3,
+      "category": "Frontend",
+      "skillType": "Technical",
+      "type": "Professional",
+      "description": "",
+      "createdAt": "2026-06-10T17:56:45.417Z",
+      "updatedAt": "2026-06-10T17:56:45.417Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a55ced7022c38f7e037f",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "Shell",
+      "technology": "Shell",
+      "level": 3,
+      "category": "DevOps",
+      "skillType": "Technical",
+      "type": "Professional",
+      "description": "",
+      "createdAt": "2026-06-10T17:56:44.215Z",
+      "updatedAt": "2026-06-10T17:56:44.215Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a1f5ed7022c38f7e023a",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "React",
+      "technology": "React",
+      "level": 3,
+      "category": "Frontend",
+      "skillType": "Technical",
+      "type": "Professional",
+      "description": "",
+      "createdAt": "2026-06-10T17:42:13.623Z",
+      "updatedAt": "2026-06-10T17:42:13.623Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a1f6ed7022c38f7e0251",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "Python",
+      "technology": "Python",
+      "level": 3,
+      "category": "Backend",
+      "skillType": "Technical",
+      "type": "Professional",
+      "description": "",
+      "createdAt": "2026-06-10T17:42:14.018Z",
+      "updatedAt": "2026-06-10T17:42:14.018Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a1f5ed7022c38f7e0240",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "Node.js",
+      "technology": "Node.js",
+      "level": 3,
+      "category": "Backend",
+      "skillType": "Technical",
+      "type": "Professional",
+      "description": "",
+      "createdAt": "2026-06-10T17:42:13.717Z",
+      "updatedAt": "2026-06-10T17:42:13.717Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a1f6ed7022c38f7e024f",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "Node",
+      "technology": "Node",
+      "level": 3,
+      "category": "Backend",
+      "skillType": "Technical",
+      "type": "Professional",
+      "description": "",
+      "createdAt": "2026-06-10T17:42:14.016Z",
+      "updatedAt": "2026-06-10T17:42:14.016Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a1f5ed7022c38f7e0248",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "Next.js",
+      "technology": "Next.js",
+      "level": 3,
+      "category": "Frontend",
+      "skillType": "Technical",
+      "type": "Professional",
+      "description": "",
+      "createdAt": "2026-06-10T17:42:13.822Z",
+      "updatedAt": "2026-06-10T17:42:13.822Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a1f5ed7022c38f7e0236",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "Mysql",
+      "technology": "Mysql",
+      "level": 3,
+      "category": "Database",
+      "skillType": "Technical",
+      "type": "Professional",
+      "description": "",
+      "createdAt": "2026-06-10T17:42:13.618Z",
+      "updatedAt": "2026-06-10T17:42:13.618Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a1f5ed7022c38f7e0244",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "Mongodb",
+      "technology": "Mongodb",
+      "level": 3,
+      "category": "Database",
+      "skillType": "Technical",
+      "type": "Professional",
+      "description": "",
+      "createdAt": "2026-06-10T17:42:13.721Z",
+      "updatedAt": "2026-06-10T17:42:13.721Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a1f6ed7022c38f7e025a",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "Linux",
+      "technology": "Linux",
+      "level": 3,
+      "category": "DevOps",
+      "skillType": "Technical",
+      "type": "Professional",
+      "description": "",
+      "createdAt": "2026-06-10T17:42:14.216Z",
+      "updatedAt": "2026-06-10T17:42:14.216Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a1f6ed7022c38f7e025c",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "Grafana",
+      "technology": "Grafana",
+      "level": 3,
+      "category": "DevOps",
+      "skillType": "Technical",
+      "type": "Professional",
+      "description": "",
+      "createdAt": "2026-06-10T17:42:14.218Z",
+      "updatedAt": "2026-06-10T17:42:14.218Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a1f6ed7022c38f7e0258",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "Framer",
+      "technology": "Framer",
+      "level": 3,
+      "category": "Design Tools",
+      "skillType": "Technical",
+      "type": "Professional",
+      "description": "",
+      "createdAt": "2026-06-10T17:42:14.214Z",
+      "updatedAt": "2026-06-10T17:42:14.214Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a55ded7022c38f7e03b8",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "Figma",
+      "technology": "Figma",
+      "level": 3,
+      "category": "Design Tools",
+      "skillType": "Technical",
+      "type": "Professional",
+      "description": "",
+      "createdAt": "2026-06-10T17:56:45.322Z",
+      "updatedAt": "2026-06-10T17:56:45.322Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a55ced7022c38f7e0398",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "Express.Js",
+      "technology": "Express.Js",
+      "level": 3,
+      "category": "Backend",
+      "skillType": "Technical",
+      "type": "Professional",
+      "description": "",
+      "createdAt": "2026-06-10T17:56:44.718Z",
+      "updatedAt": "2026-06-10T17:56:44.718Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a1f6ed7022c38f7e024d",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "Express",
+      "technology": "Express",
+      "level": 3,
+      "category": "Backend",
+      "skillType": "Technical",
+      "type": "Professional",
+      "description": "",
+      "createdAt": "2026-06-10T17:42:14.014Z",
+      "updatedAt": "2026-06-10T17:42:14.014Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a1f6ed7022c38f7e025e",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "Docker",
+      "technology": "Docker",
+      "level": 3,
+      "category": "DevOps",
+      "skillType": "Technical",
+      "type": "Professional",
+      "description": "",
+      "createdAt": "2026-06-10T17:42:14.220Z",
+      "updatedAt": "2026-06-10T17:42:14.220Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a29a55ced7022c38f7e038e",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "CSS",
+      "technology": "CSS",
+      "level": 3,
+      "category": "Frontend",
+      "skillType": "Technical",
+      "type": "Professional",
+      "description": "",
+      "createdAt": "2026-06-10T17:56:44.619Z",
+      "updatedAt": "2026-06-10T17:56:44.619Z",
+      "__v": 0
+    }
+  ],
+  "projects": [
+    {
+      "_id": "6a29aca4a2593c075f73759a",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "name": "42 Porto — Systems Programming Curriculum",
+      "description": "Systems programming curriculum focused on C, algorithms, Linux and low-level software engineering.",
+      "category": "Systems",
+      "employmentType": "STUDENT PROJECT",
+      "role": "Software Engineering Student",
+      "course": "42 Porto",
+      "type": "curriculum",
+      "technologies": [
+        "C",
+        "Python",
+        "Linux"
+      ],
+      "tools": [
+        "Git",
+        "GCC",
+        "Make",
+        "GDB"
+      ],
+      "startDate": "2025-02-01",
+      "isCurrent": true,
+      "context": "Peer-reviewed curriculum with strict memory management and no undefined behavior policy.",
+      "items": [
+        {
+          "name": "Libft",
+          "description": "Reimplementation of 40+ standard C library functions including string manipulation and memory handling."
+        },
+        {
+          "name": "ft_printf",
+          "description": "Custom implementation of printf with variadic argument parsing and format handling."
+        },
+        {
+          "name": "get_next_line",
+          "description": "Buffered file reader using file descriptors with efficient memory management."
+        },
+        {
+          "name": "push_swap",
+          "description": "Sorting algorithm using dual-stack optimization with minimal operations."
+        },
+        {
+          "name": "Born2beRoot",
+          "description": "Linux server hardening including SSH configuration, firewall and system security setup."
+        },
+        {
+          "name": "Fly-in",
+          "description": "Event-driven drone traffic simulation system with path planning, congestion handling and visualization."
+        }
+      ],
+      "endDate": null
+    },
+    {
+      "_id": "6a29acf1a2593c075f73759c",
+      "name": "DigitalMTX – Chatbot Management Dashboard",
+      "description": "Operational dashboard for chatbot analytics, vendor management and system monitoring.",
+      "category": "Web",
+      "employmentType": "PROJECT",
+      "role": "Full-Stack Developer",
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "TailwindCSS",
+        "Python",
+        "Django",
+        "Git"
+      ],
+      "tools": [
+        "Git"
+      ],
+      "startDate": "2025-01-01",
+      "isCurrent": false,
+      "context": "Production-oriented dashboard for operational monitoring and analytics.",
+      "items": [
+        {
+          "name": "Vendor Management",
+          "description": "Developed modules for managing vendors and operational workflows."
+        },
+        {
+          "name": "Analytics System",
+          "description": "Implemented real-time chatbot interaction analytics."
+        },
+        {
+          "name": "API Integration",
+          "description": "Integrated frontend with backend APIs for live data visualization."
+        }
+      ],
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "link": "https://digitalmtx.arducloud.com",
+      "updatedAt": "2026-09-04T21:04:03.271Z",
+      "endDate": null
+    },
+    {
+      "_id": "6a29ad62a2593c075f73759e",
+      "name": "Edge-Based Failure Prediction System",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "description": "IoT and ML platform for predictive maintenance using edge computing.",
+      "category": "IoT",
+      "employmentType": "STUDENT PROJECT",
+      "role": "IoT / Machine Learning Engineer",
+      "technologies": [
+        "Python",
+        "MQTT",
+        "EdgeX Foundry",
+        "scikit-learn",
+        "Next.js",
+        "Docker",
+        "Git"
+      ],
+      "tools": [
+        "Docker",
+        "Git"
+      ],
+      "startDate": "2025-09-01",
+      "endDate": "2025-11-01",
+      "isCurrent": false,
+      "context": "Academic project focused on distributed sensor networks and predictive maintenance.",
+      "items": [
+        {
+          "name": "IoT Network",
+          "description": "Built distributed sensor network using EdgeX Foundry and MQTT for real-time data collection."
+        },
+        {
+          "name": "Failure Prediction",
+          "description": "Applied machine learning models to predict system failures from sensor data."
+        },
+        {
+          "name": "Architecture",
+          "description": "Implemented Python-based master-slave architecture for coordinated sensor acquisition."
+        },
+        {
+          "name": "Dashboard",
+          "description": "Developed real-time monitoring dashboard in Next.js for system visualization."
+        }
+      ],
+      "githubUrl": "https://github.com/Mario2211-debug/predictive_maintenance",
+      "link": "",
+      "updatedAt": "2026-09-04T20:59:38.300Z"
+    }
+  ],
+  "languages": [],
+  "posts": [
+    {
+      "_id": "6a4e9aa0c50ea21c57517f2e",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "title": "How to make multiple drones share a map without colliding (A * in time)",
+      "description": "",
+      "content": "Today you will learn how to make a drone find the shortest path between two zones. The problem becomes much more interesting when there are **multiple drones at the same time**, and the zones and connections have **limited capacity**. Two drones cannot be in the same small zone at the same time; a narrow link only allows one to pass at a time.\n\nThis tutorial explains, piece by piece, a complete solution to this problem. We will build the reasoning from the bottom up: first the graph, then the heuristic, then the search, then the reservations — exactly in the order in which the code executes.\n\n## The map we will use\n\n```python\nGRAPH = {\n\"zones\": {\n\"S\": float('inf'),\n\"T\": float('inf'),\n\"A\": 1,\n\"B\": 2,\n\"C\": 1,\n\"D\": 2,\n\"E\": 1,\n\"F\": 2,\n\"G\": 1,\n\"H\": 2,\n\"I\": 1,\n\"J\": 1,\n\"K\": float('inf')\n},\n\n\"connections\": {\n(\"S\", \"A\"): 1,\n(\"S\", \"B\"): 1,\n(\"S\", \"C\"): 1,\n\n(\"T\", \"A\"): 1,\n(\"T\", \"B\"): 1,\n(\"T\", \"C\"): 1,\n\n(\"A\", \"D\"): 1,\n(\"B\", \"D\"): 1,\n\n(\"C\", \"D\"): 1,\n\n(\"D\", \"E\"): 1,\n\n(\"D\", \"F\"): 1,\n\n(\"F\", \"G\"): 1,\n\n(\"F\", \"H\"): 1,\n\n(\"F\", \"I\"): 1,\n\n(\"I\", \"J\"): 1,\n\n(\"J\", \"K\"): 1,\n\n},\n\n\"start\": \"S\",\n\"end\": \"K\"\n\n}\n\nn_drones = 3\n\n```\n\nTwo key ideas before touching the code:\n\n1. **`zones`** defines how many drones fit in each zone *simultaneously*. `S`, `T`, and `K` have infinite capacity — they make sense as entry/exit points, with no real physical limit.\n\n2. **`connections`** are `(origin, destination) -> capacity` pairs. Note that there is only `(\"S\", \"A\")`, never `(\"A\", \"S\")` — the connections here are **directional**. This will be important later.\n\n## Step 1 — A heuristic with inverted BFS\n\nBefore searching for paths with capabilities, we want an estimate of \"how far\" each zone is from the destination, ignoring all the complication of capability. This is the classic role of the heuristic in an A*.\n\n```python\ndef bfs(graph: dict):\ndist = {z: float('inf') for z in graph[\"zones\"]}\nend = graph[\"end\"]\ndist[end] = 0\nqueue = [end]\n\nwhile queue:\ncurr = queue.pop(0)\nfor (z1, z2) in graph[\"connections\"]:\n\nif curr == z2:\nneighbor = z1\n\nif dist[curr] < dist[neighbor]:\ndist[neighbor] = dist[curr] + 1\nqueue.append(neighbor)\nreturn dist\n\n```\n\nThe trick is to start at `end` (`K`) and walk ** backwards **. For each current zone `curr`, the code searches for connections `(z1, z2)` where `z2 == curr` — that is, connections that *reach* `curr` — and says \"then `z1` is at a distance of `dist[curr] + 1`\".\n\nThis is essentially a normal BFS, except that the \"neighborhood\" of a zone is defined in reverse (who has an edge pointing to it, not where it points).\n\n**Why does this work as an admissible heuristic?** Because it ignores capabilities — it will never overestimate the actual cost, since the actual cost can never be shorter than the cost without any constraints. It is precisely this property that makes A* later on correct.\n\n**Point of attention:** since the BFS moves \"backwards\" following the direction of the edges, it implicitly assumes that the links in the real graph also move only in one direction (`z1 → z2`). This is consistent with the rest of the code — but if one day you want the drones to be able to move backward (e.g., from `D` to `A`), you'll have to add the reverse edges to the `connections` dictionary, both here and in the main search.\n\n## Step 2 — The search status: zone *and* time\n\nHere is the most important perspective shift in the exercise. In a normal A*, a \"state\" is just a zone. Here, a state is **a zone at a specific time**: `(zone, t)`.\n\nWhy? Because two things that depend solely on the zone (simple BFS) cannot answer the question \"is this zone free *now*?\" — the answer changes over time, as other drones have already reserved spots.\n\n```python\ndef find_path(graph: dict, zone_res: dict, conn_res: dict, h: dict) -> list:\nend = graph[\"end\"]\nstart = graph[\"start\"]\nqueue = [(h[start], 0, start, 0, [(start, 0)])]\nvisited = set()\n\nwhile queue:\nf, g, curr, t, path = heapq.heappop(queue)\n\nif curr == end:\nreturn path\nif (curr, t) in visited:\ncontinue\nvisited.add((curr, t))\ncurr_cap = graph[\"zones\"][curr]\ncan_wait = (curr == start) or zone_res[curr][t + 1] < curr_cap\nif can_wait:\nnew_path = path + [(curr, t + 1)]\nheapq.heappush(queue, (h[curr] + g + 1, g + 1, curr, t + 1, new_path))\nfor (z1, z2), conn_cap in graph[\"connections\"].items():\nif z1 ! = curr:\n\ncontinue\ndest_cap = graph[\"zones\"][z2]\n\nif zone_res[z2][t + 1] >= dest_cap:\n\ncontinue\n\nif conn_res[(z1, z2)][t] >= conn_cap:\n\ncontinue\nnew_path = path + [(z2, t + 1)]\n\nheapq.heappush(queue, (h[z2] + g + 1, g + 1, z2, t + 1, new_path))\n\nreturn []\n\n```\n\nObserve the priority queue: each item is `(f, g, curr, t, path)`, where `f = h[curr] + g` is the estimated total cost — exactly the classic A* formula. `heapq` ensures that we always explore the most promising state first.\n\nFrom each state `(curr, t)`, there are **two possible actions**, and the code tries both:\n\n### Action A — Wait\n\n```python\ncan_wait = (curr == start) or zone_res[curr][t + 1] < curr_cap\n```\n\nThe drone remains stationary in the same area, only advancing the clock (`t → t+1`). This is only allowed if:\n\n- you are in `start` (then waiting is always free, it doesn't count towards capacity — it makes sense, it's the launch zone), **or**\n\n- the zone still has free space in the next instant.\n\n### Action B — Move to a neighbor\n\n```python\nfor (z1, z2), conn_cap in graph[\"connections\"].items():\n\nif z1 ! = curr:\n\ncontinue\n```\n\nHere we traverse all connections that **leave** `curr` (unlike the BFS from step 1, which was looking for those that arrived). For each neighbor `z2`, two checks must pass:\n\n1. `zone_res[z2][t + 1] >= dest_cap` → Is the destination zone already full at the arrival time? If so, discard it.\n\n2. `conn_res[(z1, z2)][t] >= conn_cap` → Is the connection already saturated at the initial time? If so, discard it.\n\nIf both pass, a new state `(z2, t+1)` is created and pushed into the queue.\n\nThe returned path is not just a list of zones — it's a list of `(zone, time)`, because *when* the drone is in each place is as important as *where*.\n\n## Step 3 — Commit the found path\n\nFinding a path isn't enough — you need to \"record\" this occupation so that the next drone has to go around it.\n\n``python\ndef reserve(path: dict, conn_res: dict, zone_res: dict, graph: dict) -> None:\n\nstart = graph[\"start\"]\n\nfor i in range(1, len(path)):\ncurr_zone, curr_t = path[i]\nprev_zone, prev_t = path[i - 1]\n\nif curr_zone == prev_zone:\n\nif curr_zone ! = start:\nzone_res[curr_zone][curr_t] += 1\n\nelse:\nzone_res[curr_zone][curr_t] += 1\n\nconn_res[(prev_zone, curr_zone)][prev_t] += 1\n\n\nFor each step of the path, we compare it to the previous step:\n\n- **Same zone** (the drone waited) → increments the occupancy of that zone at that instant — except if it's `start`, which doesn't count (consistent with the `can_wait` from step 2).\n\n- **Different zone** (the drone moved) → increments the occupancy of the destination zone at the moment of arrival, **and** the occupancy of the connection used at the moment of departure.\n\nThis is the easiest detail to get wrong: if you only mark one of the two things (only the zone, or only the connection), the next search will \"see\" the map as freer than it actually is.\n\n## Step 4 — Orchestrate all drones\n\n```python\ndef solve(graph: dict, drones: int) -> dict:\npaths = {}\nh = bfs(graph)\nzone_res = defaultdict(lambda: defaultdict(int))\nconn_res = defaultdict(lambda: defaultdict(int))\nprint(find_path(graph, zone_res, conn_res, h))\nfor i in range(1, drones + 1):\npath = find_path(graph, zone_res, conn_res, h)\nreserve(path, conn_res, zone_res, graph)\npaths[i] = path\nfor i, path in paths.items():\n\nprint(f\"D{i} - {path}\")\nreturn paths\n\n```\n\nThe idea is simple and sequential:\n\n1. Calculate the heuristic `h` only once (does not depend on reservations).\n\n2. For each drone, in order: `find_path` searches for the best path respecting the reservations *already made by previous drones*, and `reserve` blocks that path for subsequent drones.\n\nThis is **not globally optimal** — drone 1 never \"yields way\" to drone 3, even if that would give a better overall result. But it's a simple, predictable, and easy-to-debug approach — which is the most important thing in a first working version.\n\nA practical note: the line\n\n```python\nprint(find_path(graph, zone_res, conn_res, h))\n```\n\nbefore the loop is repeating exactly the same calculation that `i=1` will do next (still without any reservations at this point). It doesn't break anything, but it's double the work — it can be deleted without any impact on the result.\n\n## Following a concrete case: the first steps of drone 1\n\nIt's worth tracing it by hand to see the algorithm \"thinking\". At initialization, `zone_res` and `conn_res` are empty (all `0` by default, thanks to `defaultdict`).\n\n- Initial state: `(h[S], 0, S, 0, [(S,0)])`. `S` has no heuristic of its own in BFS (it is not reachable backwards from `K` via direct edges — note that there are no `(K, ...)` or links reaching `S`), so `h[S]` becomes `inf`. This is normal: `S` is a starting point, not an intermediate point.\n\n- From `S`, the outgoing connections are `(S,A)`, `(S,B)`, `(S,C)`, all with capacity 1. No zones `A`, `B`, `C` are occupied yet, so all three moves are valid, generating states `(A,1)`, `(B,1)`, `(C,1)`.\n\n- A* will choose to expand the state with the smallest `f`. Since `A`, `B`, and `C` are symmetrical in this graph (same distance from `K`), the tiebreaker depends on the order of insertion into the heap—typically the first to enter (`A`, here).\n\n- From `A`, the only outgoing connection is `(A,D)`. `D` has capacity 2 and is still free → valid. It generates `(D, 2)`.\n\n- From `D`, there are two connections: `(D,E)` and `(D,F)`. `E` is a dead end (it leads nowhere in the given graph)—A* will explore it, but will never find `K` there, so this branch ends up being abandoned when the heuristic or the accumulated cost makes it less prioritized than the path through `F`.\n\nFollowing `F → I → J → K`, we arrive at the destination. The final path of drone 1 should be something like:\n\n```\n[(S,0), (A,1), (D,2), (F,3), (I,4), (J,5), (K,6)]\n```\n\n(To be confirmed by running the code — but this is what the manual trace suggests, given that this is the shortest path without any competition.)\n\nWhen drone 2 runs `find_path` next, `reserve` will already have marked, for example, `zone_res[\"A\"][1] = 1` — since `A` has capacity 1, drone 2 **cannot** be in `A` at time 1. It will have to wait in `S` for an extra instant, or follow `B` or `C` instead. It is precisely this pressure that makes capacity-based search produce plans different from the simple \"shortest path\".\n\n## Summarizing the complete flow\n\n1. `bfs` — calculates, once, the minimum distance from each zone to the destination, ignoring capacities. Serves as an admissible heuristic for A*.\n\n2. `find_path` — A* where each state is `(zone, time)`, allowing both movement and waiting, always respecting the current zone and connection reservations.\n\n3. `reserve` — after finding a path, it marks the occupied zones and connections at the right times, for subsequent drones to have to bypass.\n\n4. `solve` — repeats steps 2 and 3 sequentially, one drone at a time.\n\nThis design leaves obvious room for improvement — for example, giving extra leeway to reservations (so as not to leave two drones \"rubbing\" at the exact same instant), or allowing bidirectional connections by altering both `bfs` and `find_path`. But as a first functional version, the structure is solid: heuristics separate from search, search separate from reservations, each piece with clear responsibility.",
+      "imageUrl": "",
+      "category": "Article",
+      "published": true,
+      "publishDate": "2026-07-08T18:44:47.891Z",
+      "type": "blog",
+      "status": "draft",
+      "template": "custom",
+      "postAngle": null,
+      "slug": "como-fazer-v-rios-drones-partilharem-um-mapa-sem-colidir-a-no-tempo",
+      "createdAt": "2026-07-08T18:44:48.303Z",
+      "updatedAt": "2026-09-04T20:58:22.578Z",
+      "__v": 0
+    },
+    {
+      "_id": "6a2ecab9343ae227a30f5313",
+      "user": "6a29a1e2ed7022c38f7e01f3",
+      "title": "Hello Message",
+      "description": "",
+      "content": "# Hello 👋\n\nHello!\n\nThis is a sample Markdown message.\n\n## Features\n\n- Easy to read\n- Simple formatting\n- Works on GitHub, GitLab, and many other platforms\n\nHave a great day! 🚀",
+      "imageUrl": "",
+      "category": "Article",
+      "published": true,
+      "publishDate": "2026-06-14T15:37:29.450Z",
+      "type": "blog",
+      "status": "draft",
+      "template": "custom",
+      "postAngle": null,
+      "slug": "hello-message",
+      "createdAt": "2026-06-14T15:37:29.929Z",
+      "updatedAt": "2026-06-14T15:37:29.929Z",
+      "__v": 0
+    }
+  ]
+}

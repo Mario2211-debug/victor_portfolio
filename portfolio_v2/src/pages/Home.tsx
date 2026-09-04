@@ -24,7 +24,9 @@ export default function Home() {
   }, []);
 
   if (isLoading) return <LoadingState shape="home" />;
-  if (error || !data)
+  // `!data`, não `error || !data`: uma revalidação falhada com o instantâneo em
+  // mão não põe a página em erro — o conteúdo está lá, só não é o mais recente.
+  if (!data)
     return (
       <ErrorState error={(error as Error) ?? new Error("No data")} onRetry={() => refetch()} />
     );

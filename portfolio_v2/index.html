@@ -18,6 +18,10 @@
       })();
     </script>
 
+    <!-- seo:start — bloco reescrito por rota no `scripts/postbuild.mjs`.
+         O que está aqui é a versão da Home, e é também o que serve de molde:
+         se os marcadores desaparecerem, o postbuild falha em vez de publicar
+         páginas todas com o mesmo título. -->
     <title>Mário Afonso — Software Engineer</title>
     <meta
       name="description"
@@ -48,6 +52,7 @@
       content="Fullstack engineer crafting intelligent, scalable systems across web, automation and IoT."
     />
     <meta name="twitter:image" content="https://victor-portfolio-sepia.vercel.app/og.png" />
+    <!-- seo:end -->
 
     <!-- Fontes: preconnect + preload da folha, e `display=swap` na query.
          O fallback está declarado em `--font-sans`, por isso a troca é de

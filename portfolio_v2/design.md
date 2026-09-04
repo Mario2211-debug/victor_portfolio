@@ -374,6 +374,65 @@ e no 404.
 
 ---
 
+## FASE 9 — Entrega (adenda, 2026-09-04)
+
+A passagem 0–8 tratou do que se vê. Esta adenda trata das duas coisas que
+faziam o portfólio falhar **antes** de alguém chegar a ver seja o que for.
+
+### 1. O conteúdo deixou de depender de um serviço que dorme
+
+A API vive num free tier do Render que adormece. Um arranque a frio é ~60s, e
+uma API em baixo punha os seis ecrãs em estado de erro ao mesmo tempo — a única
+falha que um portfólio não pode ter, porque acontece exatamente quando alguém o
+abriu pela primeira vez.
+
+`scripts/snapshot.mjs` guarda a última resposta boa em
+`src/data/portfolio.snapshot.json` (26 KB, ~6 KB gzip) a cada build. Entra como
+`initialData` da query, com `initialDataUpdatedAt: 0` para nascer vencida: a
+primeira frame já tem conteúdo real e a API passa a ser revalidação em segundo
+plano em vez de caminho crítico.
+
+O ficheiro é **versionado de propósito** — é o fallback, não um artefacto. Um
+build sem rede usa o instantâneo anterior em vez de falhar.
+
+Consequência que obrigou a corrigir os cinco ecrãs: com `initialData`, um
+`refetch` falhado enche o `error` sem esvaziar o `data`. O guarda era
+`error || !data`, o que voltaria a pôr a página em erro com dados bons em mão —
+o mesmo defeito, por outra porta. Passou a `!data`.
+
+Os quatro estados continuam todos alcançáveis: se o instantâneo estiver vazio,
+`PORTFOLIO_SNAPSHOT` é `undefined` e a app volta ao caminho com skeleton e erro.
+
+### 2. As páginas deixaram de ser todas a mesma página
+
+SPA: um `index.html` para todos os endereços. Quem renderiza JS acabava por ver
+o conteúdo certo; quem não renderiza — LinkedIn, WhatsApp, Slack, X — lia só o
+`<head>`, e partilhar um artigo mostrava o título da Home e a `og.png` de sempre.
+
+`scripts/postbuild.mjs` escreve um `index.html` por rota, com o mesmo bundle e o
+`<head>` correto, a partir do mesmo instantâneo: título, descrição, canonical,
+`og:`/`twitter:` e JSON-LD (`Person` na Home, `BlogPosting` nos posts). O bloco
+vive entre marcadores `seo:start`/`seo:end` no `index.html` — se desaparecerem, o
+build **falha** em vez de publicar oito páginas com o mesmo título.
+
+O `sitemap.xml` passou a ser gerado com as oito rotas. O que estava à mão tinha
+três, e declarava `xmlns="http://www.sitemap.org/..."` — sem o `s`. Namespace
+errado é ficheiro rejeitado inteiro: o sitemap que deu 100 no Lighthouse nunca
+foi válido para um validador a sério.
+
+**Aceite conscientemente:** rotas inexistentes continuam a responder 200 com o
+404 da SPA. O catch-all tem de ficar, porque um projeto novo aparece na API sem
+haver deploy e a sua página tem de funcionar na mesma.
+
+### 3. Removido
+
+`frontend/` (a app Next.js anterior, 110 ficheiros), `public/icons.svg` (sem
+referências), `public/sitemap.xml` (gerado agora), `copy.home.basedIn` e
+`copy.about.eyebrow` (mortos). `formatRange` tinha `"Present"` escrito em código,
+contra a regra 4 — passou a `copy.present`, que já existia por usar.
+
+---
+
 ## Regras que ficam
 
 1. Uma largura de coluna: `--measure` (600px). Nenhuma página inventa a sua.
