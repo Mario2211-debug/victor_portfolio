@@ -1,0 +1,331 @@
+{
+  "projects": [
+    {
+      "name": "DigitalMTX – Chatbot Management Dashboard",
+      "employmentType": "FREELANCE",
+      "company": "Ardumaker"
+    },
+    {
+      "name": "PortfolioHub",
+      "description": "Career platform in one place: portfolio, CV import and generation, job tracking, recruiter outreach and LinkedIn publishing, with AI features on top.",
+      "category": "Web",
+      "employmentType": "PERSONAL PROJECT",
+      "role": "Full-stack developer",
+      "technologies": ["TypeScript", "Node.js", "Express", "MongoDB", "React", "TanStack Start"],
+      "tools": ["OpenRouter", "GitHub OAuth", "Gmail API", "LinkedIn API"],
+      "context": "Also the API that serves this site.",
+      "items": [
+        "Resume Studio — CV import from PDF and DOCX with heuristic parsing and an LLM fallback; export to Markdown, LaTeX and PDF",
+        "Outreach — template-first bulk applications: one AI call per template, plain substitution per contact, drafts sent through the user's Gmail",
+        "Integrations — GitHub repository import, scheduled LinkedIn posts, Gmail and Google Calendar sync"
+      ],
+      "startDate": "2025-12-03",
+      "isCurrent": true
+    },
+    {
+      "name": "AutoGTM",
+      "description": "Autonomous go-to-market platform: a B2B company database with AI enrichment, and agents that run outbound end to end from a single domain.",
+      "category": "AI",
+      "employmentType": "PERSONAL PROJECT",
+      "role": "Full-stack developer",
+      "technologies": ["TypeScript", "Next.js", "Express", "MongoDB", "Redis", "BullMQ"],
+      "tools": ["OpenRouter", "Resend"],
+      "context": "Four surfaces on one design system: marketing site, programmatic SEO engine, public agent demo and the authenticated app.",
+      "items": [
+        "Agent pipeline — researches the company, maps competitors, splits the market into campaigns, finds buyers, writes and sends each email, handles replies",
+        "Programmatic SEO — 640 generated pages",
+        "Runs on a laptop — without MongoDB and Redis the API falls back to an in-memory store behind the same interface"
+      ],
+      "startDate": "2026-09-05",
+      "isCurrent": true
+    },
+    {
+      "name": "Swift Core ERP",
+      "description": "Business management system covering sales and cash sessions, inventory, finance, HR and payroll, service orders and an audit log.",
+      "category": "Web",
+      "employmentType": "PERSONAL PROJECT",
+      "role": "Full-stack developer",
+      "technologies": ["TypeScript", "React", "Node.js", "Express", "MongoDB"],
+      "tools": ["Stripe", "Resend", "Jest"],
+      "items": [
+        "Sales — multiple payment methods, cash sessions and automatic invoices",
+        "Inventory — stock movements and low-stock alerts",
+        "Finance and HR — bank accounts, budgets, departments and payroll"
+      ],
+      "startDate": "2025-07-27",
+      "isCurrent": true
+    },
+    {
+      "name": "Sereia Studio",
+      "description": "Booking and management app for a beauty studio: services, team, clients and appointments, with public online booking.",
+      "category": "Web",
+      "employmentType": "PERSONAL PROJECT",
+      "role": "Full-stack developer",
+      "technologies": ["TypeScript", "React", "Node.js", "Express", "MongoDB", "Socket.IO"],
+      "tools": ["Zod", "Pino"],
+      "context": "React SPA and Express API in one monorepo. Availability and double-booking rules are enforced on the server.",
+      "items": [
+        "Real time — every change emits a Socket.IO event, so open schedules update across devices",
+        "Auth — short-lived access token in memory and a rotating httpOnly refresh cookie",
+        "Hardening — Helmet, strict CORS, rate limiting, NoSQL sanitisation and Zod validation on every input"
+      ],
+      "link": "https://sereia-studio-local.vercel.app",
+      "startDate": "2026-07-05",
+      "endDate": "2026-08-26",
+      "isCurrent": false
+    },
+
+    {
+      "name": "42 Porto — Systems Programming Curriculum",
+      "employmentType": "ACADEMIC PROJECT",
+      "course": "42 Porto",
+      "githubUrl": "https://github.com/Mario2211-debug/42-Porto"
+    },
+    {
+      "name": "RAG against the machine",
+      "description": "Retrieval-augmented generation over the vLLM codebase: ask a question in plain English, get back the exact file and character range, and an answer grounded in those excerpts.",
+      "category": "AI",
+      "employmentType": "ACADEMIC PROJECT",
+      "course": "42 Porto",
+      "role": "Software engineering student",
+      "technologies": ["Python", "NumPy", "SciPy", "Transformers"],
+      "tools": ["uv", "pytest", "mypy"],
+      "context": "BM25 retrieval over 30,665 chunks from 1,830 files. Qwen3-0.6B writes the answer from the retrieved excerpts and nothing else.",
+      "items": [
+        "Recall@5 of 0.870 on documentation questions and 0.879 on code questions, against required 0.80 and 0.50",
+        "Full index build in 17 s; 199 questions retrieved in 0.6 s",
+        "Language-aware chunking for Python and Markdown"
+      ],
+      "startDate": "2026-08-31",
+      "isCurrent": true
+    },
+    {
+      "name": "Pacman",
+      "description": "Pac-Man recreated in Python with a clean project structure and a deployable build.",
+      "category": "Systems",
+      "employmentType": "ACADEMIC PROJECT",
+      "course": "42 Porto",
+      "role": "Software engineering student",
+      "technologies": ["Python"],
+      "tools": ["Make"],
+      "context": "Pair project, milestone 4.",
+      "githubUrl": "https://github.com/Mario2211-debug/Pacman",
+      "startDate": "2026-08-18",
+      "isCurrent": true
+    },
+    {
+      "name": "Call-me-Maybe",
+      "description": "Function calling from scratch: constrained decoding makes a language model's output valid JSON every time, with no ML libraries.",
+      "category": "AI",
+      "employmentType": "ACADEMIC PROJECT",
+      "course": "42 Porto",
+      "role": "Software engineering student",
+      "technologies": ["Python"],
+      "context": "Milestone 3 · grade 115.",
+      "githubUrl": "https://github.com/Mario2211-debug/Call-me-Maybe",
+      "startDate": "2026-08-12",
+      "isCurrent": false
+    },
+    {
+      "name": "Fly-in",
+      "description": "Routing a fleet of drones through a zone network with capacity limits, using prioritised space-time A* and a reservation table.",
+      "category": "Systems",
+      "employmentType": "ACADEMIC PROJECT",
+      "course": "42 Porto",
+      "role": "Software engineering student",
+      "technologies": ["Python", "Pygame"],
+      "context": "Milestone 3 · grade 125.",
+      "items": [
+        "Search over (node, time) pairs, so temporal collisions are avoided by construction",
+        "Global reservation table for zone and connection occupancy",
+        "Exact distance heuristic pre-computed with a backward BFS from the end hub"
+      ],
+      "githubUrl": "https://github.com/Mario2211-debug/Fly-in",
+      "startDate": "2026-08-12",
+      "isCurrent": false
+    },
+    {
+      "name": "Codexion",
+      "description": "Dining philosophers under a resource hierarchy, with FIFO and EDF scheduling.",
+      "category": "Systems",
+      "employmentType": "ACADEMIC PROJECT",
+      "course": "42 Porto",
+      "role": "Software engineering student",
+      "technologies": ["C", "pthreads"],
+      "context": "Milestone 3 · grade 100.",
+      "githubUrl": "https://github.com/Mario2211-debug/Codexion",
+      "startDate": "2026-08-12",
+      "isCurrent": false
+    },
+    {
+      "name": "A-Maze-ing",
+      "description": "Perfect-maze generation with randomised DFS and hex-encoded walls, plus a solver.",
+      "category": "Systems",
+      "employmentType": "ACADEMIC PROJECT",
+      "course": "42 Porto",
+      "role": "Software engineering student",
+      "technologies": ["Python"],
+      "context": "Milestone 2 · grade 123.",
+      "githubUrl": "https://github.com/Mario2211-debug/A-Maze-ing",
+      "startDate": "2026-07-28",
+      "isCurrent": false
+    },
+    {
+      "name": "push_swap",
+      "description": "Sorting a stack with a restricted set of operations, minimising the number of moves.",
+      "category": "Systems",
+      "employmentType": "ACADEMIC PROJECT",
+      "course": "42 Porto",
+      "role": "Software engineering student",
+      "technologies": ["C"],
+      "context": "Milestone 2 · grade 84.",
+      "githubUrl": "https://github.com/Mario2211-debug/push_swap",
+      "startDate": "2026-07-28",
+      "isCurrent": false
+    },
+    {
+      "name": "Python Modules",
+      "description": "The eleven modules of the Python piscine: fundamentals, OOP, decorators, data validation and NumPy, pandas and matplotlib.",
+      "category": "Systems",
+      "employmentType": "ACADEMIC PROJECT",
+      "course": "42 Porto",
+      "role": "Software engineering student",
+      "technologies": ["Python", "NumPy", "pandas"],
+      "context": "Milestone 2 · grades 90, 93, then 100 on modules 02 to 10.",
+      "githubUrl": "https://github.com/Mario2211-debug/python_modules",
+      "startDate": "2026-07-28",
+      "isCurrent": false
+    },
+    {
+      "name": "Born2beRoot",
+      "description": "Hardened headless Debian server: encrypted LVM, SSH, UFW and a monitoring script.",
+      "category": "Systems",
+      "employmentType": "ACADEMIC PROJECT",
+      "course": "42 Porto",
+      "role": "Software engineering student",
+      "technologies": ["Linux", "Bash"],
+      "tools": ["Debian", "UFW", "SSH"],
+      "context": "Milestone 1 · grade 125.",
+      "githubUrl": "https://github.com/Mario2211-debug/Born2beRoot",
+      "startDate": "2026-07-28",
+      "isCurrent": false
+    },
+    {
+      "name": "get_next_line",
+      "description": "Line-by-line file reading with a static buffer.",
+      "category": "Systems",
+      "employmentType": "ACADEMIC PROJECT",
+      "course": "42 Porto",
+      "role": "Software engineering student",
+      "technologies": ["C"],
+      "context": "Milestone 1 · grade 100.",
+      "githubUrl": "https://github.com/Mario2211-debug/gnl",
+      "startDate": "2026-07-28",
+      "isCurrent": false
+    },
+    {
+      "name": "ft_printf",
+      "description": "Reimplementation of printf with variadic argument handling.",
+      "category": "Systems",
+      "employmentType": "ACADEMIC PROJECT",
+      "course": "42 Porto",
+      "role": "Software engineering student",
+      "technologies": ["C"],
+      "context": "Milestone 1 · grade 100.",
+      "githubUrl": "https://github.com/Mario2211-debug/ft_printf",
+      "startDate": "2026-07-28",
+      "isCurrent": false
+    },
+    {
+      "name": "Libft",
+      "description": "Parts of the C standard library reimplemented from scratch.",
+      "category": "Systems",
+      "employmentType": "ACADEMIC PROJECT",
+      "course": "42 Porto",
+      "role": "Software engineering student",
+      "technologies": ["C"],
+      "context": "Milestone 0 · grade 100.",
+      "githubUrl": "https://github.com/Mario2211-debug/libft",
+      "startDate": "2026-07-28",
+      "isCurrent": false
+    },
+
+    {
+      "name": "Edge-Based Failure Prediction System",
+      "employmentType": "ACADEMIC PROJECT",
+      "course": "Universidade Portucalense"
+    },
+    {
+      "name": "Industrial Defect Detection",
+      "description": "Visual inspection of industrial products on the MVTec AD dataset, in four phases that each answer a different question about a defect.",
+      "category": "AI",
+      "employmentType": "ACADEMIC PROJECT",
+      "course": "Universidade Portucalense",
+      "role": "MSc student",
+      "technologies": ["Python", "TensorFlow", "scikit-learn"],
+      "context": "Computer vision course project, collaborative.",
+      "items": [
+        "CNN — is the product normal or defective?",
+        "Convolutional autoencoder — how far is this image from a normal reconstruction?",
+        "U-Net — where exactly is the defect, pixel by pixel?",
+        "ResNet50 transfer learning — do pretrained ImageNet features separate good from defective?"
+      ],
+      "githubUrl": "https://github.com/Mario2211-debug/industrial_defect_project_pro",
+      "startDate": "2026-06-12",
+      "isCurrent": false
+    },
+    {
+      "name": "EdgeX MQTT Device Simulation",
+      "description": "EdgeX Foundry stack with a simulated MQTT device whose sensor readings become events queryable through EdgeX's REST API.",
+      "category": "IoT",
+      "employmentType": "ACADEMIC PROJECT",
+      "course": "Universidade Portucalense",
+      "role": "MSc student",
+      "technologies": ["Node.js", "MQTT", "EdgeX Foundry"],
+      "tools": ["Docker", "Docker Compose", "Mosquitto"],
+      "context": "IoT and edge computing exercise, collaborative.",
+      "githubUrl": "https://github.com/Mario2211-debug/edgeX",
+      "startDate": "2025-05-06",
+      "isCurrent": false
+    },
+
+    {
+      "name": "MeetEasy",
+      "description": "Meeting management with an interactive calendar, participants and groups, and invitations by email and Telegram.",
+      "category": "Web",
+      "employmentType": "ACADEMIC PROJECT",
+      "course": "Bytes4Future",
+      "role": "Full-stack trainee",
+      "technologies": ["TypeScript", "Next.js", "Express", "MongoDB"],
+      "tools": ["Nodemailer", "Telegram Bot API", "TailwindCSS"],
+      "githubUrl": "https://github.com/Mario2211-debug/MeetEasy",
+      "startDate": "2025-11-04",
+      "isCurrent": false
+    },
+    {
+      "name": "CineVerse",
+      "description": "Film collection manager with a REST API for adding, editing, browsing and removing films.",
+      "category": "Web",
+      "employmentType": "ACADEMIC PROJECT",
+      "course": "Bytes4Future",
+      "role": "Full-stack trainee",
+      "technologies": ["TypeScript", "Next.js", "Express", "MongoDB"],
+      "tools": ["Mongoose", "TailwindCSS"],
+      "githubUrl": "https://github.com/Mario2211-debug/movies",
+      "startDate": "2025-10-21",
+      "isCurrent": false
+    },
+    {
+      "name": "NameGen",
+      "description": "Random full-name generator backed by a database of names and surnames, with a history of generated names.",
+      "category": "Web",
+      "employmentType": "ACADEMIC PROJECT",
+      "course": "Bytes4Future",
+      "role": "Full-stack trainee",
+      "technologies": ["TypeScript", "Next.js", "Express", "MongoDB"],
+      "tools": ["Mongoose", "TailwindCSS"],
+      "startDate": "2025-10-14",
+      "isCurrent": false
+    }
+  ]
+}

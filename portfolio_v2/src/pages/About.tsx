@@ -27,10 +27,13 @@ export default function About() {
       <h1 className="mt-4 text-2xl font-medium tracking-tight text-fg">{copy.about.title}</h1>
       <p className="mt-4 text-base text-fg-muted">{profile.summary}</p>
 
+      {/* Era o único botão-pílula do produto, numa página feita de linhas e
+          etiquetas. A variante `link` é a mesma linguagem do "Say hello" da
+          Home: sublinhado, sem contentor. */}
       <div className="mt-6">
         <a
           href="/Curriculum.pdf"
-          className={buttonVariants({ variant: "outline", size: "sm" })}
+          className={buttonVariants({ variant: "link", className: "text-sm" })}
           download
         >
           <Download aria-hidden className="size-4" />

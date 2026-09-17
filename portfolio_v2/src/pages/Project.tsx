@@ -7,6 +7,7 @@ import {
   findProjectBySlug,
   formatRange,
   sanitizeUrl,
+  projectItems,
   type ProjectItem,
 } from "@/lib/portfolio";
 import { LoadingState, ErrorState, EmptyState } from "@/components/site/States";
@@ -119,8 +120,11 @@ export default function Project() {
   }
 
   const link = sanitizeUrl(project.link);
+  const source = sanitizeUrl(project.githubUrl);
   const tags = [...project.technologies, ...(project.tools ?? [])];
-  const is42 = project.course === "42 Porto";
+  const items = projectItems(project);
+  // Os projetos da 42 também têm `course: "42 Porto"`; os marcos são só da entrada do currículo.
+  const is42 = project.course === "42 Porto" && project.type === "curriculum";
 
   return (
     <Page>
@@ -135,7 +139,9 @@ export default function Project() {
 
         <header className="mt-8">
           <div className="flex flex-wrap items-center gap-2 text-xs text-fg-muted">
-            {(project.course ?? project.category) && <Tag>{project.course ?? project.category}</Tag>}
+            {(project.course ?? project.company ?? project.category) && (
+              <Tag>{project.course ?? project.company ?? project.category}</Tag>
+            )}
             {project.startDate && (
               <Tag variant="meta">
                 {formatRange(project.startDate, project.endDate, project.isCurrent)}
@@ -160,28 +166,45 @@ export default function Project() {
         )}
 
         {is42 ? (
-          <Milestones items={project.items ?? []} />
+          <Milestones items={items} />
         ) : (
-          project.items &&
-          project.items.length > 0 && (
+          items.length > 0 && (
             <Section>
               <SectionLabel>{copy.project.highlights}</SectionLabel>
-              <NumberedList items={project.items} />
+              <NumberedList items={items} />
             </Section>
           )
         )}
 
-        {link && (
-          <Section>
-            <a
-              href={link}
-              target="_blank"
-              rel="noreferrer"
-              className={buttonVariants({ size: "sm" })}
-            >
-              {copy.project.viewProject}
-              <ArrowUpRight aria-hidden className="size-4" />
-            </a>
+        {(link || source) && (
+          <Section className="flex flex-wrap gap-2">
+            {link && (
+              <a
+                href={link}
+                target="_blank"
+                rel="noreferrer"
+                className={buttonVariants({ size: "sm" })}
+              >
+                {copy.project.viewProject}
+                <ArrowUpRight aria-hidden className="size-4" />
+              </a>
+            )}
+            {/* Com as duas ações, o site é a primária e o código fica em outline. */}
+            {source && (
+              <a
+                href={source}
+                target="_blank"
+                rel="noreferrer"
+                className={
+                  link
+                    ? buttonVariants({ variant: "outline", size: "sm" })
+                    : buttonVariants({ size: "sm" })
+                }
+              >
+                {copy.project.viewSource}
+                <ArrowUpRight aria-hidden className="size-4" />
+              </a>
+            )}
           </Section>
         )}
       </article>

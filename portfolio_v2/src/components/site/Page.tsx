@@ -24,9 +24,16 @@ export function Section({ children, className }: { children: ReactNode; classNam
   return <section className={cn("mt-12", className)}>{children}</section>;
 }
 
-/** Eyebrow: maiúsculas pequenas, tracking positivo, texto terciário (03). */
+/**
+ * Rótulo de secção: pequeno, terciário, em sentence case.
+ *
+ * Era uma eyebrow em maiúsculas com `tracking-wide` (0.18em). Num produto denso
+ * essa combinação destoa — o tracking largo é um padrão de cabeçalho editorial,
+ * e ao lado de linhas de lista apertadas lê-se como outro sistema. O papel de
+ * "isto é um rótulo, não conteúdo" já é feito pelo tamanho e pela cor.
+ * As eyebrows de estado (`Error`, `404`) mantêm as maiúsculas: aí são um sinal,
+ * não uma etiqueta de secção.
+ */
 export function SectionLabel({ children }: { children: ReactNode }) {
-  return (
-    <h2 className="mb-4 text-xs font-normal tracking-wide text-fg-muted uppercase">{children}</h2>
-  );
+  return <h2 className="mb-3 text-xs font-medium text-fg-muted">{children}</h2>;
 }

@@ -12,6 +12,13 @@ export const PORTFOLIO_API =
  */
 export const FALLBACK_CONTACT_URL = "https://www.linkedin.com/in/mario-afonso-018107141";
 
+/**
+ * Foto de perfil servida pelo próprio site, não pela API (o `avatarUrl` de lá
+ * está vazio). É um recorte quadrado da cara a 180px — 3× os 60px do avatar —
+ * tirado de `public/profile.jpg`: poucos KB em vez de 209 KB para uma imagem de 60px.
+ */
+export const PROFILE_PHOTO_URL = "/profile-avatar.jpg";
+
 export interface PortfolioUser {
   name: string;
   email: string;
@@ -65,13 +72,15 @@ export interface Project {
   category?: string;
   employmentType?: string;
   role?: string;
-  course?: string;
+  company?: string | null;
+  course?: string | null;
   type?: string;
   technologies: string[];
   tools?: string[];
   context?: string;
   link?: string;
-  items?: ProjectItem[];
+  githubUrl?: string;
+  items?: (ProjectItem | string)[];
   readme?: string;
   isCurrent?: boolean;
   startDate?: string;
@@ -166,6 +175,68 @@ export function slugify(text: string): string {
     .replace(/[̀-ͯ]/g, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+}
+
+/**
+ * O schema da API guarda `items` como strings ("Título — descrição"); os
+ * projetos mais antigos têm objetos. O site lê os dois da mesma forma.
+ */
+export function projectItems(project: Project): ProjectItem[] {
+  return (project.items ?? []).map((it) => {
+    if (typeof it !== "string") return it;
+    const [name, ...rest] = it.split(" — ");
+    return { name, description: rest.join(" — ") };
+  });
+}
+
+export type ProjectGroupKind = "clients" | "products" | "academic";
+export interface ProjectGroup {
+  key: string;
+  kind: ProjectGroupKind;
+  /** Só nos grupos académicos: o nome do curso, que vem da API. */
+  label?: string;
+  projects: Project[];
+}
+
+const CLIENT_TYPES = new Set(["FREELANCE", "FULL TIME", "PART TIME"]);
+const KIND_ORDER: ProjectGroupKind[] = ["clients", "products", "academic"];
+
+/** O contexto em que o projeto foi feito — é por ele que a Home agrupa. */
+function groupOf(p: Project): Omit<ProjectGroup, "projects"> {
+  const type = p.employmentType ?? "";
+  if (CLIENT_TYPES.has(type)) return { key: "clients", kind: "clients" };
+  // `STUDENT PROJECT` é um valor anterior ao enum da API; ainda há dados com ele.
+  if (p.course || type === "ACADEMIC PROJECT" || type === "STUDENT PROJECT") {
+    return { key: `course:${p.course ?? ""}`, kind: "academic", label: p.course ?? undefined };
+  }
+  return { key: "products", kind: "products" };
+}
+
+/** Em curso primeiro, depois o mais recente. O sort é estável: empates mantêm a ordem da API. */
+function byRecency(a: Project, b: Project) {
+  const current = Number(!!b.isCurrent) - Number(!!a.isCurrent);
+  if (current !== 0) return current;
+  return new Date(b.startDate ?? 0).getTime() - new Date(a.startDate ?? 0).getTime();
+}
+
+/**
+ * Clientes, depois produtos próprios, depois um grupo por curso — os cursos
+ * ordenados pelo projeto mais recente de cada um.
+ */
+export function groupProjects(projects: Project[]): ProjectGroup[] {
+  const groups = new Map<string, ProjectGroup>();
+  for (const p of projects) {
+    const g = groupOf(p);
+    const group = groups.get(g.key) ?? { ...g, projects: [] };
+    group.projects.push(p);
+    groups.set(g.key, group);
+  }
+  const sorted = [...groups.values()].map((g) => ({ ...g, projects: [...g.projects].sort(byRecency) }));
+  return sorted.sort(
+    (a, b) =>
+      KIND_ORDER.indexOf(a.kind) - KIND_ORDER.indexOf(b.kind) ||
+      byRecency(a.projects[0], b.projects[0]),
+  );
 }
 
 export function findProjectBySlug(portfolio?: Portfolio | null, slug?: string) {
